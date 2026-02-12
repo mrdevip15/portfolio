@@ -34,8 +34,8 @@
                 <div class="hero-content">
                     <span class="hero-tag">Core Physics • Precise Code</span>
                     <h1>Fisikawan yang <br><span class="gradient-text">Membangun Kode.</span></h1>
-                    <p>Web Developer dengan pengalaman 5 tahun, Head of School, dan lulusan Fisika Murni. Fokus pada
-                        arsitektur digital yang presisi dan edukasi teknologi tingkat lanjut.</p>
+                    <p>Web Developer dengan pengalaman 5 tahun, Founder at Geniusgate.id, dan lulusan Fisika Murni at
+                        Universitas Hasanuddin.</p>
                     <div class="cta-group">
                         <a href="#projects" class="btn btn-primary">Lihat Karya</a>
                         <a href="#about" class="btn btn-secondary">Pelajari Filosofi</a>
@@ -68,26 +68,34 @@
                     <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Profil & Filosofi</h2>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
                         <div>
-                            <p style="margin-bottom: 1.5rem; max-width: 100%;">Perjalanan saya dimulai dari laboratorium
-                                fisika, di mana logika dan ketelitian menjadi dasar cara saya berpikir. Kini, saya
-                                menerapkan prinsip yang sama dalam membangun arsitektur perangkat lunak yang efisien.
+                            <p style="margin-bottom: 1.5rem; max-width: 100%;">Perjalanan saya dimulai dari zaman kuliah
+                                fisika, di mana segala keterbatasan memicu saya untuk belajar coding dan membuat
+                                website.
                             </p>
-                            <p style="max-width: 100%;">Sebagai <strong>Head of School</strong>, saya memiliki
-                                perspektif unik dalam manajemen tim dan operasional, yang sangat membantu dalam memimpin
-                                proyek digital kompleks.</p>
+                            <p style="max-width: 100%;">Itu 5 tahun yang lalu, dan sekarang saya telah membangun
+                                berbagai macam website dan aplikasi. Mulai dari UMKM, Bimbingan Belajar, hingga
+                                Institusi Pendidikan.</p>
                         </div>
                         <div style="border-left: 1px solid var(--glass-border); padding-left: 2rem;">
                             <h4
-                                style="color: var(--accent-color); margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">
+                                style="color: var(--accent-color); margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">
                                 Tech Stack</h4>
-                            <p style="font-size: 1rem; color: var(--text-color); margin-bottom: 2rem;">PHP, JavaScript,
-                                Laravel, Moodle, Tailwind, SQL, Three.js.</p>
+
+                            <div style="display: grid; gap: 1rem; font-size: 0.9rem;">
+                                <div><strong style="color: #fff;">Frontend:</strong> React 18, TypeScript, Vite, MUI 6
+                                </div>
+                                <div><strong style="color: #fff;">Backend:</strong> Node.js, Express, TypeScript, Prisma
+                                </div>
+                                <div><strong style="color: #fff;">Database:</strong> PostgreSQL 15</div>
+                                <div><strong style="color: #fff;">Cache:</strong> Redis 7</div>
+                                <div><strong style="color: #fff;">Deploy:</strong> Docker, Nginx</div>
+                            </div>
 
                             <h4
-                                style="color: var(--accent-color); margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">
+                                style="color: var(--accent-color); margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">
                                 Visi</h4>
-                            <p style="font-size: 1rem; color: var(--text-color);">"Kode yang baik seperti hukum fisika:
-                                Sederhana, efisien, dan bekerja semestinya."</p>
+                            <p style="font-size: 1rem; color: var(--text-color);">"Solusi digital yang dibangun dengan
+                                fondasi logika murni."</p>
                         </div>
                     </div>
                 </div>
@@ -101,6 +109,7 @@
                     <div class="project-card glass">
                         <div class="project-img-wrapper">
                             <img src="img/akarpanrita.png" alt="Akar Panrita Showcase">
+                            <div class="view-indicator">View Project</div>
                         </div>
                         <div class="project-info">
                             <span class="project-tag">School Management System</span>
@@ -114,6 +123,7 @@
                     <div class="project-card glass">
                         <div class="project-img-wrapper">
                             <img src="img/brits.png" alt="Brits Showcase">
+                            <div class="view-indicator">View Project</div>
                         </div>
                         <div class="project-info">
                             <span class="project-tag">Institutional Platform</span>
@@ -127,6 +137,7 @@
                     <div class="project-card glass">
                         <div class="project-img-wrapper">
                             <img src="img/navins.png" alt="Navins Showcase">
+                            <div class="view-indicator">View Project</div>
                         </div>
                         <div class="project-info">
                             <span class="project-tag">Corporate System</span>
@@ -140,6 +151,7 @@
                     <div class="project-card glass">
                         <div class="project-img-wrapper">
                             <img src="img/pioneerclass.png" alt="Pioneer Class Showcase">
+                            <div class="view-indicator">View Project</div>
                         </div>
                         <div class="project-info">
                             <span class="project-tag">EdTech Platform</span>
@@ -177,6 +189,14 @@
                 </p>
             </footer>
         </main>
+    </div>
+
+    <!-- Modal for Image Preview -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img id="modalImage" src="" alt="Full View">
+        </div>
     </div>
 
     <script type="module" src="main.js"></script>

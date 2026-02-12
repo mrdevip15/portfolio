@@ -6,17 +6,18 @@ class Portfolio3D {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        
+
         this.points = null;
         this.mouseX = 0;
         this.mouseY = 0;
-        
+
         this.init();
         this.createParticles();
         this.animate();
         this.handleResize();
         this.handleMouse();
         this.initScrollReveal();
+        this.initModal();
     }
 
     init() {
@@ -24,6 +25,39 @@ class Portfolio3D {
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.container.appendChild(this.renderer.domElement);
         this.camera.position.z = 5;
+    }
+
+    initModal() {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('modalClose');
+        const projectImgs = document.querySelectorAll('.project-img-wrapper');
+
+        projectImgs.forEach(wrapper => {
+            wrapper.addEventListener('click', () => {
+                const img = wrapper.querySelector('img');
+                modalImg.src = img.src;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scroll
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { modalImg.src = ''; }, 400); // Clear src after transition
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
     }
 
     createParticles() {
