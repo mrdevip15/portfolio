@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BritsEdu | Case Study - Dayat Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .section-card {
+            margin-bottom: 3rem;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .feature-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .list-premium {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-premium li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+
+        .list-premium li::before {
+            content: "→";
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .tech-box {
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+
+    <div class="content-wrapper">
+        <nav>
+            <div class="container nav-content">
+                <a href="index.html" class="logo">← KEMBALI</a>
+                <div class="nav-links">
+                    <a href="#fitur">Fitur</a>
+                    <a href="#tech">Tech Stack</a>
+                    <a href="#highlight">Highlight</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container">
+            <!-- Hero -->
+            <section class="detail-hero">
+                <span class="hero-tag">Case Study</span>
+                <h1 style="font-size: 4rem;"><span class="gradient-text">BritsEdu</span></h1>
+                <p style="margin: 0 auto; max-width: 800px;">Platform Tryout & Assessment end-to-end yang dirancang
+                    untuk mengelola ujian berskala besar dengan manajemen soal yang presisi dan sistem penilaian IRT.
+                </p>
+            </section>
+
+            <!-- Features -->
+            <section id="fitur" class="section-card">
+                <div class="feature-split">
+                    <div class="glass" style="padding: 2.5rem;">
+                        <h3 style="color: var(--accent-color); margin-bottom: 1.5rem;">Panel Siswa</h3>
+                        <ul class="list-premium">
+                            <li><strong>Auth:</strong> Registrasi & Google OAuth 2.0.</li>
+                            <li><strong>Dashboard:</strong> Monitoring progress dan daftar tryout aktif.</li>
+                            <li><strong>Execution:</strong> Engine ujian dengan timer per subtest & review jawaban.</li>
+                            <li><strong>Outcome:</strong> Hasil instan, ranking nasional, dan unduh sertifikat
+                                terverifikasi.</li>
+                        </ul>
+                    </div>
+                    <div class="glass" style="padding: 2.5rem;">
+                        <h3 style="color: var(--accent-color); margin-bottom: 1.5rem;">Panel Admin</h3>
+                        <ul class="list-premium">
+                            <li><strong>Management:</strong> Kontrol penuh atas periode, subtest, dan bank soal.</li>
+                            <li><strong>Bank Soal:</strong> Penugasan soal dengan filter kesulitan & kategori.</li>
+                            <li><strong>Settings:</strong> Kustomisasi IRT, sertifikat, dan rilis pembahasan.</li>
+                            <li><strong>Analytics:</strong> Laporan statistik mendalam & analisis tingkat kesulitan
+                                soal.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section id="tech" class="glass tech-box">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Tech Stack Arsitektur</h2>
+                <div class="tech-container"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="tech-group">
+                        <h5>Frontend</h5>
+                        <div class="badge-list">
+                            <span class="tech-badge">React 18</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Vite</span>
+                            <span class="tech-badge">MUI 6</span>
+                            <span class="tech-badge">React Router 7</span>
+                            <span class="tech-badge">SWR</span>
+                            <span class="tech-badge">TipTap</span>
+                            <span class="tech-badge">i18next</span>
+                        </div>
+                    </div>
+                    <div class="tech-group">
+                        <h5>Backend</h5>
+                        <div class="badge-list">
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Express</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Prisma</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">Redis</span>
+                            <span class="tech-badge">Swagger</span>
+                            <span class="tech-badge">Passport.js</span>
+                        </div>
+                    </div>
+                    <div class="tech-group">
+                        <h5>Infrastructure & Ops</h5>
+                        <div class="badge-list">
+                            <span class="tech-badge">Docker</span>
+                            <span class="tech-badge">Nginx</span>
+                            <span class="tech-badge">PostgreSQL 15</span>
+                            <span class="tech-badge">Redis 7</span>
+                            <span class="tech-badge">Kamatera API</span>
+                            <span class="tech-badge">Prometheus</span>
+                            <span class="tech-badge">Grafana</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Highlights -->
+            <section id="highlight">
+                <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">Technical Highlights</h2>
+                <div class="highlight-grid">
+                    <div class="glass" style="padding: 2rem;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Sistem Skoring IRT</h4>
+                        <p style="font-size: 0.9rem;">Implementasi skala 200–1000 dengan parameter gamma untuk
+                            transformasi non-linear. Perhitungan batch otomatis dengan progress tracking real-time.</p>
+                    </div>
+                    <div class="glass" style="padding: 2rem;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Caching & Performa</h4>
+                        <p style="font-size: 0.9rem;">Optimasi Redis untuk cache ranking nasional, bank soal, dan skor
+                            pengguna. Strategi invalidation cerdas untuk menjamin akurasi data.</p>
+                    </div>
+                    <div class="glass" style="padding: 2rem;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Automasi Infra</h4>
+                        <p style="font-size: 0.9rem;">Integrasi API Kamatera untuk scaling server otomatis (CPU/RAM)
+                            berdasarkan jadwal ujian guna optimasi biaya infrastruktur.</p>
+                    </div>
+                    <div class="glass" style="padding: 2rem;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Backend Architecture</h4>
+                        <p style="font-size: 0.9rem;">Pola Repository + Service yang bersih. Pemisahan middleware
+                            auth/error-handler dan dokumentasi API otomatis via Swagger.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer style="margin-top: 6rem;">
+                <p style="color: #64748b; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">
+                    &copy; 2024 Dayat. BritsEdu Deep Dive.
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
