@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muh Hidayat — Web Developer</title>
+  <title>Digiserv.ID — Digital Agency</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -20,6 +20,30 @@
       --text: #f0ede8;
       --muted: #7a7d8a;
       --dim: #3a3d4a;
+    }
+
+    body.theme-simple {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --surface2: #e9ecef;
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #2563eb;
+      --accent2: #0ea5e9;
+      --text: #111827;
+      --muted: #6b7280;
+      --dim: #d1d5db;
+    }
+
+    body.theme-futuristic {
+      --bg: #04050a;
+      --surface: #0a0c14;
+      --surface2: #121626;
+      --border: rgba(0, 255, 255, 0.15);
+      --accent: #00f0ff;
+      --accent2: #ff003c;
+      --text: #ffffff;
+      --muted: #8b9bb4;
+      --dim: #1e293b;
     }
 
     *,
@@ -1291,14 +1315,21 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">MH<span>.</span></a>
+    <a href="#" class="nav-logo">Digiserv<span>.ID</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#experience">Experience</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Let's Talk</a>
+    <div style="display: flex; gap: 20px; align-items: center; z-index: 10000; pointer-events: auto;">
+      <select id="themeSwitcher" style="background: transparent; color: var(--text); border: 1px solid var(--border); padding: 8px 12px; border-radius: 4px; font-family: 'DM Sans', sans-serif; outline: none; cursor: pointer;">
+        <option value="portfolio" style="background: var(--surface); color: var(--text);">Portfolio Theme</option>
+        <option value="simple" style="background: var(--surface); color: var(--text);">Simple Theme</option>
+        <option value="futuristic" style="background: var(--surface); color: var(--text);">Futuristic Theme</option>
+      </select>
+      <a href="#contact" class="nav-cta">Let's Talk</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -1309,15 +1340,14 @@
     <div class="hero-content">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-line"></div>
-        <span class="hero-eyebrow-text">Web Developer · Indonesia</span>
+        <span class="hero-eyebrow-text">Web Development Agency · Indonesia</span>
       </div>
       <h1 class="hero-name">
-        Muh <br>
-        <span class="last">Hidayat</span>
+        Digiserv<br>
+        <span class="last">.ID</span>
       </h1>
       <p class="hero-title">
-        Crafting <strong>high-performance web experiences</strong> with 5+ years of expertise in full-stack development,
-        modern JavaScript ecosystems, and scalable cloud architecture.
+        Crafting <strong>premium digital experiences</strong>. We build elegant, high-performance web applications and digital solutions that elevate your business.
       </p>
       <div class="hero-stats">
         <div>
@@ -1344,9 +1374,9 @@
         <div class="hero-orbit-dot"></div>
       </div>
       <div class="hero-card">
-        <div class="hero-avatar">MH</div>
-        <div class="hero-card-name">Muh Hidayat</div>
-        <div class="hero-card-role">Full-Stack Developer</div>
+        <div class="hero-avatar">DS</div>
+        <div class="hero-card-name">Digiserv.ID</div>
+        <div class="hero-card-role">Digital Agency</div>
         <div class="hero-card-stack">
           <span class="stack-pill">React</span>
           <span class="stack-pill">TypeScript</span>
@@ -1376,16 +1406,14 @@
         <span class="section-label-num">01 / About</span>
         <div class="section-label-line"></div>
       </div>
-      <h2 class="section-title">Physics grad<br>turned <em>code</em><br>architect</h2>
+      <h2 class="section-title">Expertise<br>in digital<br><em>innovation</em></h2>
       <p class="about-bio">
-        With a background in <strong>Pure Physics</strong>, I bring an analytical, systems-thinking approach to software
-        engineering. Over 5+ years, I've built everything from educational platforms and academic management systems to
-        AI agents and blockchain protocols.
+        At <strong>Digiserv.ID</strong>, we bring an analytical, systems-thinking approach to software
+        engineering. Our seasoned team has built everything from educational platforms and enterprise management systems to
+        AI agents and scalable web applications.
       </p>
       <p class="about-bio">
-        I'm passionate about writing <strong>clean, maintainable code</strong> that solves real problems. Currently
-        deepening my expertise in cybersecurity through the <strong>Google Cybersecurity Professional
-          Certificate</strong>.
+        We are passionate about writing <strong>clean, maintainable code</strong> that solves real business problems. We deliver state-of-the-art digital solutions tailored to your unique needs.
       </p>
       <div class="about-details">
         <div class="about-detail">
@@ -1829,13 +1857,33 @@
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 60) {
-        nav.style.background = 'rgba(10,11,15,0.95)';
+        nav.style.background = 'var(--surface)';
         nav.style.backdropFilter = 'blur(16px)';
-        nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+        nav.style.borderBottom = '1px solid var(--border)';
       } else {
-        nav.style.background = 'linear-gradient(to bottom, rgba(10,11,15,0)'
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.borderBottom = '1px solid transparent';
       }
     });
+
+    // Theme Switcher Logic
+    const themeSwitcher = document.getElementById('themeSwitcher');
+    if (themeSwitcher) {
+      const savedTheme = localStorage.getItem('digiserv-theme') || 'portfolio';
+      document.body.className = savedTheme === 'portfolio' ? '' : `theme-${savedTheme}`;
+      themeSwitcher.value = savedTheme;
+
+      themeSwitcher.addEventListener('change', (e) => {
+        const theme = e.target.value;
+        if (theme === 'portfolio') {
+          document.body.className = '';
+        } else {
+          document.body.className = `theme-${theme}`;
+        }
+        localStorage.setItem('digiserv-theme', theme);
+      });
+    }
   </script>
 </body>
 
