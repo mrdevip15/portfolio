@@ -3,5 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/dige2484/public_html
     - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp concept.html $DEPLOYPATH
     - /bin/cp -r img $DEPLOYPATH
+    - /bin/cp -r blog $DEPLOYPATH
