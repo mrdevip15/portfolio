@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digiserv.my.id/sitemap.xml
