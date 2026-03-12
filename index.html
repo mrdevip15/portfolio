@@ -1522,6 +1522,13 @@
       color: var(--accent);
       border: 1px solid var(--border);
       font-size: 14px;
+      overflow: hidden;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .testimonial-info h4 {
@@ -1547,15 +1554,16 @@
       .testimonials {
         padding: 80px 24px;
       }
+
       .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 20px;
       }
+
       .testimonial-card {
         padding: 32px;
       }
     }
-
   </style>
 </head>
 
@@ -1811,7 +1819,13 @@
       <div class="project-card fade-up">
         <div class="project-screenshot screenshot-britsedu"><img src="img/brits.png" alt="Brits Edu Center Screenshot">
           <div class="project-overlay">
-            <a href="https://britseducenter.com" target="_blank" class="project-overlay-btn">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px; vertical-align:middle;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            <a href="https://britseducenter.com" target="_blank" class="project-overlay-btn">Visit Site <svg
+                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                style="margin-left:4px; vertical-align:middle;">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg></a>
           </div>
         </div>
         <div class="project-info">
@@ -1837,7 +1851,13 @@
         <div class="project-screenshot screenshot-geniusgate"><img src="img/geniusgate.png"
             alt="Genius Gate Screenshot">
           <div class="project-overlay">
-            <a href="https://geniusgate.id" target="_blank" class="project-overlay-btn">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px; vertical-align:middle;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            <a href="https://geniusgate.id" target="_blank" class="project-overlay-btn">Visit Site <svg
+                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                style="margin-left:4px; vertical-align:middle;">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg></a>
           </div>
         </div>
         <div class="project-info">
@@ -1862,7 +1882,13 @@
         <div class="project-screenshot screenshot-pioneer"><img src="img/pioneerclass.png"
             alt="Pioneer Class Academy Screenshot">
           <div class="project-overlay">
-            <a href="https://www.pioneerclass.academy/" target="_blank" class="project-overlay-btn">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px; vertical-align:middle;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            <a href="https://www.pioneerclass.academy/" target="_blank" class="project-overlay-btn">Visit Site <svg
+                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                style="margin-left:4px; vertical-align:middle;">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg></a>
           </div>
         </div>
         <div class="project-info">
@@ -1887,7 +1913,13 @@
       <div class="project-card fade-up">
         <div class="project-screenshot screenshot-navinsco"><img src="img/navins.png" alt="NAV|INS CO Screenshot">
           <div class="project-overlay">
-            <a href="https://navinsco.com" target="_blank" class="project-overlay-btn">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px; vertical-align:middle;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+            <a href="https://navinsco.com" target="_blank" class="project-overlay-btn">Visit Site <svg
+                xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                style="margin-left:4px; vertical-align:middle;">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg></a>
           </div>
         </div>
         <div class="project-info">
@@ -1923,39 +1955,71 @@
     </div>
     <div class="services-grid">
       <div class="service-item" data-num="01">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg></span>
         <div class="service-title">Full-Stack Web Development</div>
         <div class="service-desc">End-to-end web applications using React, Next.js, Node.js, and TypeScript. From
           concept to deployment with production-grade code and scalable architecture.</div>
       </div>
       <div class="service-item" data-num="02">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></span>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg></span>
         <div class="service-title">System Architecture & APIs</div>
         <div class="service-desc">Designing robust backend systems, RESTful and GraphQL APIs, database modeling with
           PostgreSQL, and microservices orchestrated with Docker and AWS.</div>
       </div>
       <div class="service-item" data-num="03">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10L12 5 2 10l10 5 10-5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg></span>
         <div class="service-title">EdTech Platforms</div>
         <div class="service-desc">Specialized in building learning management systems, online examination platforms, and
           educational tools — from Moodle administration to custom LMS development.</div>
       </div>
       <div class="service-item" data-num="04">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg></span>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+            <circle cx="12" cy="5" r="2"></circle>
+            <path d="M12 7v4"></path>
+            <line x1="8" y1="16" x2="8" y2="16"></line>
+            <line x1="16" y1="16" x2="16" y2="16"></line>
+          </svg></span>
         <div class="service-title">AI Integration & Agents</div>
         <div class="service-desc">Building AI-powered tools and agents using modern LLM APIs. Experience developing
           OpenClaw — a personal AI agent assistant for intelligent task automation.</div>
       </div>
       <div class="service-item" data-num="05">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.336-1.458-4.323-3.535-5.115C19.167 4.197 15.86 1 12 1 8.86 1 6.131 3.197 5.418 6.07C3.125 6.58 1.5 8.601 1.5 11c0 2.761 2.239 5 5 5h11z"></path></svg></span>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.336-1.458-4.323-3.535-5.115C19.167 4.197 15.86 1 12 1 8.86 1 6.131 3.197 5.418 6.07C3.125 6.58 1.5 8.601 1.5 11c0 2.761 2.239 5 5 5h11z">
+            </path>
+          </svg></span>
         <div class="service-title">Cloud & DevOps</div>
         <div class="service-desc">Cloud infrastructure on AWS and Supabase, containerization with Docker, CI/CD pipeline
           setup, and system administration for web applications at scale.</div>
       </div>
       <div class="service-item" data-num="06">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+            </path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg></span>
         <div class="service-title">Many more apps such as</div>
-        <div class="service-desc"><strong>Warung App</strong>: A premium QRIS ordering system with Dual Themes (Kawaii & Luxury) and Google Sheets integration for seamless restaurant management.</div>
+        <div class="service-desc"><strong>Warung App</strong>: A premium QRIS ordering system with Dual Themes (Kawaii &
+          Luxury) and Google Sheets integration for seamless restaurant management.</div>
       </div>
     </div>
   </section>
@@ -1973,37 +2037,42 @@
         <!-- Testimonial 1 -->
         <div class="testimonial-card fade-up">
           <div class="testimonial-card-header">
-            <div class="testimonial-avatar">BS</div>
+            <div class="testimonial-avatar"><img src="img/testimoni-1.png" alt="H. Ahmad Yani"></div>
             <div class="testimonial-info">
-              <h4>Budi Santoso</h4>
-              <p>Owner, Rasa Nusantara</p>
+              <h4>Nasyrah</h4>
+              <p>Web Manager, Pioneer Class Academy</p>
             </div>
           </div>
-          <p class="testimonial-text">"The Warung App transformed our restaurant's ordering process. The QRIS integration and dual-theme options are simply brilliant and easy to manage."</p>
+          <p class="testimonial-text">"The learning management platform Digiserv built for us is simply outstanding. Our
+            students love the interactive interface, and the tracking tools are perfect for our academy's growth."</p>
         </div>
 
         <!-- Testimonial 2 -->
         <div class="testimonial-card fade-up">
           <div class="testimonial-card-header">
-            <div class="testimonial-avatar">SA</div>
+            <div class="testimonial-avatar"><img src="img/testimoni-2.webp" alt="Siti Aminah"></div>
             <div class="testimonial-info">
-              <h4>Siti Aminah</h4>
-              <p>Director, Brits Edu Center</p>
+              <h4>Brits Indonesia</h4>
+              <p>Bimbel Kedokteran Supercamp #1 Indonesia</p>
             </div>
           </div>
-          <p class="testimonial-text">"Their expertise in EdTech is unmatched. Our tryout platform handles thousands of students simultaneously with zero lag. Highly professional team."</p>
+          <p class="testimonial-text">"What sets Digiserv.ID apart is their ability to handle sophisticated data
+            requirements. They integrated a complex Item Response Theory (IRT) scoring algorithm and automated our
+            reporting systems, saving our administrative team hundreds of hours of manual work."</p>
         </div>
 
         <!-- Testimonial 3 -->
         <div class="testimonial-card fade-up">
           <div class="testimonial-card-header">
-            <div class="testimonial-avatar">RK</div>
+            <div class="testimonial-avatar"><img src="img/testimoni-3.jpeg" alt="Agnes Gosali"></div>
             <div class="testimonial-info">
-              <h4>Rian Kurniawan</h4>
-              <p>COO, TechNova ID</p>
+              <h4>Agnes Gosali</h4>
+              <p>Academic and Operations, Ruangguru</p>
             </div>
           </div>
-          <p class="testimonial-text">"Working with Digiserv on our AI integration was a game-changer. They didn't just write code; they understood our business logic perfectly."</p>
+          <p class="testimonial-text">"The OpenClaw AI Assistant built by Digiserv has been a game-changer for our team.
+            It significantly speeds up our productivity by automating repetitive tasks with incredible intelligence."
+          </p>
         </div>
       </div>
     </div>
@@ -2020,8 +2089,13 @@
           collaborations. Let's build something great.</p>
 
         <div class="contact-links">
-          <a href="mailto:hidayat@digiserv.my.id" class="contact-link primary" style="display:flex; align-items:center; gap:8px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <a href="mailto:hidayat@digiserv.my.id" class="contact-link primary"
+            style="display:flex; align-items:center; gap:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
             hidayat@digiserv.my.id
           </a>
           <a href="https://wa.link/byybuo" target="_blank" class="contact-link">
@@ -2071,7 +2145,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Digiserv<span>.ID</span></div>
-    <div class="footer-copy">© 2025 Digiserv.ID. All rights reserved.</div>
+    <div class="footer-copy">© <span id="currentYear"></span> Digiserv.ID. All rights reserved.</div>
     <div class="footer-links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
@@ -2197,6 +2271,7 @@
         }
       });
     }
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
 </body>
 
