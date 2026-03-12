@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights & Engineering Blog — Digiserv.ID</title>
+  <meta name="description" content="Technical insights, cybersecurity analysis, and AI reports from the Digiserv.ID engineering team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b0f;
+      --surface: #111318;
+      --surface2: #181c24;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #c8a96e;
+      --text: #f0ede8;
+      --muted: #7a7d8a;
+      --dim: #3a3d4a;
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(200, 169, 110, 0.4);
+      --cursor-blend: difference;
+    }
+
+    body.theme-simple {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --surface2: #e9ecef;
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #2563eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --dim: #d1d5db;
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(37, 99, 235, 0.4);
+      --cursor-blend: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--cursor-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: var(--cursor-blend);
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--cursor-border);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(10, 11, 15, 0.95) 0%, transparent 100%);
+      transition: all 0.3s ease;
+    }
+
+    body.theme-simple nav {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, transparent 100%);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 160px 24px 80px;
+    }
+
+    .blog-header {
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+
+    .blog-header p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 32px;
+    }
+
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 40px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .post-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .post-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .post-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .post-excerpt {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .read-more {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+    }
+
+    .read-more svg {
+      transition: transform 0.2s;
+    }
+
+    .post-card:hover .read-more svg {
+      transform: translateX(4px);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: transform 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .container { padding-top: 120px; }
+      .posts-grid { grid-template-columns: 1fr; }
+      body { cursor: auto; }
+      .cursor, .cursor-follower { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Digiserv<span>.ID</span></a>
+  </nav>
+
+  <div class="container">
+    <a href="../index.html" class="back-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Home
+    </a>
+
+    <header class="blog-header">
+      <h1>Insights & <em>Engineering</em></h1>
+      <p>Reports, technical analysis, and perspectives from our digital workshop.</p>
+    </header>
+
+    <div class="posts-grid">
+      <!-- Post 2 -->
+      <a href="claw-revolution.html" class="post-card">
+        <span class="post-date">March 12, 2026 • AI & Automation</span>
+        <h2 class="post-title">The "Claw" Revolution: Kimi Claw vs. The AI Agent Ecosystem</h2>
+        <p class="post-excerpt">In 2026, the conversation has shifted. This report breaks down the leading variants: Kimi Claw, EasyClaw, Emergent, and the original OpenClaw framework.</p>
+        <div class="read-more">
+          Read Report
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Post 1 -->
+      <a href="sequelize-vuln.html" class="post-card">
+        <span class="post-date">March 12, 2026 • Cybersecurity</span>
+        <h2 class="post-title">Sequelize v6 Vulnerable to SQL Injection via JSON Column Cast Type</h2>
+        <p class="post-excerpt">Summary: SQL injection via unescaped cast type in JSON/JSONB where clause processing. A critical vulnerability analysis for node.js developers.</p>
+        <div class="read-more">
+          Read Analysis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const savedTheme = localStorage.getItem('digiserv-theme') || 'portfolio';
+    if (savedTheme === 'simple') document.body.classList.add('theme-simple');
+
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursorFollower');
+    let mx = 0, my = 0, fx = 0, fy = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateCursor() {
+      fx += (mx - fx) * 0.12;
+      fy += (my - fy) * 0.12;
+      follower.style.left = fx + 'px';
+      follower.style.top = fy + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+        follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        follower.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
+    });
+  </script>
+</body>
+
+</html>
