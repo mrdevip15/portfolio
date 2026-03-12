@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silent Blockers: Why Files Won't Show on Your Website — Digiserv.ID</title>
+  <meta name="description" content="Common reasons why files in your File Manager/cPanel won't show up on your live website and how to fix them.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b0f;
+      --surface: #111318;
+      --surface2: #181c24;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #c8a96e;
+      --text: #f0ede8;
+      --muted: #7a7d8a;
+      --dim: #3a3d4a;
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(200, 169, 110, 0.4);
+      --cursor-blend: difference;
+    }
+
+    body.theme-simple {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --surface2: #e9ecef;
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #2563eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --dim: #d1d5db;
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(37, 99, 235, 0.4);
+      --cursor-blend: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--cursor-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: var(--cursor-blend);
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--cursor-border);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(10, 11, 15, 0.95) 0%, transparent 100%);
+      transition: all 0.3s ease;
+    }
+
+    body.theme-simple nav {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, transparent 100%);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 160px 24px 80px;
+    }
+
+    .post-header {
+      margin-bottom: 60px;
+    }
+
+    .post-category {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      font-weight: 900;
+    }
+
+    .post-meta {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .content {
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--text);
+      margin: 40px 0 20px;
+    }
+
+    .content p {
+      margin-bottom: 24px;
+    }
+
+    .content strong {
+      color: var(--text);
+    }
+
+    .content ul {
+      margin-bottom: 32px;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+
+    .content li {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .content li::before {
+      content: '—';
+      position: absolute;
+      left: -20px;
+      color: var(--accent);
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 32px;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: transform 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .container { padding-top: 120px; }
+      .post-title { font-size: 32px; }
+      body { cursor: auto; }
+      .cursor, .cursor-follower { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav>
+    <a href="../" class="nav-logo">Digiserv<span>.ID</span></a>
+  </nav>
+
+  <article class="container">
+    <a href="../" class="back-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Home
+    </a>
+
+    <header class="post-header">
+      <span class="post-category">Web Development Guide</span>
+      <h1 class="post-title">Silent Blockers: Why Files Won't Show on Your Website</h1>
+      <div class="post-meta">
+        <span>March 12, 2026</span>
+        <span>•</span>
+        <span>Troubleshooting</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <p>It can be frustrating when you clearly see the files in your File Manager, but they won’t show up on your website. Since you mentioned you're a Web Developer, you're likely dealing with one of a few common "silent" blockers in a Linux/cPanel environment.</p>
+
+      <p>Here are the most likely reasons and how to fix them:</p>
+
+      <h2>1. Case Sensitivity (Most Common)</h2>
+      <p>Linux servers are case-sensitive, unlike local Windows or macOS environments.</p>
+      <ul>
+        <li><strong>The Issue:</strong> If your file is named <code>Header-Image.JPG</code> but your code looks for <code>header-image.jpg</code>, the server will return a 404 error.</li>
+        <li><strong>The Fix:</strong> Ensure the file names in your code match the File Manager exactly, including the extension.</li>
+      </ul>
+
+      <h2>2. Incorrect File/Folder Permissions</h2>
+      <p>If permissions are too restrictive, the web server (Apache/Nginx) isn't allowed to "read" the file to show it to visitors.</p>
+      <ul>
+        <li><strong>The Fix:</strong>
+          <ul>
+            <li>Folders should generally be set to <strong>755</strong>.</li>
+            <li>Files/Images should be set to <strong>644</strong>.</li>
+          </ul>
+        </li>
+      </ul>
+      <p>In File Manager, right-click the folder/image and select "Change Permissions" to verify.</p>
+
+      <h2>3. Browser or Server-Side Caching</h2>
+      <p>Sometimes the file is there, but your browser is showing you an older, cached version of the directory.</p>
+      <ul>
+        <li><strong>The Fix:</strong> Try a "Hard Refresh" (<code>Ctrl + F5</code> or <code>Cmd + Shift + R</code>). Open your site in Incognito/Private mode. If you use a CDN like Cloudflare, you may need to "Purge Cache" from their dashboard.</li>
+      </ul>
+
+      <h2>4. .htaccess Restrictions</h2>
+      <p>An <code>.htaccess</code> file in your <code>public_html</code> (or the specific subfolder) might be blocking access to new directories or specific file types.</p>
+      <ul>
+        <li><strong>The Fix:</strong> Check for lines like <code>Options -Indexes</code> (which prevents folder browsing) or specific <code>Deny from all</code> rules.</li>
+      </ul>
+      <p><strong>Tip:</strong> You may need to click "Settings" in the top right of File Manager and check "Show Hidden Files (dotfiles)" to see the <code>.htaccess</code> file.</p>
+
+      <h2>5. Index Manager Settings</h2>
+      <p>If you are trying to view a folder directly (e.g., <code>yoursite.com/new-folder/</code>) and it shows "Forbidden" or "Not Found," the server might be configured to hide folder contents.</p>
+      <ul>
+        <li><strong>The Fix:</strong> Go to cPanel → Indexes (under Advanced). Select your folder and ensure it is set to "Default" or "Show Filename."</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>Is the error you're seeing a <strong>"404 Not Found"</strong> or a <strong>"403 Forbidden"</strong> when you try to access the image URL directly? Knowing the specific error code can help me pinpoint if it's a path issue or a permission issue.</p>
+      </div>
+    </div>
+  </article>
+
+  <script>
+    const savedTheme = localStorage.getItem('digiserv-theme') || 'portfolio';
+    if (savedTheme === 'simple') document.body.classList.add('theme-simple');
+
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursorFollower');
+    let mx = 0, my = 0, fx = 0, fy = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateCursor() {
+      fx += (mx - fx) * 0.12;
+      fy += (my - fy) * 0.12;
+      follower.style.left = fx + 'px';
+      follower.style.top = fy + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+        follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        follower.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
+    });
+  </script>
+</body>
+
+</html>
