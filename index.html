@@ -1041,11 +1041,22 @@
     }
 
     /* CONTACT */
+    /* CONTACT SECTION UPDATED */
     .contact {
       padding: 120px 60px;
-      text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+      z-index: 1;
     }
 
     .contact-bg {
@@ -1056,14 +1067,12 @@
 
     .contact-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 6vw, 90px);
+      font-size: clamp(48px, 5.5vw, 82px);
       font-weight: 900;
       letter-spacing: -3px;
       line-height: 1;
       color: var(--text);
       margin-bottom: 24px;
-      position: relative;
-      z-index: 1;
     }
 
     .contact-title em {
@@ -1075,34 +1084,97 @@
       font-size: 17px;
       color: var(--muted);
       line-height: 1.7;
-      max-width: 500px;
-      margin: 0 auto 48px;
+      margin-bottom: 48px;
+    }
+
+    .contact-form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 48px;
       position: relative;
-      z-index: 1;
+    }
+
+    .contact-form-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 40px;
+      right: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--surface2);
+    }
+
+    .form-textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: #d4b87e;
+      transform: translateY(-2px);
     }
 
     .contact-links {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: auto;
     }
 
     .contact-link {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
-      padding: 14px 28px;
+      padding: 12px 24px;
       border: 1px solid var(--border);
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .contact-link:hover {
@@ -1111,14 +1183,13 @@
     }
 
     .contact-link.primary {
-      background: var(--accent);
-      color: var(--bg);
       border-color: var(--accent);
+      color: var(--accent);
     }
 
     .contact-link.primary:hover {
-      background: #d4b87e;
-      border-color: #d4b87e;
+      background: var(--accent);
+      color: var(--bg);
     }
 
     /* FOOTER */
@@ -1292,9 +1363,18 @@
         padding: 80px 24px;
       }
 
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
+      }
+
       .contact-links {
-        flex-direction: column;
-        align-items: stretch;
+        justify-content: center;
+      }
+
+      .contact-form-card {
+        padding: 32px 24px;
       }
 
       footer {
@@ -1857,19 +1937,57 @@
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact-bg"></div>
-    <h2 class="contact-title">Let's <em>work</em><br>together</h2>
-    <p class="contact-desc">Have a project in mind? I'm currently available for freelance work and exciting
-      collaborations. Let's build something great.</p>
-    <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#d4bcb1b8b8bb94b9a1bcbdb0b5adb5a0fab0b1a2" class="contact-link primary">
-        ✉ Send an Email
-      </a>
-      <a href="https://linkedin.com/in/muhidayat" target="_blank" class="contact-link">
-        LinkedIn
-      </a>
-      <a href="https://github.com/muhidayat" target="_blank" class="contact-link">
-        GitHub
-      </a>
+    <div class="contact-container fade-up">
+      <div class="contact-info">
+        <h2 class="contact-title">Let's <em>work</em><br>together</h2>
+        <p class="contact-desc">Have a project in mind? I'm currently available for freelance work and exciting
+          collaborations. Let's build something great.</p>
+
+        <div class="contact-links">
+          <a href="mailto:hidayat@digiserv.my.id" class="contact-link primary">
+            ✉ hidayat@digiserv.my.id
+          </a>
+          <a href="https://wa.link/byybuo" target="_blank" class="contact-link">
+            WhatsApp
+          </a>
+          <a href="https://github.com/mrdevip15" target="_blank" class="contact-link">
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <div class="contact-form-card">
+          <form action="https://formspree.io/f/xkoqreee" method="POST" id="contactForm">
+            <div class="form-group">
+              <label class="form-label" for="name">Full Name</label>
+              <input type="text" name="name" id="name" class="form-input" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" name="_replyto" id="email" class="form-input" placeholder="example@email.com"
+                required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subject">Project Type</label>
+              <select name="subject" id="subject" class="form-input">
+                <option value="Web Development">Web Development</option>
+                <option value="EdTech Solutions">EdTech Solutions</option>
+                <option value="AI Integration">AI Integration</option>
+                <option value="Full-Stack Project">Full-Stack Project</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea name="message" id="message" class="form-input form-textarea"
+                placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+            <div id="formStatus" style="margin-top: 15px; font-size: 13px; display: none;"></div>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1884,7 +2002,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
   <script>
     // Custom cursor
     const cursor = document.getElementById('cursor');
@@ -1957,6 +2075,48 @@
         } else {
           document.body.className = 'theme-simple';
           localStorage.setItem('digiserv-theme', 'simple');
+        }
+      });
+    }
+
+    // Form Submission Handling
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('.btn-submit');
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
+        formStatus.style.display = 'block';
+        formStatus.style.color = 'var(--muted)';
+        formStatus.innerText = 'Processing your message...';
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: data,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            formStatus.style.color = '#22c55e';
+            formStatus.innerText = '✓ Message sent successfully! I will get back to you soon.';
+            contactForm.reset();
+            submitBtn.innerText = 'Message Sent';
+          } else {
+            throw new Error();
+          }
+        } catch (error) {
+          formStatus.style.color = '#ef4444';
+          formStatus.innerText = '× Oops! Something went wrong. Please try again.';
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Send Message';
         }
       });
     }
