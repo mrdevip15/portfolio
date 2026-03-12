@@ -1458,6 +1458,104 @@
       opacity: 0;
       transform: translateY(-20px) rotate(-90deg);
     }
+
+    /* TESTIMONIALS SECTION */
+    .testimonials {
+      padding: 120px 60px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .testimonials-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonial-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-style: italic;
+      flex-grow: 1;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .testimonial-info h4 {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .testimonial-info p {
+      font-size: 12px;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 1024px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .testimonials {
+        padding: 80px 24px;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .testimonial-card {
+        padding: 32px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1473,7 +1571,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#experience">Experience</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
     </ul>
     <div style="display: flex; gap: 20px; align-items: center; z-index: 10000; pointer-events: auto;">
       <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
@@ -1855,96 +1953,62 @@
           setup, and system administration for web applications at scale.</div>
       </div>
       <div class="service-item" data-num="06">
-        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
-        <div class="service-title">Blockchain Development</div>
-        <div class="service-desc">Experience in crypto and Web3 development, including the Moonphase Protocol — a crypto
-          coin project exploring decentralized finance and tokenomics.</div>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+        <div class="service-title">Many more apps such as</div>
+        <div class="service-desc"><strong>Warung App</strong>: A premium QRIS ordering system with Dual Themes (Kawaii & Luxury) and Google Sheets integration for seamless restaurant management.</div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section class="experience" id="experience">
-    <div class="section-label fade-up">
-      <span class="section-label-num">04 / Experience & Projects</span>
-      <div class="section-label-line"></div>
-    </div>
-    <h2 class="section-title fade-up">Building <em>things</em><br>that matter</h2>
-
-    <div class="experience-grid">
-      <div>
-        <h3
-          style="font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:32px;font-weight:500">
-          Professional Work</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-year">2023–Present</div>
-            <div class="timeline-title">Full-Stack Developer</div>
-            <div class="timeline-company">Brits Edu Center</div>
-            <div class="timeline-desc"><strong>Led full-stack development</strong> of the online tryout platform serving
-              university entrance exam preparation.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2023–Present</div>
-            <div class="timeline-title">Founder & Developer</div>
-            <div class="timeline-company">Genius Gate</div>
-            <div class="timeline-desc"><strong>Building and operating</strong> an online tutoring platform for SNBT exam
-              preparation and private lessons.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2024</div>
-            <div class="timeline-title">System Administrator</div>
-            <div class="timeline-company">sipau.unsulbar.ac.id · Moodle</div>
-            <div class="timeline-desc"><strong>Administered the Moodle-based</strong> academic information system for
-              Universitas Sulawesi Barat.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">In Progress</div>
-            <div class="timeline-title">Google Cybersecurity Certificate</div>
-            <div class="timeline-company">Google / Coursera</div>
-            <div class="timeline-desc">Expanding professional expertise into <strong>cybersecurity fundamentals</strong>
-              and security operations.</div>
-          </div>
-        </div>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-container">
+      <div class="section-label fade-up">
+        <span class="section-label-num">04 / Testimonials</span>
+        <div class="section-label-line"></div>
       </div>
+      <h2 class="section-title fade-up">What our <em>clients</em><br>are saying</h2>
 
-      <div>
-        <h3
-          style="font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:32px;font-weight:500">
-          Personal Projects</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-year">2024–Present</div>
-            <div class="timeline-title">OpenClaw</div>
-            <div class="timeline-company">Personal AI Agent Assistant</div>
-            <div class="timeline-desc">A <strong>personal AI agent</strong> built to automate tasks and assist with
-              development workflows using modern LLM integration.</div>
+      <div class="testimonials-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card-header">
+            <div class="testimonial-avatar">BS</div>
+            <div class="testimonial-info">
+              <h4>Budi Santoso</h4>
+              <p>Owner, Rasa Nusantara</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2024</div>
-            <div class="timeline-title">Ziqola-AMS</div>
-            <div class="timeline-company">Academic Management System · Monorepo</div>
-            <div class="timeline-desc">A comprehensive <strong>academic management system</strong> built as a monorepo,
-              handling student records, scheduling, and reporting.</div>
+          <p class="testimonial-text">"The Warung App transformed our restaurant's ordering process. The QRIS integration and dual-theme options are simply brilliant and easy to manage."</p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card-header">
+            <div class="testimonial-avatar">SA</div>
+            <div class="testimonial-info">
+              <h4>Siti Aminah</h4>
+              <p>Director, Brits Edu Center</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-year">MVP</div>
-            <div class="timeline-title">Mathverse</div>
-            <div class="timeline-company">Educational Math Game</div>
-            <div class="timeline-desc">An interactive <strong>math learning game</strong> in MVP stage, making
-              mathematics engaging and accessible for students.</div>
+          <p class="testimonial-text">"Their expertise in EdTech is unmatched. Our tryout platform handles thousands of students simultaneously with zero lag. Highly professional team."</p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card-header">
+            <div class="testimonial-avatar">RK</div>
+            <div class="testimonial-info">
+              <h4>Rian Kurniawan</h4>
+              <p>COO, TechNova ID</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2024</div>
-            <div class="timeline-title">Moonphase Protocol</div>
-            <div class="timeline-company">Blockchain · Crypto Project</div>
-            <div class="timeline-desc">Exploring <strong>decentralized finance</strong> through a crypto coin project
-              with custom tokenomics and smart contract development.</div>
-          </div>
+          <p class="testimonial-text">"Working with Digiserv on our AI integration was a game-changer. They didn't just write code; they understood our business logic perfectly."</p>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
