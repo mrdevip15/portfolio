@@ -7,6 +7,7 @@
   <title>Digiserv.ID — Digital Agency</title>
   <meta name="description"
     content="Digiserv.ID — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -23,6 +24,9 @@
       --muted: #7a7d8a;
       --dim: #3a3d4a;
       --nav-gradient: linear-gradient(to bottom, rgba(10, 11, 15, 0.95) 0%, transparent 100%);
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(200, 169, 110, 0.4);
+      --cursor-blend: difference;
     }
 
     body.theme-simple {
@@ -36,6 +40,9 @@
       --muted: #6b7280;
       --dim: #d1d5db;
       --nav-gradient: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, transparent 100%);
+      --cursor-color: var(--accent);
+      --cursor-border: rgba(37, 99, 235, 0.4);
+      --cursor-blend: normal;
     }
 
     *,
@@ -63,20 +70,20 @@
       position: fixed;
       width: 12px;
       height: 12px;
-      background: var(--accent);
+      background: var(--cursor-color);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
       transition: transform 0.1s ease;
-      mix-blend-mode: difference;
+      mix-blend-mode: var(--cursor-blend);
     }
 
     .cursor-follower {
       position: fixed;
       width: 36px;
       height: 36px;
-      border: 1px solid rgba(200, 169, 110, 0.4);
+      border: 1px solid var(--cursor-border);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
@@ -1574,7 +1581,10 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Digiserv<span>.ID</span></a>
+    <a href="#" class="nav-logo" style="display: flex; align-items: center; gap: 10px;">
+      <img src="img/logo.jpg" alt="Logo" style="height: 32px; width: 32px; border-radius: 50%;">
+      <div>Digiserv<span>.ID</span></div>
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -1647,7 +1657,9 @@
         <div class="hero-orbit-dot"></div>
       </div>
       <div class="hero-card">
-        <div class="hero-avatar">DS</div>
+        <div class="hero-avatar" style="background: none; padding: 0;">
+          <img src="img/logo.jpg" alt="Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        </div>
         <div class="hero-card-name">Digiserv.ID</div>
         <div class="hero-card-role">Digital Agency</div>
         <div class="hero-card-stack">
@@ -2144,7 +2156,10 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Digiserv<span>.ID</span></div>
+    <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+      <img src="img/logo.jpg" alt="Logo" style="height: 24px; width: 24px; border-radius: 50%;">
+      <div>Digiserv<span>.ID</span></div>
+    </div>
     <div class="footer-copy">© <span id="currentYear"></span> Digiserv.ID. All rights reserved.</div>
     <div class="footer-links">
       <a href="#about">About</a>
