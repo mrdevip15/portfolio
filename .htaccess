@@ -1,0 +1,23 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Redirect /index.html to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Redirect /blog/index.html to /blog/
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /blog/index\.html\ HTTP/
+RewriteRule ^blog/index\.html$ /blog/ [R=301,L]
+
+# Remove .html extension from URL if user types it manually
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [L,R=301]
+
+# Serve existing .html files when the extension-less URL is requested
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Handle DirectoryIndex (default behavior, but good to be explicit)
+DirectoryIndex index.html
