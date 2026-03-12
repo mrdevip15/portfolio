@@ -102,6 +102,11 @@
       opacity: 0.35;
     }
 
+    .mobile-menu,
+    .menu-toggle {
+      display: none;
+    }
+
     /* NAV */
     nav {
       position: fixed;
@@ -1415,6 +1420,72 @@
       .cursor-follower {
         display: none;
       }
+
+      /* Mobile Menu Styles */
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 10001;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: var(--text);
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 10000;
+        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        padding: 40px;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-menu a {
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .mobile-menu a:hover {
+        color: var(--accent);
+      }
     }
 
     /* Theme Toggle Switch */
@@ -1612,8 +1683,23 @@
         </svg>
       </button>
       <a href="#contact" class="nav-cta">Let's Talk</a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open Menu" style="display: none;">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="blog/">Blog</a>
+    <a href="#contact" class="btn-primary" style="margin-top: 20px;">Let's Talk</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -2289,6 +2375,42 @@
       });
     }
     document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile Menu Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuLinks = mobileMenu.querySelectorAll('a');
+
+    if (menuToggle && mobileMenu) {
+      // Show toggle button only on small screens via JS (fallback for complex layouts)
+      const checkWidth = () => {
+        if (window.innerWidth <= 900) {
+          menuToggle.style.display = 'flex';
+        } else {
+          menuToggle.style.display = 'none';
+          mobileMenu.classList.remove('active');
+          menuToggle.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      };
+
+      window.addEventListener('resize', checkWidth);
+      checkWidth();
+
+      menuToggle.addEventListener('click', () => {
+        const isActive = mobileMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        document.body.style.overflow = isActive ? 'hidden' : 'auto';
+      });
+
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          menuToggle.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      });
+    }
   </script>
 </body>
 
