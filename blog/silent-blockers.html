@@ -268,50 +268,35 @@
     </header>
 
     <div class="content">
-      <p>It can be frustrating when you clearly see the files in your File Manager, but they won’t show up on your website. Since you mentioned you're a Web Developer, you're likely dealing with one of a few common "silent" blockers in a Linux/cPanel environment.</p>
+      <p>Uploading files only to find they aren't appearing on your live site is a classic hurdle in web development. In a Linux-based cPanel environment, the culprit is often a "silent" configuration issue—something that looks correct in your File Manager but fails at the server or browser level.</p>
 
-      <p>Here are the most likely reasons and how to fix them:</p>
+      <p>If you're seeing a 404 or 403 error despite verifying the file exists, check these primary blockers:</p>
 
-      <h2>1. Case Sensitivity (Most Common)</h2>
-      <p>Linux servers are case-sensitive, unlike local Windows or macOS environments.</p>
+      <h2>1. Case Sensitivity</h2>
+      <p>Windows and macOS environments are often case-insensitive by default, but Linux servers are not. This is the most frequent cause of missing assets after deployment.</p>
+      <p>If your HTML references <code>hero-banner.jpg</code> but the file is named <code>Hero-Banner.jpg</code>, the server will fail to locate it. Always maintain a consistent, lowercase-only naming convention for all project files to avoid these discrepancies.</p>
+
+      <h2>2. File & Folder Permissions</h2>
+      <p>The web server (Apache or Nginx) requires specific clearance to read and serve your files. If permissions are too restrictive, you’ll likely encounter a <strong>403 Forbidden</strong> error.</p>
       <ul>
-        <li><strong>The Issue:</strong> If your file is named <code>Header-Image.JPG</code> but your code looks for <code>header-image.jpg</code>, the server will return a 404 error.</li>
-        <li><strong>The Fix:</strong> Ensure the file names in your code match the File Manager exactly, including the extension.</li>
+        <li><strong>Folders:</strong> Should be set to <code>755</code> (drwxr-xr-x).</li>
+        <li><strong>Files:</strong> Should be set to <code>644</code> (-rw-r--r--).</li>
       </ul>
+      <p>You can verify and update these directly in cPanel by right-clicking the file or directory and selecting "Change Permissions."</p>
 
-      <h2>2. Incorrect File/Folder Permissions</h2>
-      <p>If permissions are too restrictive, the web server (Apache/Nginx) isn't allowed to "read" the file to show it to visitors.</p>
-      <ul>
-        <li><strong>The Fix:</strong>
-          <ul>
-            <li>Folders should generally be set to <strong>755</strong>.</li>
-            <li>Files/Images should be set to <strong>644</strong>.</li>
-          </ul>
-        </li>
-      </ul>
-      <p>In File Manager, right-click the folder/image and select "Change Permissions" to verify.</p>
+      <h2>3. Caching Latency</h2>
+      <p>Sometimes the file is live, but your browser is serving a stale version of the directory or your CDN is holding onto an old cache.</p>
+      <p>Before debugging further, perform a hard refresh (<code>Cmd+Shift+R</code> or <code>Ctrl+F5</code>). If you use a service like Cloudflare, remember to purge the cache for that specific path or enable Development Mode to see changes in real-time.</p>
 
-      <h2>3. Browser or Server-Side Caching</h2>
-      <p>Sometimes the file is there, but your browser is showing you an older, cached version of the directory.</p>
-      <ul>
-        <li><strong>The Fix:</strong> Try a "Hard Refresh" (<code>Ctrl + F5</code> or <code>Cmd + Shift + R</code>). Open your site in Incognito/Private mode. If you use a CDN like Cloudflare, you may need to "Purge Cache" from their dashboard.</li>
-      </ul>
+      <h2>4. .htaccess Directives</h2>
+      <p>The <code>.htaccess</code> file is powerful and can easily hide directories if misconfigured. Rules like <code>Options -Indexes</code> or specific security snippets intended to block hotlinking can inadvertently prevent your new files from loading.</p>
+      <p>Check your <code>public_html</code> root for any global <code>Deny</code> rules that might be overly broad. Note: You may need to enable "Show Hidden Files" in your cPanel settings to see this file.</p>
 
-      <h2>4. .htaccess Restrictions</h2>
-      <p>An <code>.htaccess</code> file in your <code>public_html</code> (or the specific subfolder) might be blocking access to new directories or specific file types.</p>
-      <ul>
-        <li><strong>The Fix:</strong> Check for lines like <code>Options -Indexes</code> (which prevents folder browsing) or specific <code>Deny from all</code> rules.</li>
-      </ul>
-      <p><strong>Tip:</strong> You may need to click "Settings" in the top right of File Manager and check "Show Hidden Files (dotfiles)" to see the <code>.htaccess</code> file.</p>
-
-      <h2>5. Index Manager Settings</h2>
-      <p>If you are trying to view a folder directly (e.g., <code>yoursite.com/new-folder/</code>) and it shows "Forbidden" or "Not Found," the server might be configured to hide folder contents.</p>
-      <ul>
-        <li><strong>The Fix:</strong> Go to cPanel → Indexes (under Advanced). Select your folder and ensure it is set to "Default" or "Show Filename."</li>
-      </ul>
+      <h2>5. Index Manager Configuration</h2>
+      <p>If you're trying to view a folder directly and getting an error, the server's Index Manager might be set to hidden. While this is good for security, it can be confusing during development. Ensure the folder's index settings are set to "Default" or "Show Filenames" if you need the directory content to be accessible.</p>
 
       <div class="highlight-box">
-        <p>Is the error you're seeing a <strong>"404 Not Found"</strong> or a <strong>"403 Forbidden"</strong> when you try to access the image URL directly? Knowing the specific error code can help me pinpoint if it's a path issue or a permission issue.</p>
+        <p><strong>A Quick Tip:</strong> Always test the direct URL of the file (e.g., <code>domain.com/img/file.png</code>) in an incognito window. If it loads there, you're dealing with a local cache issue. If not, it's almost certainly a path or permission error on the server.</p>
       </div>
     </div>
   </article>
