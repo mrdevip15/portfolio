@@ -19,7 +19,8 @@ RewriteRule ^ %1 [R=301,L]
 # 4. Internal rewrite: Map clean URL to .html file
 # This happens behind the scenes (the user doesn't see .html)
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.php$
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+)$ $1.html [L]
 
-DirectoryIndex index.html
+DirectoryIndex index.html index.php

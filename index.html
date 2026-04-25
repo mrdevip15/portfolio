@@ -42,6 +42,7 @@
       --muted: #7a7d8a;
       --dim: #3a3d4a;
       --nav-gradient: linear-gradient(to bottom, rgba(10, 11, 15, 0.95) 0%, transparent 100%);
+      --hover-filter: brightness(1.1);
       --cursor-color: var(--accent);
       --cursor-border: rgba(200, 169, 110, 0.4);
       --cursor-blend: difference;
@@ -340,7 +341,7 @@
     }
 
     .btn-primary:hover {
-      background: #d4b87e;
+      filter: var(--hover-filter);
       transform: translateY(-2px);
     }
 
@@ -859,7 +860,7 @@
     }
 
     .project-overlay-btn:hover {
-      background: #d4b87e;
+      filter: var(--hover-filter);
     }
 
     .project-info {
@@ -1190,7 +1191,7 @@
     }
 
     .btn-submit:hover {
-      background: #d4b87e;
+      filter: var(--hover-filter);
       transform: translateY(-2px);
     }
 
@@ -2301,10 +2302,12 @@
       el.addEventListener('mouseenter', () => {
         cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
         follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
+        cursor.style.mixBlendMode = 'difference';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'translate(-50%,-50%) scale(1)';
         follower.style.transform = 'translate(-50%,-50%) scale(1)';
+        cursor.style.mixBlendMode = 'var(--cursor-blend)';
       });
     });
 
