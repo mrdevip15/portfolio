@@ -1,12 +1,47 @@
 <?php
 session_start();
-$ADMIN_PASSWORD = "digiserv_admin"; 
+
+$ADMIN_PASSWORD_HASH = '$2y$10$y.AUrjWuXP37K5YDLFyTAeCzAYUrJuZb2AJ/N15PPBHqKp.bu/Al6'; 
+
+// Generate CSRF token if not exists
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Rate limiting: max 5 attempts per 10 minutes
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+    $_SESSION['last_attempt_time'] = time();
+}
+
+if (time() - $_SESSION['last_attempt_time'] > 600) {
+    $_SESSION['login_attempts'] = 0;
+}
 
 if (isset($_POST['login_password'])) {
-    if ($_POST['login_password'] === $ADMIN_PASSWORD) {
-        $_SESSION['billing_auth'] = true;
+    // CSRF Validation
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        $error = "Kesalahan validasi keamanan (CSRF).";
+    } elseif ($_SESSION['login_attempts'] >= 5) {
+        $error = "Terlalu banyak percobaan. Silakan coba lagi nanti.";
     } else {
-        $error = "Akses ditolak. Kata sandi salah.";
+        // Mixed Multi-Algorithm Hash Chain
+        $pass = $_POST['login_password'];
+        $pass = hash('sha256', $pass);
+        $pass = hash('sha512', $pass);
+        $pass = hash('ripemd160', $pass);
+
+        if (password_verify($pass, $ADMIN_PASSWORD_HASH)) {
+            session_regenerate_id(true);
+            $_SESSION['billing_auth'] = true;
+            $_SESSION['login_attempts'] = 0;
+            // Regenerate CSRF token after login
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        } else {
+            $_SESSION['login_attempts']++;
+            $_SESSION['last_attempt_time'] = time();
+            $error = "Akses ditolak. Kata sandi salah.";
+        }
     }
 }
 
@@ -129,6 +164,7 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
 
         .logout { display: block; text-align: center; margin-top: 15px; color: var(--muted); text-decoration: none; font-size: 11px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .error { color: #ff4444; font-size: 12px; margin-bottom: 15px; text-align: center; }
     </style>
 </head>
 <body>
@@ -136,7 +172,11 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
 <div class="container">
     <?php if (!$authenticated): ?>
         <h1>Admin <span>Login</span></h1>
+        <?php if (isset($error)): ?>
+            <div class="error"><?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
         <form method="POST">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <div class="form-group">
                 <label>Kata Sandi Akses</label>
                 <input type="password" name="login_password" required autofocus>
@@ -146,6 +186,7 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
     <?php else: ?>
         <h1>Buat <span>Invoice</span></h1>
         <form action="./view.php" method="POST" target="_blank">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <script>
                 // Memastikan URL berakhir dengan / agar path relatif ./view.php benar
                 if (!window.location.pathname.endsWith('/')) {
@@ -279,3 +320,5 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
 
 </body>
 </html>
+
+

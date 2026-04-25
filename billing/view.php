@@ -1,26 +1,34 @@
 <?php
 session_start();
 
+// Security check: must be authenticated
 if (!isset($_SESSION['billing_auth']) || $_SESSION['billing_auth'] !== true) {
     die("Akses tidak sah.");
 }
 
+// Security check: must be POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die("Permintaan tidak valid.");
 }
 
-$client_name = htmlspecialchars($_POST['client_name']);
-$client_details = nl2br(htmlspecialchars($_POST['client_details']));
-$invoice_no = htmlspecialchars($_POST['invoice_no']);
-$date = htmlspecialchars($_POST['date']);
-$due_date = htmlspecialchars($_POST['due_date']);
-$currency = htmlspecialchars($_POST['currency']);
+// CSRF Validation
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("Kesalahan validasi keamanan (CSRF).");
+}
+
+// Sanitize inputs
+$client_name = htmlspecialchars($_POST['client_name'], ENT_QUOTES, 'UTF-8');
+$client_details = nl2br(htmlspecialchars($_POST['client_details'], ENT_QUOTES, 'UTF-8'));
+$invoice_no = htmlspecialchars($_POST['invoice_no'], ENT_QUOTES, 'UTF-8');
+$date = htmlspecialchars($_POST['date'], ENT_QUOTES, 'UTF-8');
+$due_date = htmlspecialchars($_POST['due_date'], ENT_QUOTES, 'UTF-8');
+$currency = htmlspecialchars($_POST['currency'], ENT_QUOTES, 'UTF-8');
 $tax_percent = (float) ($_POST['tax_percent'] ?? 0);
-$items = $_POST['items'];
+$items = $_POST['items'] ?? [];
 
 $subtotal = 0;
 foreach ($items as $item) {
-    $subtotal += (float) $item['qty'] * (float) $item['price'];
+    $subtotal += (float) ($item['qty'] ?? 0) * (float) ($item['price'] ?? 0);
 }
 
 $tax_amount = ($tax_percent / 100) * $subtotal;
@@ -28,6 +36,7 @@ $total_akhir = $subtotal + $tax_amount;
 
 function format_date($date)
 {
+    if (!$date) return '-';
     $months = [
         'January' => 'Januari',
         'February' => 'Februari',
@@ -42,7 +51,9 @@ function format_date($date)
         'November' => 'November',
         'December' => 'Desember'
     ];
-    $formatted = date('j F Y', strtotime($date));
+    $timestamp = strtotime($date);
+    if (!$timestamp) return htmlspecialchars($date);
+    $formatted = date('j F Y', $timestamp);
     return strtr($formatted, $months);
 }
 ?>
@@ -479,12 +490,13 @@ function format_date($date)
             <tbody>
                 <?php foreach ($items as $item): ?>
                     <?php
-                    $qty = (float) $item['qty'];
-                    $price = (float) $item['price'];
+                    $qty = (float) ($item['qty'] ?? 0);
+                    $price = (float) ($item['price'] ?? 0);
                     $amount = $qty * $price;
+                    $desc = htmlspecialchars($item['desc'] ?? '', ENT_QUOTES, 'UTF-8');
                     ?>
                     <tr>
-                        <td class="col-desc"><?php echo htmlspecialchars($item['desc']); ?></td>
+                        <td class="col-desc"><?php echo $desc; ?></td>
                         <td class="col-qty"><?php echo sprintf('%02d', $qty); ?></td>
                         <td class="col-price">
                             <?php echo $currency; ?>&nbsp;<?php echo number_format($price, 0, ',', '.'); ?>
@@ -547,7 +559,10 @@ function format_date($date)
                 </div>
 
                 <div class="signature-area" style="margin-top: 20px;">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo urlencode("VERIFIED INVOICE: " . $invoice_no . " | TOTAL: " . $currency . " " . number_format($total_akhir, 0, ',', '.')); ?>"
+                    <?php
+                    $qr_data = "VERIFIED INVOICE: " . $invoice_no . " | TOTAL: " . $currency . " " . number_format($total_akhir, 0, ',', '.');
+                    ?>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo urlencode($qr_data); ?>"
                         alt="Digital Verification" class="signature-qr">
 
                     <div class="signature-text">
