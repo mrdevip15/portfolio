@@ -318,18 +318,32 @@ function format_date($date)
         }
 
         @media print {
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
             body {
                 padding: 0;
                 background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .invoice-container {
                 box-shadow: none;
                 width: 100%;
-                padding: 40px;
+                padding: 20px;
                 margin: 0;
                 min-height: auto;
+                background: var(--bg-paper) !important;
             }
+
+            header { margin-bottom: 30px; }
+            .meta-grid { margin-bottom: 25px; padding-top: 15px; }
+            .billing-grid { margin-bottom: 25px; gap: 20px; }
+            .main-table { margin-bottom: 15px; }
+            .summary-wrapper { margin-bottom: 25px; }
+            .footer-grid { margin-top: 30px; padding-top: 20px; }
 
             .no-print {
                 display: none;
