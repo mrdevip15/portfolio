@@ -158,10 +158,16 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
                     <label>Nomor Invoice</label>
                     <input type="text" name="invoice_no" value="INV/<?php echo date('Ymd'); ?>/001">
                 </div>
+            <div class="grid-2">
                 <div class="form-group">
                     <label>Mata Uang</label>
                     <input type="text" name="currency" value="Rp" placeholder="Rp atau $">
                 </div>
+                <div class="form-group">
+                    <label>Pajak (%)</label>
+                    <input type="number" name="tax_percent" value="0" step="0.1">
+                </div>
+            </div>
             </div>
             <div class="grid-2">
                 <div class="form-group">

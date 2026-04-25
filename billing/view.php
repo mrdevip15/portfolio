@@ -15,12 +15,16 @@ $invoice_no = htmlspecialchars($_POST['invoice_no']);
 $date = htmlspecialchars($_POST['date']);
 $due_date = htmlspecialchars($_POST['due_date']);
 $currency = htmlspecialchars($_POST['currency']);
+$tax_percent = (float)($_POST['tax_percent'] ?? 0);
 $items = $_POST['items'];
 
-$total = 0;
+$subtotal = 0;
 foreach ($items as $item) {
-    $total += (float)$item['qty'] * (float)$item['price'];
+    $subtotal += (float)$item['qty'] * (float)$item['price'];
 }
+
+$tax_amount = ($tax_percent / 100) * $subtotal;
+$total_akhir = $subtotal + $tax_amount;
 
 function format_date($date) {
     $months = [
@@ -40,14 +44,14 @@ function format_date($date) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice - <?php echo $invoice_no; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #d15a5a; /* Warna merah sesuai referensi */
-            --text: #333333;
-            --muted: #666666;
-            --border: #444444;
-            --bg-paper: #e9e4de; /* Warna kertas vintage sesuai referensi */
+            --accent: #c8a96e;
+            --text: #000000;
+            --muted: #555555;
+            --border: #000000;
+            --bg-paper: #f4f1ea;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,7 +59,7 @@ function format_date($date) {
         body {
             font-family: 'Outfit', sans-serif;
             color: var(--text);
-            background: #cccccc;
+            background: #d1d5db;
             padding: 40px 20px;
         }
 
@@ -65,190 +69,162 @@ function format_date($date) {
             background: var(--bg-paper);
             padding: 60px;
             position: relative;
-            min-height: 1000px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 1050px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
         }
 
         header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo-img {
+            height: 85px;
+            width: auto;
+            object-fit: contain;
         }
 
         .invoice-title h1 {
-            font-size: 80px;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 0.8;
+            font-size: 65px;
+            font-weight: 900;
+            line-height: 1;
             letter-spacing: -2px;
             text-transform: uppercase;
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
         }
 
-        .brand-section {
-            text-align: right;
-        }
-
-        .brand-name {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--accent);
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
+        .brand-section { text-align: right; }
+        .brand-name { font-size: 32px; font-weight: 900; color: var(--accent); text-transform: uppercase; line-height: 0.9; }
 
         .meta-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             margin-bottom: 50px;
+            border-top: 2px solid var(--border);
+            padding-top: 25px;
         }
 
-        .meta-item {
-            font-size: 13px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-
-        .meta-item span {
-            font-weight: 400;
-            color: var(--muted);
-            margin-left: 10px;
-        }
-
-        .address-right {
-            text-align: right;
-            font-size: 13px;
-            line-height: 1.4;
-            color: var(--muted);
-        }
+        .meta-item { font-size: 13px; text-transform: uppercase; font-weight: 800; margin-bottom: 6px; }
+        .meta-item span { font-weight: 500; color: var(--muted); margin-left: 12px; font-family: 'JetBrains Mono', monospace; }
+        .address-right { text-align: right; font-size: 13px; line-height: 1.5; color: var(--muted); text-transform: uppercase; }
 
         .billing-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            margin-bottom: 40px;
-            gap: 20px;
-        }
-
-        .section-label {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .billing-info, .payment-info {
-            font-size: 14px;
-            line-height: 1.5;
-            text-transform: uppercase;
-        }
-
-        /* Table Styling matching the grid style */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 1.5px solid var(--border);
-            margin-bottom: 20px;
-        }
-
-        th {
-            background: transparent;
-            border: 1.5px solid var(--border);
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        td {
-            border: 1.5px solid var(--border);
-            padding: 12px;
-            font-size: 13px;
-            text-transform: uppercase;
-        }
-
-        .col-desc { text-align: left; padding-left: 20px; width: 50%; }
-        .col-qty { text-align: center; }
-        .col-price { text-align: center; }
-        .col-subtotal { text-align: center; font-weight: 600; }
-
-        /* Empty rows to match style */
-        .empty-row td { height: 40px; }
-
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: none;
-        }
-
-        .summary-table td {
-            border: none;
-            padding: 8px 12px;
-            text-align: right;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .grand-total-row td {
-            font-size: 18px;
-            padding-top: 15px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            margin-top: 60px;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 45px;
             gap: 40px;
         }
 
-        .terms h4 {
-            font-size: 14px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        .section-label { font-size: 14px; font-weight: 900; margin-bottom: 12px; color: var(--accent); text-transform: uppercase; }
+        .billing-info, .payment-info { font-size: 14px; line-height: 1.6; text-transform: uppercase; }
+
+        /* Main Table */
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--border);
+            margin-bottom: 30px;
+            table-layout: fixed;
         }
 
-        .terms p {
-            font-size: 11px;
-            line-height: 1.4;
-            color: var(--muted);
-            text-align: justify;
-        }
-
-        .contact-sign {
-            text-align: left;
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        .signature-area {
-            margin-top: 30px;
-            position: relative;
-        }
-
-        .sign-img {
-            max-width: 150px;
-            position: absolute;
-            top: -20px;
-            left: 0;
-        }
-
-        .sign-line {
-            width: 180px;
-            border-bottom: 1.5px solid var(--text);
-            margin-bottom: 5px;
-            padding-top: 60px;
-        }
-
-        .sign-name {
-            font-weight: 700;
+        .main-table th {
+            background: #000;
+            color: #fff;
+            padding: 15px;
+            font-size: 13px;
+            font-weight: 800;
             text-transform: uppercase;
         }
+
+        .main-table td {
+            border: 2px solid var(--border);
+            padding: 15px;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .col-desc { text-align: left; width: 42%; }
+        .col-qty { text-align: center; width: 8%; }
+        .col-price { text-align: right; width: 25%; white-space: nowrap; }
+        .col-total { text-align: right; width: 25%; white-space: nowrap; }
+
+        /* Summary Table */
+        .summary-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 50px;
+        }
+
+        .summary-table {
+            width: 440px;
+            border-collapse: collapse;
+            border: 3px solid #000;
+        }
+
+        .summary-table td {
+            border: 3px solid #000;
+            padding: 15px 20px;
+            text-transform: uppercase;
+            font-weight: 900;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .summary-table .label-td {
+            width: 40%;
+            text-align: center;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .summary-table .value-td {
+            width: 60%;
+            text-align: right;
+            font-size: 18px;
+        }
+
+        .grand-total-row .label-td {
+            font-size: 22px;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .grand-total-row .value-td {
+            background: var(--accent);
+            color: #fff;
+            font-size: 24px;
+        }
+
+        /* Footer and Signature */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 80px;
+            gap: 60px;
+            border-top: 2px solid var(--border);
+            padding-top: 35px;
+        }
+
+        .terms p { font-size: 12px; line-height: 1.6; color: var(--muted); }
+        .contact-sign { text-align: right; }
+        .signature-area { display: inline-block; text-align: center; margin-top: 20px; }
+        .sign-line { width: 220px; border-bottom: 3px solid #000; margin-bottom: 8px; padding-top: 70px; }
+        .sign-name { font-weight: 900; text-transform: uppercase; font-size: 18px; }
 
         @media print {
             body { padding: 0; background: white; }
-            .invoice-container { box-shadow: none; width: 100%; padding: 40px; }
+            .invoice-container { box-shadow: none; width: 100%; padding: 40px; margin: 0; min-height: auto; }
             .no-print { display: none; }
         }
 
@@ -256,25 +232,28 @@ function format_date($date) {
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 12px 20px;
-            background: var(--accent);
-            color: white;
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
             border: none;
             cursor: pointer;
-            font-weight: 700;
-            border-radius: 5px;
+            font-weight: 900;
             z-index: 100;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-<button class="btn-print no-print" onclick="window.print()">PRINT INVOICE</button>
+<button class="btn-print no-print" onclick="window.print()">Cetak Invoice</button>
 
 <div class="invoice-container">
     <header>
-        <div class="invoice-title">
-            <h1>INVOICE</h1>
+        <div class="header-left">
+            <img src="../img/logo.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="invoice-title">
+                <h1>INVOICE</h1>
+            </div>
         </div>
         <div class="brand-section">
             <div class="brand-name">DIGISERV<br>ID</div>
@@ -283,9 +262,9 @@ function format_date($date) {
 
     <div class="meta-grid">
         <div class="meta-left">
-            <div class="meta-item">INVOICE NUMBER: <span>#<?php echo str_replace('INV/', '', $invoice_no); ?></span></div>
-            <div class="meta-item">DATE: <span><?php echo format_date($date); ?></span></div>
-            <div class="meta-item">DUE DATE: <span><?php echo format_date($due_date); ?></span></div>
+            <div class="meta-item">NO. INVOICE: <span>#<?php echo str_replace('INV/', '', $invoice_no); ?></span></div>
+            <div class="meta-item">TGL. TERBIT: <span><?php echo format_date($date); ?></span></div>
+            <div class="meta-item">JATUH TEMPO: <span><?php echo format_date($due_date); ?></span></div>
         </div>
         <div class="address-right">
             MAKASSAR, INDONESIA<br>
@@ -296,29 +275,29 @@ function format_date($date) {
 
     <div class="billing-grid">
         <div>
-            <div class="section-label">Bill To:</div>
+            <div class="section-label">Tagihan Untuk:</div>
             <div class="billing-info">
                 <strong><?php echo $client_name; ?></strong><br>
                 <?php echo $client_details; ?>
             </div>
         </div>
         <div>
-            <div class="section-label">Payment Method:</div>
+            <div class="section-label">Metode Pembayaran:</div>
             <div class="payment-info">
-                BANK TRANSFER<br>
+                TRANSFER BANK<br>
                 SEABANK (MUH. HIDAYAT)<br>
                 901090185124
             </div>
         </div>
     </div>
 
-    <table>
+    <table class="main-table">
         <thead>
             <tr>
-                <th class="col-desc">DESCRIPTION</th>
+                <th class="col-desc">DESKRIPSI PEKERJAAN</th>
                 <th class="col-qty">QTY</th>
-                <th class="col-price">PRICE</th>
-                <th class="col-subtotal">SUBTOTAL</th>
+                <th class="col-price">HARGA</th>
+                <th class="col-total">TOTAL</th>
             </tr>
         </thead>
         <tbody>
@@ -331,50 +310,56 @@ function format_date($date) {
             <tr>
                 <td class="col-desc"><?php echo htmlspecialchars($item['desc']); ?></td>
                 <td class="col-qty"><?php echo sprintf('%02d', $qty); ?></td>
-                <td class="col-price"><?php echo $currency; ?> <?php echo number_format($price, 0, ',', '.'); ?></td>
-                <td class="col-subtotal"><?php echo $currency; ?> <?php echo number_format($amount, 0, ',', '.'); ?></td>
+                <td class="col-price"><?php echo $currency; ?>&nbsp;<?php echo number_format($price, 0, ',', '.'); ?></td>
+                <td class="col-total"><?php echo $currency; ?>&nbsp;<?php echo number_format($amount, 0, ',', '.'); ?></td>
             </tr>
             <?php endforeach; ?>
             
-            <!-- Padding Rows -->
-            <?php for($i=0; $i < (6 - count($items)); $i++): ?>
-            <tr class="empty-row">
+            <?php for($i=0; $i < (4 - count($items)); $i++): ?>
+            <tr style="height:45px;">
                 <td></td><td></td><td></td><td></td>
             </tr>
             <?php endfor; ?>
         </tbody>
     </table>
 
-    <table class="summary-table">
-        <tr>
-            <td style="width: 75%;">SUBTOTAL</td>
-            <td style="width: 25%; border: 1.5px solid var(--border);"><?php echo $currency; ?> <?php echo number_format($total, 0, ',', '.'); ?></td>
-        </tr>
-        <tr>
-            <td>TAX</td>
-            <td style="border: 1.5px solid var(--border);">--</td>
-        </tr>
-        <tr class="grand-total-row">
-            <td>GRAND TOTAL</td>
-            <td style="border: 1.5px solid var(--border); background: #eee;"><?php echo $currency; ?> <?php echo number_format($total, 0, ',', '.'); ?></td>
-        </tr>
-    </table>
+    <div class="summary-wrapper">
+        <table class="summary-table">
+            <tr>
+                <td class="label-td">SUBTOTAL</td>
+                <td class="value-td"><?php echo $currency; ?>&nbsp;<?php echo number_format($subtotal, 0, ',', '.'); ?></td>
+            </tr>
+            <tr>
+                <td class="label-td">PAJAK (<?php echo $tax_percent; ?>%)</td>
+                <td class="value-td"><?php echo $currency; ?>&nbsp;<?php echo number_format($tax_amount, 0, ',', '.'); ?></td>
+            </tr>
+            <tr class="grand-total-row">
+                <td class="label-td">TOTAL<br>AKHIR</td>
+                <td class="value-td">
+                    <?php echo $currency; ?>&nbsp;<?php echo number_format($total_akhir, 0, ',', '.'); ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <div class="footer-grid">
         <div class="terms">
-            <h4>Syarat & Ketentuan</h4>
+            <h4 style="text-transform:uppercase; margin-bottom:10px; font-weight:900;">Syarat & Ketentuan</h4>
             <p>
-                1. Pembayaran dilakukan penuh di muka atau sesuai kesepakatan termin yang berlaku.<br>
-                2. Pekerjaan akan dimulai setelah konfirmasi pembayaran diterima.<br>
-                3. Perubahan desain atau fitur setelah masa pengembangan akan dikenakan biaya tambahan.<br>
-                4. Seluruh aset digital akan diserahkan setelah pelunasan sisa pembayaran dilakukan.
+                1. Pembayaran dilakukan penuh di muka atau sesuai termin.<br>
+                2. Pekerjaan dimulai setelah konfirmasi pembayaran.<br>
+                3. Revisi fitur di luar lingkup awal akan dikenakan biaya.<br>
+                4. Penyerahan aset dilakukan setelah pelunasan.
             </p>
         </div>
         <div class="contact-sign">
-            <p>UNTUK PERTANYAAN, SILAKAN HUBUNGI</p>
-            <p>HIDAYAT@DIGISERV.ID<br>ATAU +62 895-1829-6820</p>
+            <div style="font-size: 13px; font-weight: 800; margin-bottom: 30px; text-transform:uppercase;">
+                HIDAYAT@DIGISERV.ID<br>
+                +62 895-1829-6820
+            </div>
             
             <div class="signature-area">
+                <p style="font-size: 14px; font-weight: 900; text-transform: uppercase;">Hormat Kami,</p>
                 <div class="sign-line"></div>
                 <div class="sign-name">Muhammad Hidayat</div>
             </div>
