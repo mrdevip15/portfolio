@@ -343,6 +343,9 @@ function format_date($date)
             font-weight: 900;
             text-transform: uppercase;
             font-size: 14px;
+            position: relative;
+            top: -18px;
+            margin: 0;
         }
 
         @media print {
