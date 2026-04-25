@@ -9,3 +9,4 @@ deployment:
     - /bin/cp sitemap.xml $DEPLOYPATH
     - /bin/cp -r img $DEPLOYPATH
     - /bin/cp -r blog $DEPLOYPATH
+    - /bin/cp -r billing $DEPLOYPATH
