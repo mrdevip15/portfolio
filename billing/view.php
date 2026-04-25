@@ -284,7 +284,7 @@ function format_date($date)
             margin-top: 30px;
             gap: 40px;
             border-top: 2px solid var(--border);
-            padding-top: 20px;
+            padding-top: 22px;
         }
 
         .terms p {
@@ -332,7 +332,7 @@ function format_date($date)
             font-size: 36px;
             font-weight: 400;
             position: absolute;
-            bottom: -5px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
@@ -529,7 +529,7 @@ function format_date($date)
         <div class="footer-grid">
             <div class="terms">
                 <h4 style="text-transform:uppercase; margin-bottom:10px; font-weight:900;">Syarat & Ketentuan</h4>
-                <p>
+                <p style="font-size: 14px;">
                     1. Pembayaran dilakukan penuh di muka atau sesuai termin.<br>
                     2. Pekerjaan dimulai setelah konfirmasi pembayaran.<br>
                     3. Revisi fitur di luar lingkup awal akan dikenakan biaya.<br>
@@ -543,7 +543,7 @@ function format_date($date)
                     +62 895-1829-6820
                 </div>
 
-                <div class="signature-area">
+                <div class="signature-area" style="margin-top: 20px;">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo urlencode("VERIFIED INVOICE: " . $invoice_no . " | TOTAL: " . $currency . " " . number_format($total_akhir, 0, ',', '.')); ?>"
                         alt="Digital Verification" class="signature-qr">
 
