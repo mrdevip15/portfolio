@@ -76,16 +76,15 @@ function format_date($date)
             font-family: 'Outfit', sans-serif;
             color: var(--text);
             background: #d1d5db;
-            padding: 40px 20px;
+            padding: 20px 10px;
         }
 
         .invoice-container {
             max-width: 800px;
             margin: 0 auto;
             background: var(--bg-paper);
-            padding: 60px;
+            padding: 40px;
             position: relative;
-            min-height: 1050px;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
         }
 
@@ -93,37 +92,36 @@ function format_date($date)
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px;
-            padding-top: 10px;
+            margin-bottom: 30px;
+            padding-top: 5px;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 25px;
-            height: 65px;
-            /* Sesuaikan tinggi patokan */
+            gap: 20px;
+            height: 50px;
         }
 
         .logo-img {
-            height: 65px;
+            height: 50px;
             width: auto;
             object-fit: contain;
             display: block;
         }
 
         .invoice-title h1 {
-            font-size: 65px;
+            font-size: 50px;
             font-weight: 900;
             line-height: 1;
             margin: 0;
             letter-spacing: -2px;
             text-transform: uppercase;
             border-left: 5px solid var(--accent);
-            padding-left: 20px;
+            padding-left: 15px;
             display: flex;
             align-items: center;
-            height: 65px;
+            height: 50px;
         }
 
         .brand-section {
@@ -131,11 +129,11 @@ function format_date($date)
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 65px;
+            height: 50px;
         }
 
         .brand-name {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             color: var(--accent);
             text-transform: uppercase;
@@ -146,29 +144,29 @@ function format_date($date)
         .meta-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
             border-top: 2px solid var(--border);
-            padding-top: 25px;
+            padding-top: 15px;
         }
 
         .meta-item {
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             font-weight: 800;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .meta-item span {
             font-weight: 500;
             color: var(--muted);
-            margin-left: 12px;
+            margin-left: 10px;
             font-family: 'JetBrains Mono', monospace;
         }
 
         .address-right {
             text-align: right;
-            font-size: 13px;
-            line-height: 1.5;
+            font-size: 12px;
+            line-height: 1.4;
             color: var(--muted);
             text-transform: uppercase;
         }
@@ -176,22 +174,22 @@ function format_date($date)
         .billing-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            margin-bottom: 45px;
-            gap: 40px;
+            margin-bottom: 25px;
+            gap: 30px;
         }
 
         .section-label {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 900;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: var(--accent);
             text-transform: uppercase;
         }
 
         .billing-info,
         .payment-info {
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.4;
             text-transform: uppercase;
         }
 
@@ -200,23 +198,23 @@ function format_date($date)
             width: 100%;
             border-collapse: collapse;
             border: 2px solid var(--border);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             table-layout: fixed;
         }
 
         .main-table th {
             background: #000;
             color: #fff;
-            padding: 15px;
-            font-size: 13px;
+            padding: 10px;
+            font-size: 12px;
             font-weight: 800;
             text-transform: uppercase;
         }
 
         .main-table td {
             border: 2px solid var(--border);
-            padding: 15px;
-            font-size: 13px;
+            padding: 10px;
+            font-size: 12px;
             text-transform: uppercase;
             font-weight: 600;
             word-wrap: break-word;
@@ -248,18 +246,18 @@ function format_date($date)
         .summary-wrapper {
             display: flex;
             justify-content: flex-end;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
         }
 
         .summary-table {
-            width: 440px;
+            width: 380px;
             border-collapse: collapse;
             border: 3px solid #000;
         }
 
         .summary-table td {
             border: 3px solid #000;
-            padding: 15px 20px;
+            padding: 10px 15px;
             text-transform: uppercase;
             font-weight: 900;
             vertical-align: middle;
@@ -269,29 +267,29 @@ function format_date($date)
         .summary-table .label-td {
             width: 40%;
             text-align: center;
-            font-size: 15px;
+            font-size: 13px;
             color: #444;
         }
 
         .summary-table .value-td {
             width: 60%;
             text-align: right;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         /* Footer and Signature */
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            margin-top: 80px;
-            gap: 60px;
+            margin-top: 30px;
+            gap: 40px;
             border-top: 2px solid var(--border);
-            padding-top: 35px;
+            padding-top: 20px;
         }
 
         .terms p {
-            font-size: 12px;
-            line-height: 1.6;
+            font-size: 11px;
+            line-height: 1.4;
             color: var(--muted);
         }
 
@@ -302,26 +300,26 @@ function format_date($date)
         .signature-area {
             display: inline-block;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .sign-line {
-            width: 220px;
+            width: 180px;
             border-bottom: 3px solid #000;
-            margin-bottom: 8px;
-            padding-top: 70px;
+            margin-bottom: 5px;
+            padding-top: 50px;
         }
 
         .sign-name {
             font-weight: 900;
             text-transform: uppercase;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         @media print {
             @page {
                 size: A4;
-                margin: 10mm;
+                margin: 0;
             }
 
             body {
@@ -334,37 +332,37 @@ function format_date($date)
             .invoice-container {
                 box-shadow: none;
                 width: 100%;
-                padding: 20px;
+                padding: 40px;
                 margin: 0;
-                min-height: auto;
+                min-height: 100vh;
                 background: var(--bg-paper) !important;
             }
 
             header {
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
 
             .meta-grid {
-                margin-bottom: 25px;
-                padding-top: 15px;
+                margin-bottom: 20px;
+                padding-top: 10px;
             }
 
             .billing-grid {
-                margin-bottom: 25px;
-                gap: 20px;
+                margin-bottom: 20px;
+                gap: 15px;
             }
 
             .main-table {
-                margin-bottom: 15px;
+                margin-bottom: 12px;
             }
 
             .summary-wrapper {
-                margin-bottom: 25px;
+                margin-bottom: 20px;
             }
 
             .footer-grid {
-                margin-top: 30px;
-                padding-top: 20px;
+                margin-top: 25px;
+                padding-top: 15px;
             }
 
             .no-print {

@@ -45,13 +45,13 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
             width: 100%;
             max-width: 600px;
-            padding: 40px;
+            padding: 25px;
             background: var(--surface);
             border: 1px solid var(--border);
             position: relative;
@@ -67,19 +67,19 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        h1 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 30px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 15px; }
         h1 span { color: var(--accent); }
 
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             background: var(--surface2);
             border: 1px solid var(--border);
-            padding: 12px;
+            padding: 8px;
             color: var(--text);
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
         }
 
@@ -89,32 +89,32 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
             background: var(--accent);
             color: var(--bg);
             border: none;
-            padding: 14px;
+            padding: 10px;
             font-weight: 600;
             text-transform: uppercase;
             cursor: pointer;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .btn-add {
             background: transparent;
             border: 1px dashed var(--accent);
             color: var(--accent);
-            padding: 8px;
-            font-size: 12px;
-            margin-bottom: 20px;
+            padding: 6px;
+            font-size: 11px;
+            margin-bottom: 15px;
         }
 
         .item-row {
             display: grid;
             grid-template-columns: 2fr 0.5fr 1fr;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .logout { display: block; text-align: center; margin-top: 20px; color: var(--muted); text-decoration: none; font-size: 12px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .logout { display: block; text-align: center; margin-top: 15px; color: var(--muted); text-decoration: none; font-size: 11px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     </style>
 </head>
 <body>
