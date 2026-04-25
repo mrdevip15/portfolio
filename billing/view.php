@@ -391,7 +391,7 @@ function format_date($date)
                     <?php echo $client_details; ?>
                 </div>
             </div>
-            <div>
+            <div style="text-align: right;">
                 <div class="section-label">Metode Pembayaran:</div>
                 <div class="payment-info">
                     TRANSFER BANK<br>
