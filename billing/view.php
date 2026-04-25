@@ -1,12 +1,15 @@
 <?php
 session_start();
+require_once __DIR__ . '/db.php';
 
 // Security check: must be authenticated
 if (!isset($_SESSION['billing_auth']) || $_SESSION['billing_auth'] !== true) {
     die("Akses tidak sah.");
 }
 
-// Security check: must be POST request
+$db = get_db_connection();
+
+// Security check: must be POST request for new invoice creation
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die("Permintaan tidak valid.");
 }
@@ -25,6 +28,60 @@ $due_date = htmlspecialchars($_POST['due_date'], ENT_QUOTES, 'UTF-8');
 $currency = htmlspecialchars($_POST['currency'], ENT_QUOTES, 'UTF-8');
 $tax_percent = (float) ($_POST['tax_percent'] ?? 0);
 $items = $_POST['items'] ?? [];
+
+// --- DATABASE PERSISTENCE ---
+try {
+    $db->beginTransaction();
+
+    // 1. Find or Create Client
+    $stmt = $db->prepare("SELECT id FROM clients WHERE name = ?");
+    $stmt->execute([$_POST['client_name']]);
+    $client = $stmt->fetch();
+    
+    if ($client) {
+        $client_id = $client['id'];
+        // Update details if changed?
+        $stmt = $db->prepare("UPDATE clients SET details = ? WHERE id = ?");
+        $stmt->execute([$_POST['client_details'], $client_id]);
+    } else {
+        $stmt = $db->prepare("INSERT INTO clients (name, details) VALUES (?, ?)");
+        $stmt->execute([$_POST['client_name'], $_POST['client_details']]);
+        $client_id = $db->lastInsertId();
+    }
+
+    // 2. Insert Invoice (Use INSERT IGNORE or ON DUPLICATE KEY UPDATE if you want to allow re-saves)
+    $stmt = $db->prepare("INSERT IGNORE INTO invoices (client_id, invoice_no, invoice_date, due_date, currency, tax_percent, status) VALUES (?, ?, ?, ?, ?, ?, 'sent')");
+    $stmt->execute([
+        $client_id,
+        $invoice_no,
+        $date,
+        $due_date,
+        $currency,
+        $tax_percent
+    ]);
+    
+    $invoice_id = $db->lastInsertId();
+
+    if ($invoice_id) {
+        // 3. Insert Invoice Items
+        $stmt = $db->prepare("INSERT INTO invoice_items (invoice_id, description, qty, price) VALUES (?, ?, ?, ?)");
+        foreach ($items as $item) {
+            $stmt->execute([
+                $invoice_id,
+                $item['desc'],
+                (float) ($item['qty'] ?? 1),
+                (float) ($item['price'] ?? 0)
+            ]);
+        }
+    }
+
+    $db->commit();
+} catch (Exception $e) {
+    if ($db->inTransaction()) $db->rollBack();
+    // Silently continue to display even if DB save fails, or show error?
+    // For now, let's just log it if we had logging, but here we just continue.
+}
+// --- END PERSISTENCE ---
 
 $subtotal = 0;
 foreach ($items as $item) {

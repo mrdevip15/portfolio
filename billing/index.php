@@ -1,7 +1,8 @@
 <?php
 session_start();
+require_once __DIR__ . '/db.php';
 
-$ADMIN_PASSWORD_HASH = '$2y$10$y.AUrjWuXP37K5YDLFyTAeCzAYUrJuZb2AJ/N15PPBHqKp.bu/Al6'; 
+$db = get_db_connection();
 
 // Generate CSRF token if not exists
 if (empty($_SESSION['csrf_token'])) {
@@ -25,13 +26,17 @@ if (isset($_POST['login_password'])) {
     } elseif ($_SESSION['login_attempts'] >= 5) {
         $error = "Terlalu banyak percobaan. Silakan coba lagi nanti.";
     } else {
-        // Mixed Multi-Algorithm Hash Chain
+        // Mixed Multi-Algorithm Hash Chain (matches original logic)
         $pass = $_POST['login_password'];
         $pass = hash('sha256', $pass);
         $pass = hash('sha512', $pass);
         $pass = hash('ripemd160', $pass);
 
-        if (password_verify($pass, $ADMIN_PASSWORD_HASH)) {
+        $stmt = $db->prepare("SELECT password_hash FROM users WHERE username = 'admin'");
+        $stmt->execute();
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($pass, $user['password_hash'])) {
             session_regenerate_id(true);
             $_SESSION['billing_auth'] = true;
             $_SESSION['login_attempts'] = 0;
@@ -52,6 +57,26 @@ if (isset($_GET['logout'])) {
 }
 
 $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] === true;
+
+// Fetch clients from database
+$clients = [];
+$next_invoice_no = "INV/" . date('Ymd') . "/001";
+if ($authenticated) {
+    $clients = $db->query("SELECT * FROM clients ORDER BY name ASC")->fetchAll();
+    
+    // Calculate next invoice number
+    $today_pattern = "INV/" . date('Ymd') . "/%";
+    $stmt = $db->prepare("SELECT invoice_no FROM invoices WHERE invoice_no LIKE ? ORDER BY id DESC LIMIT 1");
+    $stmt->execute([$today_pattern]);
+    $last_invoice = $stmt->fetch();
+
+    if ($last_invoice) {
+        $parts = explode('/', $last_invoice['invoice_no']);
+        $last_seq = (int) end($parts);
+        $next_seq = str_pad($last_seq + 1, 3, '0', STR_PAD_LEFT);
+        $next_invoice_no = "INV/" . date('Ymd') . "/" . $next_seq;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -197,7 +222,9 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
                 <label>Pilih Klien</label>
                 <select id="client_selector" onchange="updateClientDetails()">
                     <option value="">-- Input Manual --</option>
-                    <option value="BRITS INDONESIA" data-addr="Jl. Kendal Sari Barat No.17C, Tulusrejo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141">BRITS INDONESIA</option>
+                    <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo htmlspecialchars($client['name']); ?>" data-addr="<?php echo htmlspecialchars($client['details']); ?>"><?php echo htmlspecialchars($client['name']); ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
@@ -211,18 +238,18 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
             <div class="grid-2">
                 <div class="form-group">
                     <label>Nomor Invoice</label>
-                    <input type="text" name="invoice_no" value="INV/<?php echo date('Ymd'); ?>/001">
+                    <input type="text" name="invoice_no" value="<?php echo $next_invoice_no; ?>">
                 </div>
-            <div class="grid-2">
-                <div class="form-group">
-                    <label>Mata Uang</label>
-                    <input type="text" name="currency" value="Rp" placeholder="Rp atau $">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Mata Uang</label>
+                        <input type="text" name="currency" value="Rp" placeholder="Rp atau $">
+                    </div>
+                    <div class="form-group">
+                        <label>Pajak (%)</label>
+                        <input type="number" name="tax_percent" value="0" step="0.1">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Pajak (%)</label>
-                    <input type="number" name="tax_percent" value="0" step="0.1">
-                </div>
-            </div>
             </div>
             <div class="grid-2">
                 <div class="form-group">
@@ -246,20 +273,12 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
             </div>
             <button type="button" class="btn btn-add" onclick="addItem()">+ Tambah Item</button>
             
-            <button type="submit" class="btn">Buat & Cetak Invoice</button>
+            <button type="submit" name="save_invoice" class="btn">Buat & Cetak Invoice</button>
+            <a href="migrate.php" class="logout" target="_blank">Update Database (Migration)</a>
             <a href="?logout=1" class="logout">Keluar Aman</a>
         </form>
 
         <script>
-            const britsItems = [
-                { desc: "Pembuatan view custom tryout kedinasan", qty: 1, price: 1500000 },
-                { desc: "Pembuatan custom sertifikat kedinasan", qty: 1, price: 500000 },
-                { desc: "Modifikasi scoring tryout kedinasan", qty: 1, price: 1000000 },
-                { desc: "Modifikasi halaman hasil tryout kedinasan", qty: 1, price: 500000 },
-                { desc: "Modifikasi halaman input soal kedinasan (tkp)", qty: 1, price: 500000 },
-                { desc: "Pembuatan fitur import soal kedinasan (tkp)", qty: 1, price: 500000 }
-            ];
-
             function updateClientDetails() {
                 const selector = document.getElementById('client_selector');
                 const selectedOption = selector.options[selector.selectedIndex];
@@ -267,22 +286,29 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
                 const detailsInput = document.getElementById('client_details');
                 const container = document.getElementById('item-container');
 
-                if (selector.value === "BRITS INDONESIA") {
+                if (selector.value !== "") {
                     nameInput.value = selector.value;
                     detailsInput.value = selectedOption.getAttribute('data-addr');
                     
-                    // Isi item otomatis
-                    container.innerHTML = '';
-                    itemCount = 0;
-                    britsItems.forEach(item => {
-                        addItem(item.desc, item.qty, item.price);
-                    });
-                } else if (selector.value === "") {
+                    // Specific logic for BRITS if still needed or let it be generic
+                    if (selector.value === "BRITS INDONESIA") {
+                        const britsItems = [
+                            { desc: "Pembuatan view custom tryout kedinasan", qty: 1, price: 1500000 },
+                            { desc: "Pembuatan custom sertifikat kedinasan", qty: 1, price: 500000 },
+                            { desc: "Modifikasi scoring tryout kedinasan", qty: 1, price: 1000000 },
+                            { desc: "Modifikasi halaman hasil tryout kedinasan", qty: 1, price: 500000 },
+                            { desc: "Modifikasi halaman input soal kedinasan (tkp)", qty: 1, price: 500000 },
+                            { desc: "Pembuatan fitur import soal kedinasan (tkp)", qty: 1, price: 500000 }
+                        ];
+                        container.innerHTML = '';
+                        itemCount = 0;
+                        britsItems.forEach(item => {
+                            addItem(item.desc, item.qty, item.price);
+                        });
+                    }
+                } else {
                     nameInput.value = '';
                     detailsInput.value = '';
-                    container.innerHTML = '';
-                    itemCount = 0;
-                    addItem(); // Tambah satu baris kosong
                 }
             }
 
