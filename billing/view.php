@@ -101,7 +101,8 @@ function format_date($date)
             display: flex;
             align-items: center;
             gap: 25px;
-            height: 65px; /* Sesuaikan tinggi patokan */
+            height: 65px;
+            /* Sesuaikan tinggi patokan */
         }
 
         .logo-img {
@@ -322,6 +323,7 @@ function format_date($date)
                 size: A4;
                 margin: 10mm;
             }
+
             body {
                 padding: 0;
                 background: white;
@@ -338,12 +340,32 @@ function format_date($date)
                 background: var(--bg-paper) !important;
             }
 
-            header { margin-bottom: 30px; }
-            .meta-grid { margin-bottom: 25px; padding-top: 15px; }
-            .billing-grid { margin-bottom: 25px; gap: 20px; }
-            .main-table { margin-bottom: 15px; }
-            .summary-wrapper { margin-bottom: 25px; }
-            .footer-grid { margin-top: 30px; padding-top: 20px; }
+            header {
+                margin-bottom: 30px;
+            }
+
+            .meta-grid {
+                margin-bottom: 25px;
+                padding-top: 15px;
+            }
+
+            .billing-grid {
+                margin-bottom: 25px;
+                gap: 20px;
+            }
+
+            .main-table {
+                margin-bottom: 15px;
+            }
+
+            .summary-wrapper {
+                margin-bottom: 25px;
+            }
+
+            .footer-grid {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
 
             .no-print {
                 display: none;
@@ -435,9 +457,11 @@ function format_date($date)
                         <td class="col-desc"><?php echo htmlspecialchars($item['desc']); ?></td>
                         <td class="col-qty"><?php echo sprintf('%02d', $qty); ?></td>
                         <td class="col-price">
-                            <?php echo $currency; ?>&nbsp;<?php echo number_format($price, 0, ',', '.'); ?></td>
+                            <?php echo $currency; ?>&nbsp;<?php echo number_format($price, 0, ',', '.'); ?>
+                        </td>
                         <td class="col-total">
-                            <?php echo $currency; ?>&nbsp;<?php echo number_format($amount, 0, ',', '.'); ?></td>
+                            <?php echo $currency; ?>&nbsp;<?php echo number_format($amount, 0, ',', '.'); ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
 
@@ -457,15 +481,17 @@ function format_date($date)
                 <tr>
                     <td class="label-td">SUBTOTAL</td>
                     <td class="value-td">
-                        <?php echo $currency; ?>&nbsp;<?php echo number_format($subtotal, 0, ',', '.'); ?></td>
+                        <?php echo $currency; ?>&nbsp;<?php echo number_format($subtotal, 0, ',', '.'); ?>
+                    </td>
                 </tr>
                 <tr>
                     <td class="label-td">PAJAK (<?php echo $tax_percent; ?>%)</td>
                     <td class="value-td">
-                        <?php echo $currency; ?>&nbsp;<?php echo number_format($tax_amount, 0, ',', '.'); ?></td>
+                        <?php echo $currency; ?>&nbsp;<?php echo number_format($tax_amount, 0, ',', '.'); ?>
+                    </td>
                 </tr>
                 <tr class="grand-total-row">
-                    <td class="label-td">TOTAL AKHIR</td>
+                    <td class="label-td" style="background:#000; color:white;">TOTAL AKHIR</td>
                     <td class="value-td">
                         <?php echo $currency; ?>&nbsp;<?php echo number_format($total_akhir, 0, ',', '.'); ?>
                     </td>
@@ -484,7 +510,8 @@ function format_date($date)
                 </p>
             </div>
             <div class="contact-sign">
-                <div style="font-size: 13px; font-weight: 800; margin-bottom: 30px; text-transform:uppercase;">
+                <div style="font-size: 13px; font-weight: 800; margin-bottom: 30px; text-transform:uppercase;"
+                    class="section-label">
                     HIDAYAT@DIGISERV.ID<br>
                     +62 895-1829-6820
                 </div>
