@@ -108,9 +108,23 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
 
         .item-row {
             display: grid;
-            grid-template-columns: 2fr 0.5fr 1fr;
+            grid-template-columns: 2fr 0.5fr 1fr 40px;
             gap: 10px;
             margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .btn-remove {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .logout { display: block; text-align: center; margin-top: 15px; color: var(--muted); text-decoration: none; font-size: 11px; }
@@ -186,6 +200,7 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
                     <input type="text" name="items[0][desc]" placeholder="Deskripsi Layanan" required>
                     <input type="number" name="items[0][qty]" value="1" placeholder="Qty">
                     <input type="number" name="items[0][price]" placeholder="Harga Satuan" required>
+                    <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
                 </div>
             </div>
             <button type="button" class="btn btn-add" onclick="addItem()">+ Tambah Item</button>
@@ -253,6 +268,7 @@ $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] =
                     <input type="text" name="items[${itemCount}][desc]" placeholder="Deskripsi Layanan" value="${desc}" required>
                     <input type="number" name="items[${itemCount}][qty]" value="${qty}">
                     <input type="number" name="items[${itemCount}][price]" placeholder="Harga" value="${price}" required>
+                    <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
                 `;
                 container.appendChild(row);
                 itemCount++;
