@@ -55,7 +55,7 @@ function format_date($date)
     <title>Invoice - <?php echo $invoice_no; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono&family=Sacramento&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -295,25 +295,54 @@ function format_date($date)
 
         .contact-sign {
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
 
         .signature-area {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .signature-qr {
+            width: 70px;
+            height: 70px;
+            border: 1px solid #000;
+            padding: 5px;
+            background: #fff;
+        }
+
+        .signature-text {
             text-align: center;
-            margin-top: 15px;
         }
 
         .sign-line {
             width: 180px;
-            border-bottom: 3px solid #000;
+            border-bottom: 2px solid #000;
             margin-bottom: 5px;
-            padding-top: 50px;
+            height: 40px;
+            position: relative;
         }
 
         .sign-name {
+            font-family: 'Sacramento', cursive;
+            font-size: 36px;
+            font-weight: 400;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            color: #000;
+        }
+
+        .sign-label {
             font-weight: 900;
             text-transform: uppercase;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         @media print {
@@ -508,16 +537,23 @@ function format_date($date)
                 </p>
             </div>
             <div class="contact-sign">
-                <div style="font-size: 13px; font-weight: 800; margin-bottom: 30px; text-transform:uppercase;"
+                <div style="font-size: 13px; font-weight: 800; margin-bottom: 20px; text-transform:uppercase;"
                     class="section-label">
                     HIDAYAT@DIGISERV.ID<br>
                     +62 895-1829-6820
                 </div>
 
                 <div class="signature-area">
-                    <p style="font-size: 14px; font-weight: 900; text-transform: uppercase;">Hormat Kami,</p>
-                    <div class="sign-line"></div>
-                    <div class="sign-name">Muhammad Hidayat</div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo urlencode("VERIFIED INVOICE: " . $invoice_no . " | TOTAL: " . $currency . " " . number_format($total_akhir, 0, ',', '.')); ?>"
+                        alt="Digital Verification" class="signature-qr">
+
+                    <div class="signature-text">
+                        <p class="sign-label">Hormat Kami,</p>
+                        <div class="sign-line">
+                            <div class="sign-name">M. Hidayat</div>
+                        </div>
+                        <p style="font-size: 11px; font-weight: 700; color: #444;">DIGITALLY SIGNED</p>
+                    </div>
                 </div>
             </div>
         </div>
