@@ -3,68 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding vs Production Grade: Mengapa Prompt Saja Tidak Cukup | jasabikinwebsite.com</title>
+    <title>Vibe Coding vs Production Grade: Mengapa Prompt Saja Tidak Cukup | digiserv.id</title>
+    <!-- Same Head for Consistency -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'industrial-bg': '#0A0A0A', 'industrial-fg': '#EAEAEA', 'industrial-red': '#E61919' },
-                    fontFamily: { 'macro': ['"Archivo Black"', 'sans-serif'], 'micro': ['"Space Mono"', 'monospace'] }
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { 'brand-black': '#0A0A0A', 'brand-gray': '#666666', 'brand-light': '#FAFAFA', 'brand-border': '#EAEAEA' }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #0A0A0A; color: #EAEAEA; font-family: 'Space Mono', monospace; }
-        .grid-bg { background-image: radial-gradient(#333 1px, transparent 1px); background-size: 40px 40px; }
-        .macro-text { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.05em; }
-        .micro-text { font-family: 'Space Mono', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; }
-        article p { margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9; }
-        article h2 { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; font-size: 1.5rem; margin: 2rem 0 1rem 0; color: #E61919; }
+        body { background-color: #FFFFFF; color: #0A0A0A; }
+        .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
+        .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
+        .selection-style::selection { background-color: #000; color: #fff; }
+        article p { margin-bottom: 2rem; line-height: 1.8; color: #444; }
+        article h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #0A0A0A; }
     </style>
 </head>
-<body class="grid-bg">
-    <header class="w-full border-b border-[#333] p-4 flex justify-between items-center micro-text sticky top-0 bg-industrial-bg z-50">
-        <div><a href="../index.html">[ BACK TO BASE ]</a></div>
-        <div>BLOG // ANALYSIS-001</div>
-        <div class="text-industrial-red font-bold">DATE: 2026.04.27</div>
+<body class="antialiased selection-style">
+    <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
+        <a href="../index.html" class="flex items-center justify-center w-10 h-10 bg-brand-black text-white rounded-xl shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </a>
+        <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
+            <a href="../index.html" class="hover:text-brand-black transition">Home</a>
+            <a href="../index.html#services" class="hover:text-brand-black transition">Layanan</a>
+        </nav>
+        <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition">Contact</a>
     </header>
 
-    <main class="max-w-4xl mx-auto border-x border-[#333] min-h-screen bg-industrial-bg">
-        <article class="p-8 md:p-16">
-            <div class="micro-text text-industrial-red mb-4">>>> TOPIC: VIBE CODING VS PRODUCTION GRADE</div>
-            <h1 class="text-4xl md:text-6xl macro-text mb-12">MENGAPA PROMPT SAJA TIDAK CUKUP UNTUK APLIKASI BISNIS.</h1>
+    <main class="max-w-3xl mx-auto px-6 py-24">
+        <article>
+            <div class="text-xs font-semibold tracking-widest text-brand-gray mb-6 uppercase">Analysis / 2026.04.27</div>
+            <h1 class="text-4xl md:text-6xl font-semibold hero-title text-brand-black mb-12">
+                Mengapa Prompt Saja <span class="editorial-italic font-normal">Tidak Cukup.</span>
+            </h1>
             
-            <p class="text-xl font-bold italic border-l-4 border-industrial-red pl-6 py-2 mb-8">
-                "Vibe coding" mungkin terasa menyenangkan saat Anda membangun MVP dalam 5 menit. Tapi saat aplikasi tersebut harus menangani ribuan transaksi atau data sensitif, "vibe" saja tidak akan menyelamatkan sistem Anda dari crash.
+            <p class="text-xl font-medium text-brand-black italic border-l-4 border-gray-100 pl-8 mb-12 leading-relaxed">
+                "Vibe coding" mungkin terasa menyenangkan saat Anda membangun MVP dalam 5 menit. Tapi saat aplikasi tersebut harus menangani ribuan transaksi, "vibe" saja tidak akan cukup.
             </p>
 
             <p>Fenomena AI coding telah mengubah cara kita membuat software. Dengan alat seperti ChatGPT, Claude, atau Cursor, siapa pun bisa menghasilkan ribuan baris kode hanya dengan beberapa kalimat prompt. Namun, ada jurang besar antara "kode yang kelihatannya jalan" dengan "kode yang siap produksi (production grade)".</p>
 
             <h2>1. Ilusi Keberhasilan di Lingkungan Lokal</h2>
-            <p>AI sangat pintar dalam memberikan solusi untuk masalah yang terisolasi. Namun, aplikasi bisnis tidak hidup dalam ruang hampa. Ada masalah koneksi database yang tidak stabil, API pihak ketiga yang sering timeout, dan user yang memasukkan data di luar nalar. AI seringkali mengabaikan <i>error handling</i> yang komprehensif karena ia hanya fokus pada permintaan prompt Anda.</p>
+            <p>AI sangat pintar dalam memberikan solusi untuk masalah yang terisolasi. Namun, aplikasi bisnis tidak hidup dalam ruang hampa. Ada masalah koneksi database yang tidak stabil, API pihak ketiga yang sering timeout, dan user yang memasukkan data di luar nalar. AI seringkali mengabaikan <i>error handling</i> yang komprehensif.</p>
 
             <h2>2. Hutang Teknis yang Tersembunyi</h2>
-            <p>Saat Anda terus-menerus melakukan copy-paste dari AI tanpa memahami arsitektur di baliknya, Anda sebenarnya sedang menumpuk hutang teknis. Kode yang dihasilkan AI seringkali redundan atau tidak efisien untuk skala besar. Di jasabikinwebsite.com, kami merombak "vibe code" tersebut menjadi arsitektur yang solid.</p>
+            <p>Saat Anda terus-menerus melakukan copy-paste dari AI tanpa memahami arsitektur di baliknya, Anda sebenarnya sedang menumpuk hutang teknis. Kode yang dihasilkan AI seringkali redundan atau tidak efisien untuk skala besar.</p>
 
             <h2>3. Keamanan Bukan Sekadar Opsi</h2>
-            <p>AI seringkali menyarankan library yang out-of-date atau pola coding yang rentan terhadap SQL Injection atau XSS. Untuk aplikasi internal kantor atau rapor sekolah, kebocoran data adalah bencana. <i>Production grade code</i> berarti keamanan sudah dipikirkan sejak baris pertama, bukan sebagai tambahan di akhir.</p>
+            <p>AI seringkali menyarankan library yang out-of-date atau pola coding yang rentan terhadap SQL Injection. Untuk aplikasi internal kantor atau rapor sekolah, kebocoran data adalah bencana. <i>Production grade code</i> berarti keamanan sudah dipikirkan sejak baris pertama.</p>
 
-            <div class="bg-[#111] p-8 border border-[#333] mt-12">
-                <h3 class="macro-text mb-4">KESIMPULAN</h3>
-                <p class="micro-text text-sm mb-0">Jangan biarkan operasional bisnis Anda bergantung pada kode yang rapuh. Gunakan AI sebagai alat bantu, tapi serahkan standarisasi produksi pada ahlinya.</p>
-            </div>
-            
-            <div class="mt-12 text-center">
-                <a href="/index.html#contact" class="bg-industrial-red text-industrial-bg px-8 py-4 macro-text inline-block hover:bg-industrial-fg transition-all">
-                    UPGRADE YOUR SYSTEM NOW >
+            <div class="bg-brand-light p-10 rounded-3xl border border-gray-100 mt-16 text-center">
+                <h3 class="text-2xl font-semibold mb-6">Upgrade to Production</h3>
+                <p class="text-brand-gray text-sm mb-8">Jangan biarkan operasional bisnis Anda bergantung pada kode yang rapuh. Gunakan AI sebagai alat bantu, tapi serahkan standarisasi produksi pada ahlinya.</p>
+                <a href="../index.html#contact" class="bg-brand-black text-white px-10 py-4 rounded-2xl font-medium inline-block hover:bg-gray-800 transition">
+                    Hubungi Kami Sekarang
                 </a>
             </div>
         </article>
     </main>
+
+    <footer class="border-t border-gray-100 py-16 text-center text-sm text-brand-gray">
+        <p>&copy; 2026 digiserv.id. All rights reserved.</p>
+    </footer>
 </body>
 </html>

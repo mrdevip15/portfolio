@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasa Pembuatan Aplikasi & Script Otomatis untuk Kantor dan Sekolah | jasabikinwebsite.com</title>
-    <meta name="description" content="Buat program pakai AI memang mudah, tapi untuk production-grade butuh keahlian. Kami membantu pembuatan invoice otomatis, rapor sekolah, e-certificate, dan otomasi workflow kantor.">
+    <title>Enterprise Automation & Solutions | digiserv.id</title>
+    <meta name="description" content="Digiserv.id — Premium digital agency specializing in production-grade automation, invoice systems, and educational technology.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,180 +17,167 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'industrial-bg': '#0A0A0A',
-                        'industrial-fg': '#EAEAEA',
-                        'industrial-red': '#E61919',
-                    },
                     fontFamily: {
-                        'macro': ['"Archivo Black"', 'sans-serif'],
-                        'micro': ['"Space Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'brand-black': '#0A0A0A',
+                        'brand-gray': '#666666',
+                        'brand-light': '#FAFAFA',
+                        'brand-border': '#EAEAEA',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #0A0A0A;
-            color: #EAEAEA;
-            font-family: 'Space Mono', monospace;
-            overflow-x: hidden;
-        }
-
-        .scanline {
-            width: 100%;
-            height: 100px;
-            z-index: 99;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
-            opacity: 0.1;
-            position: absolute;
-            bottom: 100%;
-            animation: scanline 10s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { bottom: 100%; }
-            100% { bottom: -100px; }
-        }
-
-        .crt-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.05), rgba(0,0,0,0.05) 1px, transparent 1px, transparent 2px);
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .brutalist-border {
-            border: 1px solid #333;
-        }
-
-        .grid-bg {
-            background-image: radial-gradient(#333 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        h1, h2, .macro-text {
-            font-family: 'Archivo Black', sans-serif;
-            text-transform: uppercase;
-            line-height: 0.9;
-            letter-spacing: -0.05em;
-        }
-
-        .micro-text {
-            font-family: 'Space Mono', monospace;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-        }
+        body { background-color: #FFFFFF; color: #0A0A0A; }
+        .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
+        .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
+        .dashed-border-y { border-top: 1px dashed #EAEAEA; border-bottom: 1px dashed #EAEAEA; }
+        .dashed-border-l { border-left: 1px dashed #EAEAEA; }
+        .selection-style::selection { background-color: #000; color: #fff; }
     </style>
 </head>
-<body class="grid-bg">
-    <div class="crt-overlay"></div>
-    <div class="scanline"></div>
+<body class="antialiased selection-style">
 
-    <!-- Telemetry Header -->
-    <header class="w-full border-b border-[#333] p-4 flex justify-between items-center micro-text sticky top-0 bg-industrial-bg z-50">
-        <div>[ STATUS: OPERATIONAL ]</div>
-        <div class="hidden md:block">LOC: JASABIKINWEBSITE.COM / CORE-NODE-01</div>
-        <div class="text-industrial-red font-bold">REV 2.6 // 2026</div>
+    <!-- Header -->
+    <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-brand-black rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
+                <img src="../img/logo.jpg" alt="Digiserv Logo" class="w-full h-full object-cover">
+            </div>
+            <span class="font-bold text-xl tracking-tight text-brand-black">Digiserv</span>
+        </div>
+        
+        <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
+            <a href="#services" class="hover:text-brand-black transition">Services</a>
+            <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Analysis</a>
+        </nav>
+
+        <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">
+            Consultation
+        </a>
     </header>
 
-    <main class="max-w-7xl mx-auto border-x border-[#333] min-h-screen">
+    <main class="max-w-6xl mx-auto px-6 pb-24">
         
         <!-- Hero Section -->
-        <section class="p-8 md:p-16 border-b border-[#333]">
-            <div class="micro-text text-industrial-red mb-4">>>> INITIALIZING PRODUCTION SEQUENCE</div>
-            <h1 class="text-6xl md:text-9xl mb-8 leading-none">
-                PRODUCTION<br><span class="text-industrial-red">GRADE.</span>
+        <section class="pt-24 pb-20 text-center flex flex-col items-center">
+            
+            <!-- Trust Badge -->
+            <div class="inline-flex items-center bg-white border border-dashed border-gray-300 rounded-full px-5 py-2 mb-10">
+                <div class="flex -space-x-2 mr-4">
+                    <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="../img/testimoni-2.webp" alt="client">
+                    <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="../img/testimoni-3.jpeg" alt="client">
+                    <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="../img/testimoni-4.webp" alt="client">
+                </div>
+                <span class="text-xs font-medium text-gray-600">2000+ companies trust us</span>
+            </div>
+
+            <!-- Hero Title -->
+            <h1 class="text-5xl md:text-8xl font-semibold hero-title max-w-4xl mx-auto text-brand-black mb-10">
+                Built for those who want <span class="editorial-italic font-normal">better.</span>
             </h1>
-            <p class="max-w-2xl text-lg md:text-xl border-l-4 border-industrial-red pl-6 py-2">
-                Buat program pakai AI memang mudah, 5 menit MVP sudah jadi. Tapi untuk <span class="font-bold">production grade</span>, butuh berjam-jam prompting, bahkan bisa ga jadi programnya. Sini biar kita bantuin.
+
+            <p class="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto mb-12 leading-relaxed">
+                Buat program pakai AI memang mudah, tapi untuk <span class="font-bold">production-grade</span> butuh keahlian. Digiserv membantu otomatisasi workflow untuk bisnis dan institusi Anda.
             </p>
+
+            <a href="#services" class="bg-brand-black text-white text-base font-medium px-10 py-4 rounded-xl hover:bg-gray-800 transition shadow-xl transform hover:scale-105 duration-300">
+                Explore Services
+            </a>
+
         </section>
 
-        <!-- The Problem / Angle -->
-        <section class="grid grid-cols-1 md:grid-cols-2">
-            <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-[#333]">
-                <div class="micro-text mb-6">[ ANALYSIS: THE AI GAP ]</div>
-                <h2 class="text-4xl mb-6">WHY AI CODING FAILS AT SCALE</h2>
-                <div class="space-y-4 opacity-80">
-                    <p>AI seringkali menghasilkan kode yang "kelihatannya jalan" tapi rapuh di lingkungan nyata. Kami menangani kerumitan yang diabaikan AI:</p>
-                    <ul class="list-none space-y-2 micro-text">
-                        <li>[+] ERROR HANDLING & RECOVERY</li>
-                        <li>[+] SECURITY VULNERABILITY PATCHING</li>
-                        <li>[+] DATA INTEGRITY VALIDATION</li>
-                        <li>[+] SCALABLE ARCHITECTURE</li>
-                    </ul>
+        <!-- Stats Section (Dashed Grid) -->
+        <section class="max-w-6xl mx-auto mb-32">
+            <div class="dashed-border-y grid grid-cols-2 md:grid-cols-4 py-12">
+                <div class="px-8 flex flex-col items-start justify-center">
+                    <span class="text-sm text-brand-gray mb-2">Projects completed</span>
+                    <span class="text-4xl font-semibold text-brand-black">120+</span>
                 </div>
-            </div>
-            <div class="p-8 md:p-12 border-b border-[#333] flex flex-col justify-center bg-industrial-red text-industrial-bg">
-                <h2 class="text-4xl mb-4">VIBE CODING IS NOT ENOUGH.</h2>
-                <p class="font-bold text-lg mb-6">Jangan biarkan bisnis Anda berjalan di atas script "coba-coba".</p>
-                <a href="#contact" class="inline-block border-2 border-industrial-bg px-8 py-4 macro-text text-center hover:bg-industrial-bg hover:text-industrial-red transition-colors">
-                    UPGRADE TO PRODUCTION >
-                </a>
-            </div>
-        </section>
-
-        <!-- Services Cluster -->
-        <section class="p-8 md:p-16 border-b border-[#333]">
-            <div class="micro-text mb-8">>>> CORE CAPABILITIES</div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
-                <div class="brutalist-border p-6 hover:bg-[#111]">
-                    <div class="text-industrial-red mb-2 text-2xl font-bold">01</div>
-                    <h3 class="macro-text text-xl mb-4">JASA SCRIPT OTOMATIS</h3>
-                    <p class="micro-text opacity-70 mb-4">Script custom untuk mempermudah pekerjaan kantor, bimbel, dan sekolah.</p>
-                    <a href="jasa-script-otomatis.html" class="micro-text text-industrial-red underline">LEARN MORE</a>
+                <div class="px-8 flex flex-col items-start justify-center dashed-border-l">
+                    <span class="text-sm text-brand-gray mb-2">Satisfaction rate</span>
+                    <span class="text-4xl font-semibold text-brand-black">95%</span>
                 </div>
-                <div class="brutalist-border p-6 hover:bg-[#111]">
-                    <div class="text-industrial-red mb-2 text-2xl font-bold">02</div>
-                    <h3 class="macro-text text-xl mb-4">INVOICE OTOMATIS</h3>
-                    <p class="micro-text opacity-70 mb-4">Sistem penagihan otomatis yang presisi dan profesional.</p>
-                    <a href="invoice-otomatis.html" class="micro-text text-industrial-red underline">LEARN MORE</a>
+                <div class="px-8 flex flex-col items-start justify-center dashed-border-l mt-10 md:mt-0 pt-10 border-t border-dashed border-gray-200 md:border-t-0 md:pt-0">
+                    <span class="text-sm text-brand-gray mb-2">In generated revenue</span>
+                    <span class="text-4xl font-semibold text-brand-black">$1M+</span>
                 </div>
-                <div class="brutalist-border p-6 hover:bg-[#111]">
-                    <div class="text-industrial-red mb-2 text-2xl font-bold">03</div>
-                    <h3 class="macro-text text-xl mb-4">APLIKASI RAPOR</h3>
-                    <p class="micro-text opacity-70 mb-4">Digitalisasi manajemen nilai dan laporan sekolah tanpa ribet.</p>
-                    <a href="aplikasi-sekolah-rapor.html" class="micro-text text-industrial-red underline">LEARN MORE</a>
-                </div>
-            </div>
-            <div class="mt-12 p-6 brutalist-border bg-[#0a0a0a] flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="micro-text">[ LATEST ANALYSIS ]</div>
-                <div class="space-x-6">
-                    <a href="blog/vibe-coding-vs-production-grade.html" class="micro-text hover:text-industrial-red underline text-xs">VIBE CODING VS PRODUCTION GRADE</a>
-                    <a href="blog/ai-failure-in-production.html" class="micro-text hover:text-industrial-red underline text-xs">WHY AI FAILS AT SCALE</a>
+                <div class="px-8 flex flex-col items-start justify-center dashed-border-l mt-10 md:mt-0 pt-10 border-t border-dashed border-gray-200 md:border-t-0 md:pt-0">
+                    <span class="text-sm text-brand-gray mb-2">Client retention rate</span>
+                    <span class="text-4xl font-semibold text-brand-black">80%</span>
                 </div>
             </div>
         </section>
 
-        <!-- CTA / Contact -->
-        <section id="contact" class="p-8 md:p-24 text-center">
-            <h2 class="text-5xl md:text-7xl mb-12">READY TO DEPLOY?</h2>
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-                <a href="https://wa.me/628123456789" class="bg-industrial-red text-industrial-bg px-12 py-6 macro-text text-2xl hover:bg-industrial-fg transition-all">
-                    WHATSAPP US
+        <!-- Services Section -->
+        <section id="services" class="mb-32">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <a href="jasa-script-otomatis.html" class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover:border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black group-hover:scale-110 transition-transform">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Script Otomatis</h3>
+                    <p class="text-brand-gray leading-relaxed text-sm">
+                        Otomasi pekerjaan kantor dan bimbel dengan script yang handal. Built for production, not just a "vibe".
+                    </p>
                 </a>
-                <a href="mailto:admin@jasabikinwebsite.com" class="border-2 border-industrial-fg px-12 py-6 macro-text text-2xl hover:bg-industrial-fg hover:text-industrial-bg transition-all">
-                    SEND EMAIL
+
+                <!-- Service Card 2 -->
+                <a href="invoice-otomatis.html" class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover:border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black group-hover:scale-110 transition-transform">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Invoice Otomatis</h3>
+                    <p class="text-brand-gray leading-relaxed text-sm">
+                        Sistem penagihan otomatis yang presisi. Nol kesalahan nominal, efisiensi administrasi maksimal.
+                    </p>
+                </a>
+
+                <!-- Service Card 3 -->
+                <a href="aplikasi-sekolah-rapor.html" class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover:border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black group-hover:scale-110 transition-transform">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Aplikasi Rapor</h3>
+                    <p class="text-brand-gray leading-relaxed text-sm">
+                        Manajemen nilai digital yang aman dan sesuai standar kurikulum. Fokus mengajar, biarkan kami menangani data.
+                    </p>
                 </a>
             </div>
-            <div class="mt-16 micro-text opacity-50">
-                [ ESTABLISHED 2024 ] // [ BUILT FOR PRODUCTION ]
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="text-center pt-24 pb-16">
+            <h2 class="text-5xl md:text-7xl font-semibold hero-title mb-12">
+                Ready for <span class="editorial-italic font-normal">production?</span>
+            </h2>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-lg font-medium px-12 py-5 rounded-2xl hover:bg-gray-800 transition shadow-2xl">
+                    WhatsApp Us
+                </a>
+                <a href="mailto:hidayat@digiserv.id" class="bg-white text-brand-black border border-gray-200 text-lg font-medium px-12 py-5 rounded-2xl hover:bg-gray-50 transition shadow-lg">
+                    Send Email
+                </a>
             </div>
         </section>
 
     </main>
 
-    <footer class="w-full border-t border-[#333] p-8 micro-text text-center opacity-60">
-        &copy; 2026 JASABIKINWEBSITE.COM. ALL RIGHTS RESERVED. <br>
-        DESIGNED FOR INDUSTRIAL SCALE PERFORMANCE.
+    <footer class="border-t border-gray-100 py-16 text-center text-sm text-brand-gray">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p>&copy; 2026 digiserv.id. All rights reserved.</p>
+            <div class="flex space-x-8">
+                <a href="#" class="hover:text-brand-black transition">Privacy</a>
+                <a href="#" class="hover:text-brand-black transition">Terms</a>
+                <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Analysis</a>
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://digiserv.my.id/sitemap.xml
+Sitemap: https://digiserv.id/sitemap.xml

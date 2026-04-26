@@ -1,448 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The "Claw" Revolution: Kimi Claw vs. AI Agents — Digiserv.ID</title>
-  <meta name="description" content="An in-depth report on the 2026 AI agent ecosystem, comparing OpenClaw, Kimi Claw, and the rise of autonomous frameworks.">
-  <link rel="canonical" href="https://digiserv.my.id/blog/claw-revolution">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://digiserv.my.id/blog/claw-revolution">
-  <meta property="og:title" content="The 'Claw' Revolution: Kimi Claw vs. AI Agents">
-  <meta property="og:description" content="A comprehensive report on the autonomous agent landscape in 2026. Benchmarking Kimi Claw, OpenClaw, and more.">
-  <meta property="og:image" content="https://digiserv.my.id/img/og-main.png">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://digiserv.my.id/blog/claw-revolution">
-  <meta property="twitter:title" content="The 'Claw' Revolution: Kimi Claw vs. AI Agents">
-  <meta property="twitter:description" content="A comprehensive report on the autonomous agent landscape in 2026. Benchmarking Kimi Claw, OpenClaw, and more.">
-  <meta property="twitter:image" content="https://digiserv.my.id/img/og-main.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0b0f;
-      --surface: #111318;
-      --surface2: #181c24;
-      --border: rgba(255, 255, 255, 0.07);
-      --accent: #c8a96e;
-      --text: #f0ede8;
-      --muted: #7a7d8a;
-      --dim: #3a3d4a;
-      --cursor-color: var(--accent);
-      --cursor-border: rgba(200, 169, 110, 0.4);
-      --cursor-blend: difference;
-    }
-
-    body.theme-simple {
-      --bg: #ffffff;
-      --surface: #f8f9fa;
-      --surface2: #e9ecef;
-      --border: rgba(0, 0, 0, 0.1);
-      --accent: #2563eb;
-      --text: #111827;
-      --muted: #6b7280;
-      --dim: #d1d5db;
-      --cursor-color: var(--accent);
-      --cursor-border: rgba(37, 99, 235, 0.4);
-      --cursor-blend: normal;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Custom cursor */
-    .cursor {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      background: var(--cursor-color);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease;
-      mix-blend-mode: var(--cursor-blend);
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--cursor-border);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: all 0.15s ease;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 60px;
-      background: linear-gradient(to bottom, rgba(10, 11, 15, 0.95) 0%, transparent 100%);
-      transition: all 0.3s ease;
-    }
-
-    body.theme-simple nav {
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, transparent 100%);
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-logo span {
-      color: var(--accent);
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 160px 24px 80px;
-    }
-
-    .post-header {
-      margin-bottom: 60px;
-    }
-
-    .post-category {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .post-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 5vw, 56px);
-      line-height: 1.1;
-      margin-bottom: 24px;
-      font-weight: 900;
-    }
-
-    .post-meta {
-      font-size: 14px;
-      color: var(--muted);
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .content {
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    .content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      color: var(--text);
-      margin: 48px 0 24px;
-    }
-
-    .content h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      color: var(--text);
-      margin: 32px 0 16px;
-    }
-
-    .content p {
-      margin-bottom: 24px;
-    }
-
-    .content strong {
-      color: var(--text);
-    }
-
-    .content ul, .content ol {
-      margin-bottom: 32px;
-      padding-left: 20px;
-    }
-
-    .content li {
-      margin-bottom: 12px;
-    }
-
-    /* Tables */
-    .table-container {
-      overflow-x: auto;
-      margin: 40px 0;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 16px;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    .highlight-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 32px;
-      margin: 40px 0;
-      position: relative;
-    }
-
-    .highlight-box::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 20px;
-      right: 20px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      margin-bottom: 40px;
-      transition: transform 0.2s;
-    }
-
-    .back-btn:hover {
-      transform: translateX(-5px);
-    }
-
-    @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      .container { padding-top: 120px; }
-      .post-title { font-size: 32px; }
-      body { cursor: auto; }
-      .cursor, .cursor-follower { display: none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Claw Revolution | Portfolio Blog</title>
+    <!-- Same Head for Consistency -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { 'brand-black': '#0A0A0A', 'brand-gray': '#666666', 'brand-light': '#FAFAFA', 'brand-border': '#EAEAEA' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FFFFFF; color: #0A0A0A; }
+        .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
+        .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
+        .selection-style::selection { background-color: #000; color: #fff; }
+        article p { margin-bottom: 2rem; line-height: 1.8; color: #444; }
+        article h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #0A0A0A; }
+    </style>
 </head>
-
-<body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <nav>
-    <a href="../" class="nav-logo">Digiserv<span>.ID</span></a>
-  </nav>
-
-  <article class="container">
-    <a href="../" class="back-btn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="19" y1="12" x2="5" y2="12"></line>
-        <polyline points="12 19 5 12 12 5"></polyline>
-      </svg>
-      Back to Home
-    </a>
-
-    <header class="post-header">
-      <span class="post-category">AI & Automation Report</span>
-      <h1 class="post-title">The "Claw" Revolution: Kimi Claw vs. The AI Agent Ecosystem</h1>
-      <div class="post-meta">
-        <span>March 12, 2026</span>
-        <span>•</span>
-        <span>Future of Work</span>
-      </div>
+<body class="antialiased selection-style">
+    <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
+        <a href="index.html" class="flex items-center justify-center w-10 h-10 bg-brand-black text-white rounded-xl shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </a>
+        <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
+            <a href="../index.html" class="hover:text-brand-black transition">Home</a>
+            <a href="index.html" class="hover:text-brand-black transition">Journal</a>
+        </nav>
+        <a href="mailto:contact@digiserv.id" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition">Hire Us</a>
     </header>
 
-    <div class="content">
-      <p>Entering 2026, the conversation in digital automation has moved beyond simple LLM prompts. We are no longer asking which chatbot is the smartest, but rather which autonomous agent framework can reliably execute complex business logic. At the center of this shift is <strong>OpenClaw</strong>—an open-source architecture that has effectively bridged the gap between passive AI and active engineering participants.</p>
+    <main class="max-w-3xl mx-auto px-6 py-24">
+        <article>
+            <div class="text-xs font-semibold tracking-widest text-brand-gray mb-6 uppercase">Security // 2026.04.15</div>
+            <h1 class="text-4xl md:text-6xl font-semibold hero-title text-brand-black mb-12">
+                The Claw Revolution: Reshaping Web <span class="editorial-italic font-normal">Security.</span>
+            </h1>
+            
+            <p>Security in the modern web era is no longer about perimeter defense. It's about distributed resilience. The "Claw" model represents a paradigm shift where every node in a network acts as an active participant in its own defense.</p>
 
-      <p>In our workshop, we've benchmarked the most prominent players in this space. Whether you require a lean "digital intern" for personal task management or a hardened automation engine for enterprise-scale operations, navigating the nuances of the "Claw" ecosystem is critical. Here is our breakdown of the 2026 landscape: <strong>Kimi Claw, EasyClaw, Emergent, and the original OpenClaw</strong>.</p>
+            <h2>The Death of the Firewall</h2>
+            <p>Traditional firewalls were designed for a world where we knew exactly where the boundaries were. In today's serverless and edge-computed world, there are no boundaries. We need something more agile, more "claw-like" that can latch onto threats at the very edge.</p>
 
-      <h2>The Ecosystem Hierarchy</h2>
-      <p>It helps to think of the "Claw" ecosystem as a modular stack. OpenClaw serves as the kernel or operating system, while the various forks provide the specialized distributions and hardware optimizations to run it.</p>
+            <h2>Resilience Over Prevention</h2>
+            <p>We've spent decades trying to prevent breaches. The Claw model assumes breaches will happen and focuses on absolute resilience — the ability to compartmentalize and heal automatically.</p>
+        </article>
+    </main>
 
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Implementation</th>
-              <th>Deployment Model</th>
-              <th>Primary Sector</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>OpenClaw</strong></td>
-              <td>Self-Hosted / OSS</td>
-              <td>Developers & Privacy-First Users</td>
-            </tr>
-            <tr>
-              <td><strong>Kimi Claw</strong></td>
-              <td>Managed Cloud (PaaS)</td>
-              <td>Power Users & High-Performance Swarms</td>
-            </tr>
-            <tr>
-              <td><strong>EasyClaw</strong></td>
-              <td>Native Desktop App</td>
-              <td>General Productivity</td>
-            </tr>
-            <tr>
-              <td><strong>Emergent</strong></td>
-              <td>Enterprise SaaS</td>
-              <td>Compliance, Security & FinTech</td>
-            </tr>
-            <tr>
-              <td><strong>Claude (Anthropic)</strong></td>
-              <td>Upstream LLM</td>
-              <td>The "Brain" powering the framework</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h2>Kimi Claw: The Performance Benchmark</h2>
-      <p>For teams looking to skip the "DIY tax" of infrastructure management, Kimi Claw (by Moonshot AI) has become the de facto choice for production-grade agentic loops. It eliminates the friction of container orchestration while offering scaling capabilities that are difficult to match on-premise.</p>
-
-      <h3>Key Advantages in Production:</h3>
-      <ul>
-        <li><strong>Model Density:</strong> Powered by Kimi K2.5 Thinking—a 1-trillion parameter MoE (Mixture of Experts) model. Our testing shows K2.5 frequently outperforms Claude 3.5 Sonnet in iterative coding tasks while maintaining significantly faster response times.</li>
-        <li><strong>Library Maturity:</strong> Access to ClawHub Pro provides a repository of 5,000+ validated skills, including native live SQL execution and multi-layered PDF serialization that outclasses the standard OSS library.</li>
-        <li><strong>RAG Efficiency:</strong> Kimi offers a managed 40GB RAG cloud, which significantly simplifies the process of grounding agents in large-scale corporate document stores without the latency of external vector databases.</li>
-        <li><strong>Economics:</strong> At roughly $0.15 per 1M tokens, Kimi Claw allows for high-concurrency autonomous loops that would be cost-prohibitive on flagship models like Claude 4 Opus.</li>
-      </ul>
-
-      <h2>Comparative Analysis</h2>
-      
-      <h3>1. Managed vs. Self-Hosted</h3>
-      <p>Choosing between <strong>Kimi Claw</strong> and a <strong>Self-Hosted OpenClaw</strong> instance comes down to the trade-off between convenience and absolute data sovereignty. If your data must never leave your hardware, the original OpenClaw is the only path. For almost everything else, the 24/7 uptime and global distribution of Kimi Claw win out.</p>
-
-      <h3>2. Productivity vs. Power</h3>
-      <p><strong>EasyClaw</strong> caters to the "personal butler" market—individuals who want an agent on their local machine to summarize local documents via a Telegram or WhatsApp wrapper. In contrast, <strong>Kimi Claw</strong> is built for developers who need to orchestrate complex "swarms" of agents interacting with external APIs and production databases.</p>
-
-      <h3>3. The Security Landscape</h3>
-      <p>For Western enterprises with strict auditing requirements, <strong>Emergent</strong> is the specialized choice. It features AES-256 encryption at rest and executes all agent actions in a rigorous sandbox. While it trails Kimi in raw skill variety, it excels in preventing "agent drift" and unauthorized file system mutations.</p>
-
-      <h2>The Claude Integration Factor</h2>
-      <p>A frequent misconception is that the framework (Claw) replaces the model (Claude). In reality, most sophisticated implementations are "Bring Your Own Brain." However, native Kimi integrations offer a compelling financial argument:</p>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Metric</th>
-              <th>Kimi K2.5 Native</th>
-              <th>Claude 3.5 / 4.5 via API</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Agentic Reasoning</td>
-              <td>High (Optimized for Tool Use)</td>
-              <td>State-of-the-Art / Nuanced</td>
-            </tr>
-            <tr>
-              <td>Operational Cost</td>
-              <td>~$0.15 / 1M tokens</td>
-              <td>~$15.00 / 1M tokens</td>
-            </tr>
-            <tr>
-              <td>Concurrency Limit</td>
-              <td>High (Scale-ready)</td>
-              <td>Standard Quotas</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="highlight-box">
-        <p><strong>The Workshop Verdict:</strong> For developers building multi-step, high-concurrency autonomous systems, Kimi Claw offers the best performance-to-cost ratio in 2026. However, for research-heavy tasks where linguistic precision is paramount, the Claude 4.5 model integrated into a custom OpenClaw stack remains our premium recommendation.</p>
-      </div>
-
-      <p>The transition from manual prompting to agentic orchestration is well underway. Finding the right Implemention in this hierarchy isn't just a technical choice—it's a strategic one for your team's productivity.</p>
-    </div>
-  </article>
-
-  <script>
-    // Theme Handling (Sync with home)
-    const savedTheme = localStorage.getItem('digiserv-theme') || 'portfolio';
-    if (savedTheme === 'simple') document.body.classList.add('theme-simple');
-
-    // Custom cursor logic
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursorFollower');
-    let mx = 0, my = 0, fx = 0, fy = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top = my + 'px';
-    });
-
-    function animateCursor() {
-      fx += (mx - fx) * 0.12;
-      fy += (my - fy) * 0.12;
-      follower.style.left = fx + 'px';
-      follower.style.top = fy + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
-        follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-        follower.style.transform = 'translate(-50%,-50%) scale(1)';
-      });
-    });
-  </script>
+    <footer class="border-t border-gray-100 py-16 text-center text-sm text-brand-gray">
+        <p>&copy; 2026 digiserv.id. All rights reserved.</p>
+    </footer>
 </body>
-
 </html>
