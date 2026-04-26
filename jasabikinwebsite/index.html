@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa Pembuatan Aplikasi & Script Otomatis untuk Kantor dan Sekolah | jasabikinwebsite.com</title>
+    <meta name="description" content="Buat program pakai AI memang mudah, tapi untuk production-grade butuh keahlian. Kami membantu pembuatan invoice otomatis, rapor sekolah, e-certificate, dan otomasi workflow kantor.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'industrial-bg': '#0A0A0A',
+                        'industrial-fg': '#EAEAEA',
+                        'industrial-red': '#E61919',
+                    },
+                    fontFamily: {
+                        'macro': ['"Archivo Black"', 'sans-serif'],
+                        'micro': ['"Space Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #EAEAEA;
+            font-family: 'Space Mono', monospace;
+            overflow-x: hidden;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 99;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scanline 10s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
+
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.05), rgba(0,0,0,0.05) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .brutalist-border {
+            border: 1px solid #333;
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        h1, h2, .macro-text {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+        }
+
+        .micro-text {
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body class="grid-bg">
+    <div class="crt-overlay"></div>
+    <div class="scanline"></div>
+
+    <!-- Telemetry Header -->
+    <header class="w-full border-b border-[#333] p-4 flex justify-between items-center micro-text sticky top-0 bg-industrial-bg z-50">
+        <div>[ STATUS: OPERATIONAL ]</div>
+        <div class="hidden md:block">LOC: JASABIKINWEBSITE.COM / CORE-NODE-01</div>
+        <div class="text-industrial-red font-bold">REV 2.6 // 2026</div>
+    </header>
+
+    <main class="max-w-7xl mx-auto border-x border-[#333] min-h-screen">
+        
+        <!-- Hero Section -->
+        <section class="p-8 md:p-16 border-b border-[#333]">
+            <div class="micro-text text-industrial-red mb-4">>>> INITIALIZING PRODUCTION SEQUENCE</div>
+            <h1 class="text-6xl md:text-9xl mb-8 leading-none">
+                PRODUCTION<br><span class="text-industrial-red">GRADE.</span>
+            </h1>
+            <p class="max-w-2xl text-lg md:text-xl border-l-4 border-industrial-red pl-6 py-2">
+                Buat program pakai AI memang mudah, 5 menit MVP sudah jadi. Tapi untuk <span class="font-bold">production grade</span>, butuh berjam-jam prompting, bahkan bisa ga jadi programnya. Sini biar kita bantuin.
+            </p>
+        </section>
+
+        <!-- The Problem / Angle -->
+        <section class="grid grid-cols-1 md:grid-cols-2">
+            <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-[#333]">
+                <div class="micro-text mb-6">[ ANALYSIS: THE AI GAP ]</div>
+                <h2 class="text-4xl mb-6">WHY AI CODING FAILS AT SCALE</h2>
+                <div class="space-y-4 opacity-80">
+                    <p>AI seringkali menghasilkan kode yang "kelihatannya jalan" tapi rapuh di lingkungan nyata. Kami menangani kerumitan yang diabaikan AI:</p>
+                    <ul class="list-none space-y-2 micro-text">
+                        <li>[+] ERROR HANDLING & RECOVERY</li>
+                        <li>[+] SECURITY VULNERABILITY PATCHING</li>
+                        <li>[+] DATA INTEGRITY VALIDATION</li>
+                        <li>[+] SCALABLE ARCHITECTURE</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-8 md:p-12 border-b border-[#333] flex flex-col justify-center bg-industrial-red text-industrial-bg">
+                <h2 class="text-4xl mb-4">VIBE CODING IS NOT ENOUGH.</h2>
+                <p class="font-bold text-lg mb-6">Jangan biarkan bisnis Anda berjalan di atas script "coba-coba".</p>
+                <a href="#contact" class="inline-block border-2 border-industrial-bg px-8 py-4 macro-text text-center hover:bg-industrial-bg hover:text-industrial-red transition-colors">
+                    UPGRADE TO PRODUCTION >
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Cluster -->
+        <section class="p-8 md:p-16 border-b border-[#333]">
+            <div class="micro-text mb-8">>>> CORE CAPABILITIES</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+                <div class="brutalist-border p-6 hover:bg-[#111]">
+                    <div class="text-industrial-red mb-2 text-2xl font-bold">01</div>
+                    <h3 class="macro-text text-xl mb-4">JASA SCRIPT OTOMATIS</h3>
+                    <p class="micro-text opacity-70 mb-4">Script custom untuk mempermudah pekerjaan kantor, bimbel, dan sekolah.</p>
+                    <a href="jasa-script-otomatis.html" class="micro-text text-industrial-red underline">LEARN MORE</a>
+                </div>
+                <div class="brutalist-border p-6 hover:bg-[#111]">
+                    <div class="text-industrial-red mb-2 text-2xl font-bold">02</div>
+                    <h3 class="macro-text text-xl mb-4">INVOICE OTOMATIS</h3>
+                    <p class="micro-text opacity-70 mb-4">Sistem penagihan otomatis yang presisi dan profesional.</p>
+                    <a href="invoice-otomatis.html" class="micro-text text-industrial-red underline">LEARN MORE</a>
+                </div>
+                <div class="brutalist-border p-6 hover:bg-[#111]">
+                    <div class="text-industrial-red mb-2 text-2xl font-bold">03</div>
+                    <h3 class="macro-text text-xl mb-4">APLIKASI RAPOR</h3>
+                    <p class="micro-text opacity-70 mb-4">Digitalisasi manajemen nilai dan laporan sekolah tanpa ribet.</p>
+                    <a href="aplikasi-sekolah-rapor.html" class="micro-text text-industrial-red underline">LEARN MORE</a>
+                </div>
+            </div>
+            <div class="mt-12 p-6 brutalist-border bg-[#0a0a0a] flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="micro-text">[ LATEST ANALYSIS ]</div>
+                <div class="space-x-6">
+                    <a href="blog/vibe-coding-vs-production-grade.html" class="micro-text hover:text-industrial-red underline text-xs">VIBE CODING VS PRODUCTION GRADE</a>
+                    <a href="blog/ai-failure-in-production.html" class="micro-text hover:text-industrial-red underline text-xs">WHY AI FAILS AT SCALE</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Contact -->
+        <section id="contact" class="p-8 md:p-24 text-center">
+            <h2 class="text-5xl md:text-7xl mb-12">READY TO DEPLOY?</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="https://wa.me/628123456789" class="bg-industrial-red text-industrial-bg px-12 py-6 macro-text text-2xl hover:bg-industrial-fg transition-all">
+                    WHATSAPP US
+                </a>
+                <a href="mailto:admin@jasabikinwebsite.com" class="border-2 border-industrial-fg px-12 py-6 macro-text text-2xl hover:bg-industrial-fg hover:text-industrial-bg transition-all">
+                    SEND EMAIL
+                </a>
+            </div>
+            <div class="mt-16 micro-text opacity-50">
+                [ ESTABLISHED 2024 ] // [ BUILT FOR PRODUCTION ]
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full border-t border-[#333] p-8 micro-text text-center opacity-60">
+        &copy; 2026 JASABIKINWEBSITE.COM. ALL RIGHTS RESERVED. <br>
+        DESIGNED FOR INDUSTRIAL SCALE PERFORMANCE.
+    </footer>
+</body>
+</html>
