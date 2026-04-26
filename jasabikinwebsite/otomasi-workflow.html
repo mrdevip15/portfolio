@@ -24,19 +24,30 @@
         .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
         .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
         .selection-style::selection { background-color: #000; color: #fff; }
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0,0,0,0.05); 
+        }
     </style>
 </head>
 <body class="antialiased selection-style">
-    <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
-        <a href="index.html" class="flex items-center justify-center w-10 h-10 bg-brand-black text-white rounded-xl shadow-sm">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-        </a>
-        <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
-            <a href="index.html" class="hover:text-brand-black transition">Home</a>
-            <a href="index.html#services" class="hover:text-brand-black transition">Layanan</a>
-            <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Blog</a>
-        </nav>
-        <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition">Contact</a>
+    <header class="sticky top-0 z-[100] glass-nav">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="w-10 h-10 bg-brand-black rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
+                    <img src="../img/logo.jpg" alt="Digiserv Logo" class="w-full h-full object-cover">
+                </a>
+                <span class="font-bold text-xl tracking-tight">Digiserv</span>
+            </div>
+            <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
+                <a href="index.html" class="hover:text-brand-black transition">Home</a>
+                <a href="index.html#services" class="hover:text-brand-black transition">Layanan</a>
+                <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Blog</a>
+            </nav>
+            <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">Contact</a>
+        </div>
     </header>
 
     <main class="max-w-4xl mx-auto px-6 py-24">

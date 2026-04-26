@@ -38,27 +38,35 @@
         .dashed-border-y { border-top: 1px dashed #EAEAEA; border-bottom: 1px dashed #EAEAEA; }
         .dashed-border-l { border-left: 1px dashed #EAEAEA; }
         .selection-style::selection { background-color: #000; color: #fff; }
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0,0,0,0.05); 
+        }
     </style>
 </head>
 <body class="antialiased selection-style">
 
     <!-- Header -->
-    <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-brand-black rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
-                <img src="../img/logo.jpg" alt="Digiserv Logo" class="w-full h-full object-cover">
+    <header class="sticky top-0 z-[100] glass-nav">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-black rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
+                    <img src="../img/logo.jpg" alt="Digiserv Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="font-bold text-xl tracking-tight text-brand-black">Digiserv</span>
             </div>
-            <span class="font-bold text-xl tracking-tight text-brand-black">Digiserv</span>
-        </div>
-        
-        <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
-            <a href="#services" class="hover:text-brand-black transition">Services</a>
-            <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Analysis</a>
-        </nav>
+            
+            <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
+                <a href="#services" class="hover:text-brand-black transition">Services</a>
+                <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Analysis</a>
+            </nav>
 
-        <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">
-            Consultation
-        </a>
+            <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">
+                Consultation
+            </a>
+        </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-6 pb-24">
