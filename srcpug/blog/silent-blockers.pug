@@ -1,0 +1,25 @@
+extends ../layouts/main.pug
+
+block vars
+  - var title = "Silent Blockers | Portfolio Blog"
+  - var baseUrl = "../"
+
+block nav_links
+  a.transition(href=baseUrl + "index.html" class="hover:text-brand-black") Home
+  a.transition(href="index.html" class="hover:text-brand-black") Journal
+
+block content
+  main.max-w-3xl.mx-auto.px-6.py-24
+    article
+      .text-xs.font-semibold.tracking-widest.text-brand-gray.mb-6.uppercase Performance // 2026.02.10
+      h1.text-4xl.font-semibold.hero-title.text-brand-black.mb-12(class="md:text-6xl")
+        | Silent Blockers: Why Your App 
+        span.editorial-italic.font-normal Feels Slow.
+      
+      p Performance isn't just about Lighthouse scores. It's about perception. "Silent blockers" are the subtle bottlenecks that don't always show up in standard benchmarks but kill the user experience.
+
+      h2 Layout Thrashing
+      p Interweaving reads and writes to the DOM can cause the browser to re-calculate styles and layouts repeatedly within a single frame. This "thrashing" leads to jank that users feel instantly.
+
+      h2 Main Thread Congestion
+      p JavaScript is single-threaded. If you're running complex data processing on the main thread, you're blocking the UI from responding to user input. Move heavy lifting to Web Workers.

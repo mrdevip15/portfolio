@@ -1,0 +1,47 @@
+extends ../layouts/main.pug
+
+block vars
+  - var title = "Sistem Invoice Otomatis - Precision Billing"
+  - var baseUrl = "../"
+
+block nav_links
+  a.transition(href="index.html" class="hover:text-brand-black") Home
+  a.transition(href="index.html#services" class="hover:text-brand-black") Layanan
+  a.transition(href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black") Blog
+
+block content
+  main.max-w-4xl.mx-auto.px-6.py-24
+    section.mb-20
+      .text-xs.font-semibold.tracking-widest.text-brand-gray.mb-4.uppercase Automated Billing
+      h1.text-5xl.font-semibold.hero-title.text-brand-black.mb-8(class="md:text-7xl")
+        | Invoice 
+        span.editorial-italic.font-normal Otomatis.
+      p.text-xl.text-brand-gray.leading-relaxed
+        | Jangan buang waktu bikin tagihan manual. Sistem kami memastikan setiap invoice terkirim tepat waktu, dengan data yang akurat dan tampilan profesional.
+
+    section.grid.grid-cols-1.gap-12.mb-20(class="md:grid-cols-2")
+      div
+        h2.text-2xl.font-semibold.mb-6 Key Features
+        ul.space-y-4.text-brand-gray
+          li.flex.items-start
+            span.text-brand-black.font-bold.mr-3 —
+            | Automatic PDF Generation
+          li.flex.items-start
+            span.text-brand-black.font-bold.mr-3 —
+            | Recurring Billing Logic
+          li.flex.items-start
+            span.text-brand-black.font-bold.mr-3 —
+            | Payment Reminders (WA/Email)
+          li.flex.items-start
+            span.text-brand-black.font-bold.mr-3 —
+            | Reconciliation Reports
+      .bg-brand-light.p-10.rounded-3xl.border.border-gray-100
+        h2.text-2xl.font-semibold.mb-4.text-brand-black.italic.serif Precision First
+        p.text-brand-gray.leading-relaxed.text-sm
+          | Kesalahan di invoice adalah kesalahan fatal. Kami membangun sistem dengan 
+          span.editorial-italic double-validation
+          |  untuk memastikan nol kesalahan nominal pada setiap transaksi.
+
+    section.text-center.pt-12.border-t.border-gray-100
+      a.bg-brand-black.text-white.text-lg.font-medium.px-12.py-5.rounded-2xl.transition.shadow-lg(href="https://wa.link/byybuo" class="hover:bg-gray-800")
+        | Request Demo

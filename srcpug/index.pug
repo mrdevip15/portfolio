@@ -1,0 +1,143 @@
+extends layouts/main.pug
+
+block vars
+  - var title = "Digiserv.id | Enterprise Software & Automation Experts"
+  - var description = "Digiserv.id — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions."
+  - var baseUrl = "./"
+
+block content
+  main.max-w-6xl.mx-auto.px-6.pb-24
+    //- Hero Section
+    section.pt-24.pb-20.text-center.flex.flex-col.items-center
+      //- Trust Badge
+      .inline-flex.items-center.bg-white.border.border-dashed.border-gray-300.rounded-full.px-5.py-2.mb-10
+        .flex.-space-x-2.mr-4
+          img.w-7.h-7.rounded-full.border-2.border-white.object-cover(src="img/testimoni-2.webp" alt="client")
+          img.w-7.h-7.rounded-full.border-2.border-white.object-cover(src="img/testimoni-3.jpeg" alt="client")
+          img.w-7.h-7.rounded-full.border-2.border-white.object-cover(src="img/testimoni-4.webp" alt="client")
+        span.text-xs.font-medium.text-gray-600 2000+ companies trust us
+
+      //- Hero Title
+      h1.text-5xl.font-semibold.hero-title.max-w-4xl.mx-auto.text-brand-black.mb-10(class="md:text-8xl")
+        | Architecting digital systems with 
+        span.editorial-italic.font-normal precision.
+
+      p.text-lg.text-brand-gray.max-w-2xl.mx-auto.mb-12.leading-relaxed(class="md:text-xl")
+        | At 
+        strong Digiserv.id
+        | , we bring an analytical, systems-thinking approach to software engineering. Enterprise partner for automation, production-grade applications, and resilient architectures.
+
+      .flex.gap-4
+        a.bg-brand-black.text-white.text-base.font-medium.px-10.py-4.rounded-xl.transition.shadow-xl.transform.duration-300(href="#work" class="hover:bg-gray-800 hover:scale-105")
+          | View Work
+        a.bg-white.text-brand-black.border.border-gray-200.text-base.font-medium.px-10.py-4.rounded-xl.transition.shadow-lg(href="jasabikinwebsite/index.html" class="hover:bg-gray-50")
+          | Automation Agency
+
+    //- Stats Section (Dashed Grid)
+    section.max-w-6xl.mx-auto.mb-32
+      .dashed-border-y.grid.grid-cols-2.py-12(class="md:grid-cols-4")
+        .px-8.flex.flex-col.items-start.justify-center
+          span.text-sm.text-brand-gray.mb-2 Experience
+          span.text-4xl.font-semibold.text-brand-black 5+ Years
+        .px-8.flex.flex-col.items-start.justify-center.dashed-border-l
+          span.text-sm.text-brand-gray.mb-2 Successful deploys
+          span.text-4xl.font-semibold.text-brand-black 500+
+        .px-8.flex.flex-col.items-start.justify-center.dashed-border-l.mt-10.pt-10.border-t.border-dashed.border-gray-200(class="md:mt-0 md:border-t-0 md:pt-0")
+          span.text-sm.text-brand-gray.mb-2 In generated revenue
+          span.text-4xl.font-semibold.text-brand-black $1M+
+        .px-8.flex.flex-col.items-start.justify-center.dashed-border-l.mt-10.pt-10.border-t.border-dashed.border-gray-200(class="md:mt-0 md:border-t-0 md:pt-0")
+          span.text-sm.text-brand-gray.mb-2 Client retention rate
+          span.text-4xl.font-semibold.text-brand-black 98%
+
+    //- About Section
+    section#about.mb-32.grid.grid-cols-1.gap-16.items-center(class="md:grid-cols-2")
+      div
+        .text-xs.font-bold.tracking-widest.text-brand-gray.mb-6.uppercase 01 / About Us
+        h2.text-4xl.font-semibold.hero-title.mb-10(class="md:text-6xl")
+          | Expertise in digital 
+          span.editorial-italic.font-normal innovation.
+        p.text-brand-gray.leading-relaxed.mb-6
+          | We are passionate about writing 
+          strong clean, maintainable code
+          |  that solves real business problems. Our seasoned team build everything from educational platforms and enterprise management systems to AI agents and scalable web applications.
+        .flex.gap-12.mt-10
+          div
+            .text-xs.font-bold.text-brand-gray.uppercase.mb-2 Core Focus
+            .text-sm.font-semibold Web Performance
+          div
+            .text-xs.font-bold.text-brand-gray.uppercase.mb-2 Specialty
+            .text-sm.font-semibold AI Integration
+      .bg-brand-light.p-12.rounded-3xl.border.border-gray-100.grid.grid-cols-2.gap-8
+        .space-y-2
+          .text-xs.font-bold.text-brand-gray.uppercase Frontend
+          .text-sm.font-semibold React, Next.js, Vue
+        .space-y-2
+          .text-xs.font-bold.text-brand-gray.uppercase Backend
+          .text-sm.font-semibold Node.js, Python, Go
+        .space-y-2
+          .text-xs.font-bold.text-brand-gray.uppercase Database
+          .text-sm.font-semibold PostgreSQL, Redis
+        .space-y-2
+          .text-xs.font-bold.text-brand-gray.uppercase Cloud
+          .text-sm.font-semibold AWS, Docker, CI/CD
+
+    //- Projects Section
+    section#work.mb-32
+      .text-xs.font-bold.tracking-widest.text-brand-gray.mb-12.uppercase.text-center 02 / Selected Work
+      .grid.grid-cols-1.gap-12(class="md:grid-cols-2")
+        //- Project 1
+        .group
+          .aspect-video.bg-brand-light.rounded-3xl.border.border-gray-100.mb-6.overflow-hidden
+            img.w-full.h-full.object-cover.transition-transform.duration-500(src="img/navins.png" alt="NAV|INS CO" class="group-hover:scale-105")
+          h3.text-2xl.font-semibold.mb-2 NAV|INS CO
+          p.text-brand-gray.text-sm.mb-4 Corporate website for a navigation and insurance company. Clean, professional design with a focus on brand presence and user trust.
+          .flex.gap-2
+            span.font-bold.uppercase.tracking-widest.bg-gray-100.px-2.py-1.rounded(class="text-[10px]") Corporate
+            span.font-bold.uppercase.tracking-widest.bg-gray-100.px-2.py-1.rounded(class="text-[10px]") UI/UX
+        //- Project 2
+        .group
+          .aspect-video.bg-brand-light.rounded-3xl.border.border-gray-100.mb-6.overflow-hidden
+            img.w-full.h-full.object-cover.transition-transform.duration-500(src="img/brits.png" alt="Brits Tryout" class="group-hover:scale-105")
+          h3.text-2xl.font-semibold.mb-2 Brits Tryout
+          p.text-brand-gray.text-sm.mb-4 A comprehensive online examination and tryout platform for students. Developed with a focus on comprehensive web architecture.
+          .flex.gap-2
+            span.font-bold.uppercase.tracking-widest.bg-gray-100.px-2.py-1.rounded(class="text-[10px]") Vue.js
+            span.font-bold.uppercase.tracking-widest.bg-gray-100.px-2.py-1.rounded(class="text-[10px]") IRT Scoring
+
+    //- Testimonials
+    section#testimonials.mb-32
+      .text-xs.font-bold.tracking-widest.text-brand-gray.mb-12.uppercase.text-center 03 / Client Stories
+      .grid.grid-cols-1.gap-8(class="md:grid-cols-3")
+        .p-10.rounded-3xl.border.border-gray-100.bg-brand-light.italic.text-brand-gray.text-sm.leading-relaxed
+          | "What sets Digiserv.ID apart is their ability to handle sophisticated data requirements. They integrated a complex IRT algorithm that saved our team hundreds of hours."
+          .mt-8.not-italic.flex.items-center.gap-4
+            img.w-10.h-10.rounded-full.grayscale(src="img/testimoni-2.webp" alt="client")
+            div
+              .text-brand-black.font-bold Brits Indonesia
+              .text-wider.uppercase(class="text-[10px]") Supercamp #1
+        .p-10.rounded-3xl.border.border-gray-100.bg-brand-light.italic.text-brand-gray.text-sm.leading-relaxed
+          | "The OpenClaw AI Assistant built by Digiserv has been a game-changer for our team. It significantly speeds up our productivity by automating repetitive tasks."
+          .mt-8.not-italic.flex.items-center.gap-4
+            img.w-10.h-10.rounded-full.grayscale(src="img/testimoni-3.jpeg" alt="client")
+            div
+              .text-brand-black.font-bold Agnes Gosali
+              .text-wider.uppercase(class="text-[10px]") Ruangguru
+        .p-10.rounded-3xl.border.border-gray-100.bg-brand-light.italic.text-brand-gray.text-sm.leading-relaxed
+          | "Excellent work! Digiserv expertise handled our professional email setup and boosted our visibility with top-tier SEO strategies. A truly comprehensive digital partner."
+          .mt-8.not-italic.flex.items-center.gap-4
+            img.w-10.h-10.rounded-full.grayscale(src="img/testimoni-4.webp" alt="client")
+            div
+              .text-brand-black.font-bold Naim Syahrir
+              .text-wider.uppercase(class="text-[10px]") Navinsco
+
+    //- CTA Section
+    section#contact.text-center.pt-24.pb-16
+      h2.text-5xl.font-semibold.hero-title.mb-12(class="md:text-7xl")
+        | Let's 
+        span.editorial-italic.font-normal work
+        |  together.
+      .flex.flex-col.justify-center.gap-6(class="sm:flex-row")
+        a.bg-brand-black.text-white.text-lg.font-medium.px-12.py-5.rounded-2xl.transition.shadow-2xl(href="https://wa.link/byybuo" class="hover:bg-gray-800")
+          | WhatsApp Us
+        a.bg-white.text-brand-black.border.border-gray-200.text-lg.font-medium.px-12.py-5.rounded-2xl.transition.shadow-lg(href="mailto:hidayat@digiserv.id" class="hover:bg-gray-50")
+          | Send Email

@@ -1,6 +1,9 @@
 Options -Indexes +FollowSymLinks
 RewriteEngine On
 
+# Hide srcpug folder
+RewriteRule ^srcpug(/|$) - [F,L]
+
 # 1. Remove index.html (External Redirect)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.+/)?index\.html\ [NC]
 RewriteRule ^(.+/)?index\.html$ /%1 [R=301,L]

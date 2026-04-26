@@ -1,0 +1,103 @@
+extends ../layouts/main.pug
+
+block vars
+  - var title = "Enterprise Automation & Solutions"
+  - var description = "Digiserv.id — Premium digital agency specializing in production-grade automation, invoice systems, and educational technology."
+  - var baseUrl = "../"
+
+block nav_links
+  a.transition(href="#services" class="hover:text-brand-black") Services
+  a.transition(href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black") Analysis
+
+block content
+  main.max-w-6xl.mx-auto.px-6.pb-24
+    //- Hero Section
+    section.pt-24.pb-20.text-center.flex.flex-col.items-center
+      //- Trust Badge
+      .inline-flex.items-center.bg-white.border.border-dashed.border-gray-300.rounded-full.px-5.py-2.mb-10
+        .flex.-space-x-2.mr-4
+          img.w-7.h-7.rounded-full.border-2.border-white.object-cover(src="../img/testimoni-2.webp" alt="client")
+          img.w-7.h-7.rounded-full.border-2.border-white.object-cover(src="../img/testimoni-3.jpeg" alt="client")
+          img.w-7.h-7.rounded-full.border-2.border-white.object-cover(src="../img/testimoni-4.webp" alt="client")
+        span.text-xs.font-medium.text-gray-600 2000+ companies trust us
+
+      //- Hero Title
+      h1.text-5xl.font-semibold.hero-title.max-w-4xl.mx-auto.text-brand-black.mb-10(class="md:text-8xl")
+        | Built for those who want 
+        span.editorial-italic.font-normal better.
+
+      p.text-lg.text-brand-gray.max-w-2xl.mx-auto.mb-12.leading-relaxed(class="md:text-xl")
+        | Buat program pakai AI memang mudah, tapi untuk 
+        span.font-bold production-grade
+        |  butuh keahlian. Digiserv membantu otomatisasi workflow untuk bisnis dan institusi Anda.
+
+      a.bg-brand-black.text-white.text-base.font-medium.px-10.py-4.rounded-xl.transition.shadow-xl.transform.duration-300(href="#services" class="hover:bg-gray-800 hover:scale-105")
+        | Explore Services
+
+    //- Stats Section (Dashed Grid)
+    section.max-w-6xl.mx-auto.mb-32
+      .dashed-border-y.grid.grid-cols-2.py-12(class="md:grid-cols-4")
+        .px-8.flex.flex-col.items-start.justify-center
+          span.text-sm.text-brand-gray.mb-2 Projects completed
+          span.text-4xl.font-semibold.text-brand-black 120+
+        .px-8.flex.flex-col.items-start.justify-center.dashed-border-l
+          span.text-sm.text-brand-gray.mb-2 Satisfaction rate
+          span.text-4xl.font-semibold.text-brand-black 95%
+        .px-8.flex.flex-col.items-start.justify-center.dashed-border-l.mt-10.pt-10.border-t.border-dashed.border-gray-200(class="md:mt-0 md:border-t-0 md:pt-0")
+          span.text-sm.text-brand-gray.mb-2 In generated revenue
+          span.text-4xl.font-semibold.text-brand-black $1M+
+        .px-8.flex.flex-col.items-start.justify-center.dashed-border-l.mt-10.pt-10.border-t.border-dashed.border-gray-200(class="md:mt-0 md:border-t-0 md:pt-0")
+          span.text-sm.text-brand-gray.mb-2 Client retention rate
+          span.text-4xl.font-semibold.text-brand-black 80%
+
+    //- Services Section
+    section#services.mb-32
+      .grid.grid-cols-1.gap-8(class="md:grid-cols-3")
+        //- Service Card 1
+        a.group.block.p-10.rounded-3xl.border.border-gray-100.bg-brand-light.hover_border-gray-200.transition-all.duration-300(href="jasa-script-otomatis.html" class="hover:shadow-xl")
+          .w-14.h-14.bg-white.rounded-2xl.flex.items-center.justify-center.shadow-sm.border.border-gray-100.mb-8.text-brand-black.transition-transform(class="group-hover:scale-110")
+            svg(width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+              polyline(points="16 18 22 12 16 6")
+              polyline(points="8 6 2 12 8 18")
+          h3.text-2xl.font-semibold.mb-4 Script Otomatis
+          p.text-brand-gray.leading-relaxed.text-sm
+            | Otomasi pekerjaan kantor dan bimbel dengan script yang handal. Built for production, not just a "vibe".
+
+        //- Service Card 2
+        a.group.block.p-10.rounded-3xl.border.border-gray-100.bg-brand-light.hover_border-gray-200.transition-all.duration-300(href="invoice-otomatis.html" class="hover:shadow-xl")
+          .w-14.h-14.bg-white.rounded-2xl.flex.items-center.justify-center.shadow-sm.border.border-gray-100.mb-8.text-brand-black.transition-transform(class="group-hover:scale-110")
+            svg(width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+              path(d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z")
+              polyline(points="14 2 14 8 20 8")
+              line(x1="16" y1="13" x2="8" y2="13")
+              line(x1="16" y1="17" x2="8" y2="17")
+              polyline(points="10 9 9 9 8 9")
+          h3.text-2xl.font-semibold.mb-4 Invoice Otomatis
+          p.text-brand-gray.leading-relaxed.text-sm
+            | Sistem penagihan otomatis yang presisi. Nol kesalahan nominal, efisiensi administrasi maksimal.
+
+        //- Service Card 3
+        a.group.block.p-10.rounded-3xl.border.border-gray-100.bg-brand-light.hover_border-gray-200.transition-all.duration-300(href="aplikasi-sekolah-rapor.html" class="hover:shadow-xl")
+          .w-14.h-14.bg-white.rounded-2xl.flex.items-center.justify-center.shadow-sm.border.border-gray-100.mb-8.text-brand-black.transition-transform(class="group-hover:scale-110")
+            svg(width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+              path(d="M22 10v6M2 10l10-5 10 5-10 5z")
+              path(d="M6 12v5c3 3 9 3 12 0v-5")
+          h3.text-2xl.font-semibold.mb-4 Aplikasi Rapor
+          p.text-brand-gray.leading-relaxed.text-sm
+            | Manajemen nilai digital yang aman dan sesuai standar kurikulum. Fokus mengajar, biarkan kami menangani data.
+
+    //- CTA Section
+    section#contact.text-center.pt-24.pb-16
+      h2.text-5xl.font-semibold.hero-title.mb-12(class="md:text-7xl")
+        | Ready for 
+        span.editorial-italic.font-normal production?
+      .flex.flex-col.justify-center.gap-6(class="sm:flex-row")
+        a.bg-brand-black.text-white.text-lg.font-medium.px-12.py-5.rounded-2xl.transition.shadow-2xl(href="https://wa.link/byybuo" class="hover:bg-gray-800")
+          | WhatsApp Us
+        a.bg-white.text-brand-black.border.border-gray-200.text-lg.font-medium.px-12.py-5.rounded-2xl.transition.shadow-lg(href="mailto:hidayat@digiserv.id" class="hover:bg-gray-50")
+          | Send Email
+
+block footer_links
+  a.transition(href="#" class="hover:text-brand-black") Privacy
+  a.transition(href="#" class="hover:text-brand-black") Terms
+  a.transition(href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black") Analysis
