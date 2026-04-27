@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Software &amp; Automation Experts | Digiserv.id</title>
-    <meta name="description" content="Digiserv.id — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.">
+    <title><?php echo $pageTitle ?? 'Enterprise Software & Automation Experts | Digiserv.id'; ?></title>
+    <meta name="description" content="<?php echo $pageDescription ?? 'Digiserv.id — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.'; ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
@@ -60,21 +60,25 @@
     </style>
   </head>
   <body class="antialiased selection-style">
+    <?php $base = $basePath ?? './'; ?>
     <div class="fixed top-6 left-0 right-0 z-100 px-6">
       <header class="max-w-6xl mx-auto glass-nav rounded-full p-2 flex justify-between items-center">
-        <div class="flex items-center gap-3 pl-4"><a class="flex items-center gap-2" href="./index.html"><img class="w-8 h-8 rounded-full object-cover" src="./img/logo.jpg" alt="Digiserv Logo"><span class="font-bold text-lg tracking-tight text-brand-black">Digiserv</span></a></div>
-        <nav class="hidden space-x-2 text-sm font-medium text-brand-gray md:flex"><a class="nav-pill transition hover:text-brand-black" href="./index.html#about">About</a><a class="nav-pill transition hover:text-brand-black" href="./index.html#work">Work</a><a class="nav-pill transition hover:text-brand-black" href="./blog/index.html">Journal</a><a class="nav-pill transition hover:text-brand-black" href="./jasabikinwebsite/index.html">Agency</a>
+        <div class="flex items-center gap-3 pl-4">
+            <a class="flex items-center gap-2" href="<?php echo $base; ?>index.php">
+                <img class="w-8 h-8 rounded-full object-cover" src="<?php echo $base; ?>img/logo.jpg" alt="Digiserv Logo">
+                <span class="font-bold text-lg tracking-tight text-brand-black">Digiserv</span>
+            </a>
+        </div>
+        <nav class="hidden space-x-2 text-sm font-medium text-brand-gray md:flex">
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index.php#about">About</a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index.php#work">Work</a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>blog/index.php">Journal</a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>jasabikinwebsite/index.php">Agency</a>
         </nav>
-        <div class="flex items-center gap-2 pr-2"><a class="bg-white text-brand-black text-xs font-bold px-6 rounded-full transition shadow-sm py-2.5 hover:bg-gray-50 border border-gray-100" href="https://wa.link/byybuo">Whatsapp</a><a class="bg-blue-600 text-white text-xs font-bold px-6 rounded-full transition shadow-lg py-2.5 hover:bg-blue-700" href="mailto:hidayat@digiserv.id">Email</a></div>
+        <div class="flex items-center gap-2 pr-2">
+            <a class="bg-white text-brand-black text-xs font-bold px-6 rounded-full transition shadow-sm py-2.5 hover:bg-gray-50 border border-gray-100" href="https://wa.link/byybuo">Whatsapp</a>
+            <a class="bg-blue-600 text-white text-xs font-bold px-6 rounded-full transition shadow-lg py-2.5 hover:bg-blue-700" href="mailto:hidayat@digiserv.id">Email</a>
+        </div>
       </header>
     </div>
     <div class="h-28"></div>
-    <footer class="border-t border-gray-100 py-16 text-center text-sm text-brand-gray">
-      <div class="max-w-6xl mx-auto px-6 flex flex-col justify-between items-center gap-8 md:flex-row">
-        <p>&copy; 2026 digiserv.id. All rights reserved.</p>
-        <div class="flex space-x-8"><a class="transition hover:text-brand-black" href="https://github.com/mrdevip15">GitHub</a><a class="transition hover:text-brand-black" href="./blog/index.html">Journal</a>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
