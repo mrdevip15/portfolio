@@ -73,7 +73,6 @@
             <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index.php#about">About</a>
             <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index.php#work">Work</a>
             <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>blog/index.php">Journal</a>
-            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>jasabikinwebsite/index.php">Agency</a>
         </nav>
         <div class="flex items-center gap-2 pr-2">
             <a class="bg-white text-brand-black text-xs font-bold px-6 rounded-full transition shadow-sm py-2.5 hover:bg-gray-50 border border-gray-100" href="https://wa.link/byybuo">Whatsapp</a>
