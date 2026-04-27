@@ -2,6 +2,16 @@
 $pageTitle = 'Digiserv.id | Enterprise Software & Automation Experts | Digiserv.id';
 $pageDescription = 'Digiserv.id — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.';
 $basePath = './';
+require_once 'billing/db.php';
+$db = get_db_connection();
+
+// Fetch dynamic settings
+$settings_raw = $db->query("SELECT setting_key, setting_value FROM site_settings")->fetchAll();
+$settings = [];
+foreach ($settings_raw as $s) {
+    $settings[$s['setting_key']] = $s['setting_value'];
+}
+
 include 'includes/header.php';
 ?>
 
@@ -27,19 +37,19 @@ include 'includes/header.php';
     <div class="dashed-border-y grid grid-cols-2 py-12 md:grid-cols-4">
       <div class="px-8 flex flex-col items-start justify-center">
         <span class="text-sm text-brand-gray mb-2">Experience</span>
-        <span class="text-4xl font-semibold text-brand-black">5+ Years</span>
+        <span class="text-4xl font-semibold text-brand-black"><?php echo $settings['experience_years'] ?? '5+ Years'; ?></span>
       </div>
       <div class="px-8 flex flex-col items-start justify-center dashed-border-l">
         <span class="text-sm text-brand-gray mb-2">Successful deploys</span>
-        <span class="text-4xl font-semibold text-brand-black">500+</span>
+        <span class="text-4xl font-semibold text-brand-black"><?php echo $settings['successful_deploys'] ?? '500+'; ?></span>
       </div>
       <div class="px-8 flex flex-col items-start justify-center dashed-border-l mt-10 pt-10 border-t border-dashed border-gray-200 md:mt-0 md:border-t-0 md:pt-0">
         <span class="text-sm text-brand-gray mb-2">In generated revenue</span>
-        <span class="text-4xl font-semibold text-brand-black">$1M+</span>
+        <span class="text-4xl font-semibold text-brand-black"><?php echo $settings['generated_revenue'] ?? '$1M+'; ?></span>
       </div>
       <div class="px-8 flex flex-col items-start justify-center dashed-border-l mt-10 pt-10 border-t border-dashed border-gray-200 md:mt-0 md:border-t-0 md:pt-0">
         <span class="text-sm text-brand-gray mb-2">Client retention rate</span>
-        <span class="text-4xl font-semibold text-brand-black">98%</span>
+        <span class="text-4xl font-semibold text-brand-black"><?php echo $settings['client_retention'] ?? '98%'; ?></span>
       </div>
     </div>
   </section>

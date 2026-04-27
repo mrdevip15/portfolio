@@ -4,7 +4,7 @@
         <p>&copy; 2026 digiserv.id. All rights reserved.</p>
         <div class="flex space-x-8">
             <a class="transition hover:text-brand-black" href="https://github.com/mrdevip15">GitHub</a>
-            <a class="transition hover:text-brand-black" href="<?php echo $base; ?>blog/index.php">Journal</a>
+            <a class="transition hover:text-brand-black" href="<?php echo $base; ?>blog/">Journal</a>
         </div>
       </div>
     </footer>

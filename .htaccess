@@ -12,13 +12,18 @@ RewriteRule ^(.+/)?index\.php$ /%1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
-# 3. Handle trailing slashes (Redirect folder/ to folder)
+# 3. Handle Blog Post Routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([^/]+)$ blog/post.php?slug=$1 [L,QSA]
+
+# 4. Handle trailing slashes (Redirect folder/ to folder)
 # Only if it's NOT a real directory to avoid Apache loops
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} ^(.+)/$
 RewriteRule ^ %1 [R=301,L]
 
-# 4. Internal rewrite: Map clean URL to .php file
+# 5. Internal rewrite: Map clean URL to .php file
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+)$ $1.php [L]
