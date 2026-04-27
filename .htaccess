@@ -1,8 +1,8 @@
 Options -Indexes +FollowSymLinks
 RewriteEngine On
 
-# Hide srcpug folder
-RewriteRule ^srcpug(/|$) - [F,L]
+# Block access to source and sensitive files
+RewriteRule ^(src|\.env|\.gitignore|\.git|composer\.json|package\.json|package-lock\.json)(/|$) - [F,L]
 
 # 1. Remove index.html (External Redirect)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.+/)?index\.html\ [NC]

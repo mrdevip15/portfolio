@@ -44,10 +44,23 @@ html(lang="id")
       .dashed-border-l { border-left: 1px dashed #EAEAEA; }
       .selection-style::selection { background-color: #000; color: #fff; }
       .glass-nav { 
-          background: rgba(255, 255, 255, 0.7); 
-          backdrop-filter: blur(12px); 
-          -webkit-backdrop-filter: blur(12px); 
-          border-bottom: 1px solid rgba(0,0,0,0.05); 
+          background: rgba(255, 255, 255, 0.6); 
+          backdrop-filter: blur(20px); 
+          -webkit-backdrop-filter: blur(20px); 
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
+      .nav-pill {
+          padding: 6px 20px;
+          border-radius: 9999px;
+          transition: all 0.3s;
+      }
+      .nav-pill:hover {
+          background: rgba(0,0,0,0.05);
+      }
+      .nav-pill.active {
+          background: rgba(0,0,0,0.1);
+          border: 1px solid rgba(0,0,0,0.1);
       }
       article p { margin-bottom: 2rem; line-height: 1.8; color: #444; }
       article h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #0A0A0A; }
@@ -55,22 +68,31 @@ html(lang="id")
     block extra_style
 
   body.antialiased.selection-style
-    header.sticky.top-0.z-100.glass-nav
-      .max-w-6xl.mx-auto.px-6.py-4.flex.justify-between.items-center
-        a.flex.items-center.gap-3(href=baseUrl + "index.html")
-          .w-10.h-10.bg-brand-black.rounded-xl.overflow-hidden.shadow-sm.flex.items-center.justify-center
-            img.w-full.h-full.object-cover(src=baseUrl + "img/logo.jpg" alt="Digiserv Logo")
-          span.font-bold.text-xl.tracking-tight.text-brand-black Digiserv
+    .fixed.top-6.left-0.right-0.z-100.px-6
+      header.max-w-6xl.mx-auto.glass-nav.rounded-full.p-2.flex.justify-between.items-center
+        .flex.items-center.gap-3.pl-4
+          a.flex.items-center.gap-2(href=baseUrl + "index.html")
+            .text-brand-black
+              svg(width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                path(d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z")
+                polyline(points="9 22 9 12 15 12 15 22")
+            span.font-bold.text-lg.tracking-tight.text-brand-black Digiserv
         
-        nav.hidden.space-x-12.text-sm.font-medium.text-brand-gray(class="md:flex")
+        nav.hidden.space-x-2.text-sm.font-medium.text-brand-gray(class="md:flex")
           block nav_links
-            a.transition(href=baseUrl + "#about" class="hover:text-brand-black") About
-            a.transition(href=baseUrl + "#work" class="hover:text-brand-black") Work
-            a.transition(href=baseUrl + "blog/index.html" class="hover:text-brand-black") Journal
-            a.transition(href=baseUrl + "jasabikinwebsite/index.html" class="hover:text-brand-black") Agency
+            a.nav-pill.transition(href=baseUrl + "index.html#about" class="hover:text-brand-black") About
+            a.nav-pill.transition(href=baseUrl + "index.html#work" class="hover:text-brand-black") Work
+            a.nav-pill.transition(href=baseUrl + "blog/index.html" class="hover:text-brand-black") Journal
+            a.nav-pill.transition(href=baseUrl + "jasabikinwebsite/index.html" class="hover:text-brand-black") Agency
 
-        a.bg-brand-black.text-white.text-sm.font-medium.px-6.py-2.5.rounded-full.transition.shadow-lg(href="https://wa.link/byybuo" class="hover:bg-gray-800")
-          | Hire Us
+        .flex.items-center.gap-2.pr-2
+          a.bg-white.text-brand-black.text-xs.font-bold.px-6.rounded-full.transition.shadow-sm(href="https://wa.link/byybuo" class="py-2.5 hover:bg-gray-50 border border-gray-100")
+            | Daftar
+          a.bg-blue-600.text-white.text-xs.font-bold.px-6.rounded-full.transition.shadow-lg(href="mailto:hidayat@digiserv.id" class="py-2.5 hover:bg-blue-700")
+            | Masuk
+    
+    //- Spacer for fixed header
+    .h-28
     
     block content
 

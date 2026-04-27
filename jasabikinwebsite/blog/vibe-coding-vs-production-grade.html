@@ -1,90 +1,104 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding vs Production Grade: Mengapa Prompt Saja Tidak Cukup | digiserv.id</title>
-    <!-- Same Head for Consistency -->
+    <title>Vibe Coding vs Production Grade | digiserv.id | Digiserv.id</title>
+    <meta name="description">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-                    colors: { 'brand-black': '#0A0A0A', 'brand-gray': '#666666', 'brand-light': '#FAFAFA', 'brand-border': '#EAEAEA' }
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              'brand-black': '#0A0A0A',
+              'brand-gray': '#666666',
+              'brand-light': '#FAFAFA',
+              'brand-border': '#EAEAEA',
             }
+          }
         }
+      }
+      
     </script>
     <style>
-        body { background-color: #FFFFFF; color: #0A0A0A; }
-        .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
-        .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
-        .selection-style::selection { background-color: #000; color: #fff; }
-        article p { margin-bottom: 2rem; line-height: 1.8; color: #444; }
-        article h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #0A0A0A; }
-        .glass-nav { 
-            background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(0,0,0,0.05); 
-        }
+      body { background-color: #FFFFFF; color: #0A0A0A; }
+      .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
+      .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
+      .dashed-border-y { border-top: 1px dashed #EAEAEA; border-bottom: 1px dashed #EAEAEA; }
+      .dashed-border-l { border-left: 1px dashed #EAEAEA; }
+      .selection-style::selection { background-color: #000; color: #fff; }
+      .glass-nav { 
+          background: rgba(255, 255, 255, 0.6); 
+          backdrop-filter: blur(20px); 
+          -webkit-backdrop-filter: blur(20px); 
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
+      .nav-pill {
+          padding: 6px 20px;
+          border-radius: 9999px;
+          transition: all 0.3s;
+      }
+      .nav-pill:hover {
+          background: rgba(0,0,0,0.05);
+      }
+      .nav-pill.active {
+          background: rgba(0,0,0,0.1);
+          border: 1px solid rgba(0,0,0,0.1);
+      }
+      article p { margin-bottom: 2rem; line-height: 1.8; color: #444; }
+      article h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #0A0A0A; }
+      
     </style>
-</head>
-<body class="antialiased selection-style">
-    <header class="sticky top-0 z-[100] glass-nav">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <a href="../../index.html" class="w-10 h-10 bg-brand-black rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
-                    <img src="../../img/logo.jpg" alt="Digiserv Logo" class="w-full h-full object-cover">
-                </a>
-                <span class="font-bold text-xl tracking-tight">Digiserv</span>
-            </div>
-            <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
-                <a href="../index.html" class="hover:text-brand-black transition">Home</a>
-                <a href="../index.html#services" class="hover:text-brand-black transition">Layanan</a>
-            </nav>
-            <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">Contact</a>
-        </div>
-    </header>
-
+  </head>
+  <body class="antialiased selection-style">
+    <div class="fixed top-6 left-0 right-0 z-100 px-6">
+      <header class="max-w-6xl mx-auto glass-nav rounded-full p-2 flex justify-between items-center">
+        <div class="flex items-center gap-3 pl-4"><a class="flex items-center gap-2" href="../../index.html">
+            <div class="text-brand-black">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div><span class="font-bold text-lg tracking-tight text-brand-black">Digiserv</span></a></div>
+        <nav class="hidden space-x-2 text-sm font-medium text-brand-gray md:flex"><a class="transition hover:text-brand-black" href="../index.html">Home</a><a class="transition hover:text-brand-black" href="../index.html#services">Layanan</a>
+        </nav>
+        <div class="flex items-center gap-2 pr-2"><a class="bg-white text-brand-black text-xs font-bold px-6 rounded-full transition shadow-sm py-2.5 hover:bg-gray-50 border border-gray-100" href="https://wa.link/byybuo">Daftar</a><a class="bg-blue-600 text-white text-xs font-bold px-6 rounded-full transition shadow-lg py-2.5 hover:bg-blue-700" href="mailto:hidayat@digiserv.id">Masuk</a></div>
+      </header>
+    </div>
+    <div class="h-28"></div>
     <main class="max-w-3xl mx-auto px-6 py-24">
-        <article>
-            <div class="text-xs font-semibold tracking-widest text-brand-gray mb-6 uppercase">Analysis / 2026.04.27</div>
-            <h1 class="text-4xl md:text-6xl font-semibold hero-title text-brand-black mb-12">
-                Mengapa Prompt Saja <span class="editorial-italic font-normal">Tidak Cukup.</span>
-            </h1>
-            
-            <p class="text-xl font-medium text-brand-black italic border-l-4 border-gray-100 pl-8 mb-12 leading-relaxed">
-                "Vibe coding" mungkin terasa menyenangkan saat Anda membangun MVP dalam 5 menit. Tapi saat aplikasi tersebut harus menangani ribuan transaksi, "vibe" saja tidak akan cukup.
-            </p>
-
-            <p>Fenomena AI coding telah mengubah cara kita membuat software. Dengan alat seperti ChatGPT, Claude, atau Cursor, siapa pun bisa menghasilkan ribuan baris kode hanya dengan beberapa kalimat prompt. Namun, ada jurang besar antara "kode yang kelihatannya jalan" dengan "kode yang siap produksi (production grade)".</p>
-
-            <h2>1. Ilusi Keberhasilan di Lingkungan Lokal</h2>
-            <p>AI sangat pintar dalam memberikan solusi untuk masalah yang terisolasi. Namun, aplikasi bisnis tidak hidup dalam ruang hampa. Ada masalah koneksi database yang tidak stabil, API pihak ketiga yang sering timeout, dan user yang memasukkan data di luar nalar. AI seringkali mengabaikan <i>error handling</i> yang komprehensif.</p>
-
-            <h2>2. Hutang Teknis yang Tersembunyi</h2>
-            <p>Saat Anda terus-menerus melakukan copy-paste dari AI tanpa memahami arsitektur di baliknya, Anda sebenarnya sedang menumpuk hutang teknis. Kode yang dihasilkan AI seringkali redundan atau tidak efisien untuk skala besar.</p>
-
-            <h2>3. Keamanan Bukan Sekadar Opsi</h2>
-            <p>AI seringkali menyarankan library yang out-of-date atau pola coding yang rentan terhadap SQL Injection. Untuk aplikasi internal kantor atau rapor sekolah, kebocoran data adalah bencana. <i>Production grade code</i> berarti keamanan sudah dipikirkan sejak baris pertama.</p>
-
-            <div class="bg-brand-light p-10 rounded-3xl border border-gray-100 mt-16 text-center">
-                <h3 class="text-2xl font-semibold mb-6">Upgrade to Production</h3>
-                <p class="text-brand-gray text-sm mb-8">Jangan biarkan operasional bisnis Anda bergantung pada kode yang rapuh. Gunakan AI sebagai alat bantu, tapi serahkan standarisasi produksi pada ahlinya.</p>
-                <a href="../index.html#contact" class="bg-brand-black text-white px-10 py-4 rounded-2xl font-medium inline-block hover:bg-gray-800 transition">
-                    Hubungi Kami Sekarang
-                </a>
-            </div>
-        </article>
+      <article>
+        <div class="text-xs font-semibold tracking-widest text-brand-gray mb-6 uppercase">Analysis / 2026.04.27</div>
+        <h1 class="text-4xl font-semibold hero-title text-brand-black mb-12 md:text-6xl">Mengapa Prompt Saja <span class="editorial-italic font-normal">Tidak Cukup.</span></h1>
+        <p class="text-xl font-medium text-brand-black italic border-l-4 border-gray-100 pl-8 mb-12 leading-relaxed">"Vibe coding" mungkin terasa menyenangkan saat Anda membangun MVP dalam 5 menit. Tapi saat aplikasi tersebut harus menangani ribuan transaksi, "vibe" saja tidak akan cukup.</p>
+        <p>Fenomena AI coding telah mengubah cara kita membuat software. Dengan alat seperti ChatGPT, Claude, atau Cursor, siapa pun bisa menghasilkan ribuan baris kode hanya dengan beberapa kalimat prompt. Namun, ada jurang besar antara "kode yang kelihatannya jalan" dengan "kode yang siap produksi (production grade)".</p>
+        <h2>1. Ilusi Keberhasilan di Lingkungan Lokal</h2>
+        <p>AI sangat pintar dalam memberikan solusi untuk masalah yang terisolasi. Namun, aplikasi bisnis tidak hidup dalam ruang hampa. Ada masalah koneksi database yang tidak stabil, API pihak ketiga yang sering timeout, dan user yang memasukkan data di luar nalar. AI seringkali mengabaikan <i>error handling</i> yang komprehensif.</p>
+        <h2>2. Hutang Teknis yang Tersembunyi</h2>
+        <p>Saat Anda terus-menerus melakukan copy-paste dari AI tanpa memahami arsitektur di baliknya, Anda sebenarnya sedang menumpuk hutang teknis. Kode yang dihasilkan AI seringkali redundan atau tidak efisien untuk skala besar.</p>
+        <h2>3. Keamanan Bukan Sekadar Opsi</h2>
+        <p>AI seringkali menyarankan library yang out-of-date atau pola coding yang rentan terhadap SQL Injection. Untuk aplikasi internal kantor atau rapor sekolah, kebocoran data adalah bencana. <i>Production grade code</i> berarti keamanan sudah dipikirkan sejak baris pertama.</p>
+        <div class="bg-brand-light p-10 rounded-3xl border border-gray-100 mt-16 text-center">
+          <h3 class="text-2xl font-semibold mb-6">Upgrade to Production</h3>
+          <p class="text-brand-gray text-sm mb-8">Jangan biarkan operasional bisnis Anda bergantung pada kode yang rapuh. Gunakan AI sebagai alat bantu, tapi serahkan standarisasi produksi pada ahlinya.</p><a class="bg-brand-black text-white px-10 py-4 rounded-2xl font-medium inline-block transition hover:bg-gray-800" href="../index.html#contact">Hubungi Kami Sekarang</a>
+        </div>
+      </article>
     </main>
-
     <footer class="border-t border-gray-100 py-16 text-center text-sm text-brand-gray">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col justify-between items-center gap-8 md:flex-row">
         <p>&copy; 2026 digiserv.id. All rights reserved.</p>
+        <div class="flex space-x-8"><a class="transition hover:text-brand-black" href="https://github.com/mrdevip15">GitHub</a><a class="transition hover:text-brand-black" href="../../blog/index.html">Journal</a>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

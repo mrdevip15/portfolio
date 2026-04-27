@@ -1,93 +1,109 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasa Script Otomatis - Production Grade | digiserv.id</title>
-    <!-- Same Head for Consistency -->
+    <title>Jasa Script Otomatis - Production Grade | Digiserv.id</title>
+    <meta name="description">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-                    colors: { 'brand-black': '#0A0A0A', 'brand-gray': '#666666', 'brand-light': '#FAFAFA', 'brand-border': '#EAEAEA' }
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              'brand-black': '#0A0A0A',
+              'brand-gray': '#666666',
+              'brand-light': '#FAFAFA',
+              'brand-border': '#EAEAEA',
             }
+          }
         }
+      }
+      
     </script>
     <style>
-        body { background-color: #FFFFFF; color: #0A0A0A; }
-        .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
-        .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
-        .selection-style::selection { background-color: #000; color: #fff; }
-        .glass-nav { 
-            background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(0,0,0,0.05); 
-        }
+      body { background-color: #FFFFFF; color: #0A0A0A; }
+      .editorial-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; letter-spacing: -0.02em; }
+      .hero-title { letter-spacing: -0.04em; line-height: 1.1; }
+      .dashed-border-y { border-top: 1px dashed #EAEAEA; border-bottom: 1px dashed #EAEAEA; }
+      .dashed-border-l { border-left: 1px dashed #EAEAEA; }
+      .selection-style::selection { background-color: #000; color: #fff; }
+      .glass-nav { 
+          background: rgba(255, 255, 255, 0.6); 
+          backdrop-filter: blur(20px); 
+          -webkit-backdrop-filter: blur(20px); 
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
+      .nav-pill {
+          padding: 6px 20px;
+          border-radius: 9999px;
+          transition: all 0.3s;
+      }
+      .nav-pill:hover {
+          background: rgba(0,0,0,0.05);
+      }
+      .nav-pill.active {
+          background: rgba(0,0,0,0.1);
+          border: 1px solid rgba(0,0,0,0.1);
+      }
+      article p { margin-bottom: 2rem; line-height: 1.8; color: #444; }
+      article h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; color: #0A0A0A; }
+      
     </style>
-</head>
-<body class="antialiased selection-style">
-    <header class="sticky top-0 z-[100] glass-nav">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <a href="../index.html" class="w-10 h-10 bg-brand-black rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
-                    <img src="../img/logo.jpg" alt="Digiserv Logo" class="w-full h-full object-cover">
-                </a>
-                <span class="font-bold text-xl tracking-tight">Digiserv</span>
-            </div>
-            <nav class="hidden md:flex space-x-12 text-sm font-medium text-brand-gray">
-                <a href="index.html" class="hover:text-brand-black transition">Home</a>
-                <a href="index.html#services" class="hover:text-brand-black transition">Layanan</a>
-                <a href="blog/vibe-coding-vs-production-grade.html" class="hover:text-brand-black transition">Blog</a>
-            </nav>
-            <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">Contact</a>
-        </div>
-    </header>
-
+  </head>
+  <body class="antialiased selection-style">
+    <div class="fixed top-6 left-0 right-0 z-100 px-6">
+      <header class="max-w-6xl mx-auto glass-nav rounded-full p-2 flex justify-between items-center">
+        <div class="flex items-center gap-3 pl-4"><a class="flex items-center gap-2" href="../index.html">
+            <div class="text-brand-black">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div><span class="font-bold text-lg tracking-tight text-brand-black">Digiserv</span></a></div>
+        <nav class="hidden space-x-2 text-sm font-medium text-brand-gray md:flex"><a class="transition hover:text-brand-black" href="index.html">Home</a><a class="transition hover:text-brand-black" href="index.html#services">Layanan</a><a class="transition hover:text-brand-black" href="blog/vibe-coding-vs-production-grade.html">Blog</a>
+        </nav>
+        <div class="flex items-center gap-2 pr-2"><a class="bg-white text-brand-black text-xs font-bold px-6 rounded-full transition shadow-sm py-2.5 hover:bg-gray-50 border border-gray-100" href="https://wa.link/byybuo">Daftar</a><a class="bg-blue-600 text-white text-xs font-bold px-6 rounded-full transition shadow-lg py-2.5 hover:bg-blue-700" href="mailto:hidayat@digiserv.id">Masuk</a></div>
+      </header>
+    </div>
+    <div class="h-28"></div>
     <main class="max-w-4xl mx-auto px-6 py-24">
-        <section class="mb-20">
-            <div class="text-xs font-semibold tracking-widest text-brand-gray mb-4 uppercase">Service Details</div>
-            <h1 class="text-5xl md:text-7xl font-semibold hero-title text-brand-black mb-8">
-                Jasa Script <span class="editorial-italic font-normal">Otomatis.</span>
-            </h1>
-            <p class="text-xl text-brand-gray leading-relaxed">
-                Otomasi pekerjaan kantor, bimbel, dan sekolah dengan script yang handal. Bukan sekadar kode dari AI yang gampang error, tapi solusi sistematis yang siap pakai.
-            </p>
-        </section>
-
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-            <div>
-                <h2 class="text-2xl font-semibold mb-6">Target: Efficiency</h2>
-                <ul class="space-y-4 text-brand-gray">
-                    <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span> Data Scraping & Processing</li>
-                    <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span> Auto-Reports Generator</li>
-                    <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span> File Management Automation</li>
-                    <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span> Bulk Email/WA Systems</li>
-                </ul>
-            </div>
-            <div class="bg-brand-light p-10 rounded-3xl border border-gray-100">
-                <h2 class="text-2xl font-semibold mb-4 text-brand-black italic serif">Why Us?</h2>
-                <p class="text-brand-gray leading-relaxed text-sm">
-                    AI bisa bikin script dalam 5 menit, tapi sering gagal saat data berantakan atau butuh logic kompleks. Kami build script yang tahan banting untuk kebutuhan <span class="editorial-italic">real-world</span>.
-                </p>
-            </div>
-        </section>
-
-        <section class="text-center pt-12 border-t border-gray-100">
-            <a href="https://wa.link/byybuo" class="bg-brand-black text-white text-lg font-medium px-12 py-5 rounded-2xl hover:bg-gray-800 transition shadow-lg">
-                Konsultasi Gratis
-            </a>
-        </section>
+      <section class="mb-20">
+        <div class="text-xs font-semibold tracking-widest text-brand-gray mb-4 uppercase">Service Details</div>
+        <h1 class="text-5xl font-semibold hero-title text-brand-black mb-8 md:text-7xl">Jasa Script <span class="editorial-italic font-normal">Otomatis.</span></h1>
+        <p class="text-xl text-brand-gray leading-relaxed">Otomasi pekerjaan kantor, bimbel, dan sekolah dengan script yang handal. Bukan sekadar kode dari AI yang gampang error, tapi solusi sistematis yang siap pakai.</p>
+      </section>
+      <section class="grid grid-cols-1 gap-12 mb-20 md:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-semibold mb-6">Target: Efficiency</h2>
+          <ul class="space-y-4 text-brand-gray">
+            <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span>Data Scraping & Processing</li>
+            <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span>Auto-Reports Generator</li>
+            <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span>File Management Automation</li>
+            <li class="flex items-start"><span class="text-brand-black font-bold mr-3">—</span>Bulk Email/WA Systems</li>
+          </ul>
+        </div>
+        <div class="bg-brand-light p-10 rounded-3xl border border-gray-100">
+          <h2 class="text-2xl font-semibold mb-4 text-brand-black italic serif">Why Us?</h2>
+          <p class="text-brand-gray leading-relaxed text-sm">AI bisa bikin script dalam 5 menit, tapi sering gagal saat data berantakan atau butuh logic kompleks. Kami build script yang tahan banting untuk kebutuhan <span class="editorial-italic">real-world</span>.</p>
+        </div>
+      </section>
+      <section class="text-center pt-12 border-t border-gray-100"><a class="bg-brand-black text-white text-lg font-medium px-12 py-5 rounded-2xl transition shadow-lg hover:bg-gray-800" href="https://wa.link/byybuo">Konsultasi Gratis</a></section>
     </main>
-
     <footer class="border-t border-gray-100 py-16 text-center text-sm text-brand-gray">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col justify-between items-center gap-8 md:flex-row">
         <p>&copy; 2026 digiserv.id. All rights reserved.</p>
+        <div class="flex space-x-8"><a class="transition hover:text-brand-black" href="https://github.com/mrdevip15">GitHub</a><a class="transition hover:text-brand-black" href="../blog/index.html">Journal</a>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

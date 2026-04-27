@@ -1,0 +1,31 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pug . --out .. --pretty --exclude layouts",
+    "watch:pug": "pug . --out .. --pretty --watch --exclude layouts",
+    "serve:php": "php -S localhost:8000 -t ..",
+    "serve:bs": "browser-sync start --proxy \"localhost:8000\" --files \"../**/*.html, ../**/*.php, ../img/*\"",
+    "dev": "concurrently \"npm run watch:pug\" \"npm run serve:php\" \"npm run serve:bs\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrdevip15/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mrdevip15/portfolio/issues"
+  },
+  "homepage": "https://github.com/mrdevip15/portfolio#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}
