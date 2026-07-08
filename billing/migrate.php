@@ -36,12 +36,22 @@ function run_migrations() {
     }
 }
 
-// Check if running from CLI or if an authorized user is doing it via web
+// Check if running from CLI or if the database is uninitialized (no users table) or if authorized via session
+$allow_web_migration = false;
+try {
+    $db = get_db_connection();
+    $db->query("SELECT 1 FROM users LIMIT 1");
+} catch (PDOException $e) {
+    // If users table doesn't exist, allow initial migrations to run via web
+    $allow_web_migration = true;
+}
+
 if (php_sapi_name() === 'cli') {
     run_migrations();
 } else {
     session_start();
-    if (isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] === true) {
+    $authenticated = isset($_SESSION['billing_auth']) && $_SESSION['billing_auth'] === true;
+    if ($authenticated || $allow_web_migration) {
         echo "<pre>";
         run_migrations();
         echo "Migrations completed successfully.";
