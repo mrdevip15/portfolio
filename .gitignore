@@ -1,3 +1,4 @@
 .env
 billing/database.sqlite
 src/node_modules
+/.agents
