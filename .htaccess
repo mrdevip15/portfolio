@@ -9,7 +9,6 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.+/)?index\.php\ [NC]
 RewriteRule ^(.+/)?index\.php$ /%1 [R=301,L]
 
 # 2. Remove .php extension (External Redirect)
-RewriteCond %{REQUEST_URI} !/deploy\.php [NC]
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
