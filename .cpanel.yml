@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/dige2484/public_html
-    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp favicon.ico $DEPLOYPATH
     - /bin/cp robots.txt $DEPLOYPATH
@@ -11,3 +11,5 @@ deployment:
     - /bin/cp -r blog $DEPLOYPATH
     - /bin/cp -r jasabikinwebsite $DEPLOYPATH
     - /bin/cp -r billing $DEPLOYPATH
+    - /bin/cp -r admin $DEPLOYPATH
+    - /bin/cp -r includes $DEPLOYPATH

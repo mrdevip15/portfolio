@@ -86,8 +86,8 @@ include '../includes/header.php';
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-brand-gray uppercase mb-3">Content (HTML allowed)</label>
-            <textarea name="content" rows="15" class="w-full bg-brand-light border border-gray-100 rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-brand-black transition font-mono text-sm"><?php echo htmlspecialchars($post['content'] ?? ''); ?></textarea>
+            <label class="block text-xs font-bold text-brand-gray uppercase mb-3">Content</label>
+            <textarea id="editor" name="content" class="w-full bg-brand-light border border-gray-100 rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-brand-black transition text-sm"><?php echo htmlspecialchars($post['content'] ?? ''); ?></textarea>
         </div>
 
         <div>
@@ -103,5 +103,49 @@ include '../includes/header.php';
         </div>
     </form>
 </main>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+<style>
+/* Custom CKEditor Styling to match Digiserv Theme */
+.ck-editor__editable_inline {
+    min-height: 400px;
+    padding: 1.5rem !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.ck.ck-editor {
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+.ck.ck-toolbar {
+    background: #FAFAFA !important;
+    border-color: #EAEAEA !important;
+    padding: 0.75rem 1rem !important;
+}
+.ck.ck-content {
+    border-color: #EAEAEA !important;
+    border-radius: 0 0 16px 16px !important;
+}
+.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    border-color: #0A0A0A !important;
+    box-shadow: 0 0 0 2px rgba(10, 10, 10, 0.05) !important;
+}
+</style>
+<script>
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: {
+            items: [
+                'heading', '|',
+                'bold', 'italic', 'link', '|',
+                'bulletedList', 'numberedList', 'blockQuote', '|',
+                'insertTable', 'undo', 'redo'
+            ]
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
+</script>
 
 <?php include '../includes/footer.php'; ?>
