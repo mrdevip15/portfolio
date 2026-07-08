@@ -22,6 +22,14 @@ chdir($repo_path);
 
 // 4. Perform Git pull and trigger cPanel deployment
 echo "<pre>";
+echo "=== Cleaning Working Tree on Server ===\n";
+$reset_output = [];
+exec("git reset --hard HEAD 2>&1", $reset_output);
+echo implode("\n", $reset_output) . "\n";
+$clean_output = [];
+exec("git clean -fd 2>&1", $clean_output);
+echo implode("\n", $clean_output) . "\n\n";
+
 echo "=== Starting Git Pull ===\n";
 $pull_output = [];
 exec("git pull origin main 2>&1", $pull_output);
