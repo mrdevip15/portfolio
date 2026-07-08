@@ -50,7 +50,7 @@ include '../includes/header.php';
 
 <main class="max-w-4xl mx-auto px-6 py-24">
     <div class="mb-12">
-        <a href="posts.php" class="text-sm font-medium text-brand-gray hover:text-brand-black transition mb-4 inline-block">&larr; Back to Posts</a>
+        <a href="posts" class="text-sm font-medium text-brand-gray hover:text-brand-black transition mb-4 inline-block">&larr; Back to Posts</a>
         <h1 class="text-4xl font-semibold hero-title text-brand-black"><?php echo $id ? 'Edit' : 'New'; ?> <span class="editorial-italic font-normal">Post</span></h1>
     </div>
 

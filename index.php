@@ -12,6 +12,12 @@ foreach ($settings_raw as $s) {
     $settings[$s['setting_key']] = $s['setting_value'];
 }
 
+// Fetch projects
+$projects = $db->query("SELECT * FROM projects ORDER BY created_at DESC")->fetchAll();
+
+// Fetch testimonials
+$testimonials = $db->query("SELECT * FROM testimonials ORDER BY created_at DESC")->fetchAll();
+
 include 'includes/header.php';
 ?>
 
@@ -29,7 +35,7 @@ include 'includes/header.php';
     <p class="text-lg text-brand-gray max-w-2xl mx-auto mb-12 leading-relaxed md:text-xl">At <strong>Digiserv.id</strong>, we bring an analytical, systems-thinking approach to software engineering. Enterprise partner for automation, production-grade applications, and resilient architectures.</p>
     <div class="flex gap-4">
       <a class="bg-brand-black text-white text-base font-medium px-10 py-4 rounded-xl transition shadow-xl transform duration-300 hover:bg-gray-800 hover:scale-105" href="#work">View Work</a>
-      <a class="bg-white text-brand-black border border-gray-200 text-base font-medium px-10 py-4 rounded-xl transition shadow-lg hover:bg-gray-50" href="jasabikinwebsite/index.php">Automation Agency</a>
+      <a class="bg-white text-brand-black border border-gray-200 text-base font-medium px-10 py-4 rounded-xl transition shadow-lg hover:bg-gray-50" href="jasabikinwebsite/index">Automation Agency</a>
     </div>
   </section>
 
@@ -93,64 +99,41 @@ include 'includes/header.php';
   <section class="mb-32" id="work">
     <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">02 / Selected Work</div>
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+      <?php foreach ($projects as $project): ?>
       <div class="group">
         <div class="aspect-video bg-brand-light rounded-3xl border border-gray-100 mb-6 overflow-hidden">
-          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="img/navins.png" alt="NAV|INS CO">
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="<?php echo htmlspecialchars($project['image_path']); ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
         </div>
-        <h3 class="text-2xl font-semibold mb-2">NAV|INS CO</h3>
-        <p class="text-brand-gray text-sm mb-4">Corporate website for a navigation and insurance company. Clean, professional design with a focus on brand presence and user trust.</p>
+        <h3 class="text-2xl font-semibold mb-2"><?php echo htmlspecialchars($project['title']); ?></h3>
+        <p class="text-brand-gray text-sm mb-4"><?php echo htmlspecialchars($project['description']); ?></p>
         <div class="flex gap-2">
-          <span class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]">Corporate</span>
-          <span class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]">UI/UX</span>
+          <?php 
+          $tags = explode(',', $project['tags']);
+          foreach ($tags as $tag): 
+          ?>
+          <span class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]"><?php echo trim($tag); ?></span>
+          <?php endforeach; ?>
         </div>
       </div>
-      <div class="group">
-        <div class="aspect-video bg-brand-light rounded-3xl border border-gray-100 mb-6 overflow-hidden">
-          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="img/brits.png" alt="Brits Tryout">
-        </div>
-        <h3 class="text-2xl font-semibold mb-2">Brits Tryout</h3>
-        <p class="text-brand-gray text-sm mb-4">A comprehensive online examination and tryout platform for students. Developed with a focus on comprehensive web architecture.</p>
-        <div class="flex gap-2">
-          <span class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]">Vue.js</span>
-          <span class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]">IRT Scoring</span>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </section>
 
   <section class="mb-32" id="testimonials">
     <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">03 / Client Stories</div>
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <?php foreach ($testimonials as $t): ?>
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light italic text-brand-gray text-sm leading-relaxed">
-        "What sets Digiserv.ID apart is their ability to handle sophisticated data requirements. They integrated a complex IRT algorithm that saved our team hundreds of hours."
+        "<?php echo htmlspecialchars($t['testimonial']); ?>"
         <div class="mt-8 not-italic flex items-center gap-4">
-          <img class="w-10 h-10 rounded-full grayscale" src="img/testimoni-2.webp" alt="client">
+          <img class="w-10 h-10 rounded-full grayscale" src="<?php echo htmlspecialchars($t['image_path']); ?>" alt="client">
           <div>
-            <div class="text-brand-black font-bold">Brits Indonesia</div>
-            <div class="text-wider uppercase text-[10px]">Supercamp #1</div>
+            <div class="text-brand-black font-bold"><?php echo htmlspecialchars($t['client_name']); ?></div>
+            <div class="text-wider uppercase text-[10px]"><?php echo htmlspecialchars($t['company_name']); ?></div>
           </div>
         </div>
       </div>
-      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light italic text-brand-gray text-sm leading-relaxed">
-        "The OpenClaw AI Assistant built by Digiserv has been a game-changer for our team. It significantly speeds up our productivity by automating repetitive tasks."
-        <div class="mt-8 not-italic flex items-center gap-4">
-          <img class="w-10 h-10 rounded-full grayscale" src="img/testimoni-3.jpeg" alt="client">
-          <div>
-            <div class="text-brand-black font-bold">Agnes Gosali</div>
-            <div class="text-wider uppercase text-[10px]">Ruangguru</div>
-          </div>
-        </div>
-      </div>
-      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light italic text-brand-gray text-sm leading-relaxed">
-        "Excellent work! Digiserv expertise handled our professional email setup and boosted our visibility with top-tier SEO strategies. A truly comprehensive digital partner."
-        <div class="mt-8 not-italic flex items-center gap-4">
-          <img class="w-10 h-10 rounded-full grayscale" src="img/testimoni-4.webp" alt="client">
-          <div>
-            <div class="text-brand-black font-bold">Naim Syahrir</div>
-            <div class="text-wider uppercase text-[10px]">Navinsco</div>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </section>
 

@@ -210,7 +210,7 @@ if ($authenticated) {
         </form>
     <?php else: ?>
         <h1>Buat <span>Invoice</span></h1>
-        <form action="./view.php" method="POST" target="_blank">
+        <form action="./view" method="POST" target="_blank">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <script>
                 // Memastikan URL berakhir dengan / agar path relatif ./view.php benar
@@ -274,7 +274,7 @@ if ($authenticated) {
             <button type="button" class="btn btn-add" onclick="addItem()">+ Tambah Item</button>
             
             <button type="submit" name="save_invoice" class="btn">Buat & Cetak Invoice</button>
-            <a href="migrate.php" class="logout" target="_blank">Update Database (Migration)</a>
+            <a href="migrate" class="logout" target="_blank">Update Database (Migration)</a>
             <a href="?logout=1" class="logout">Keluar Aman</a>
         </form>
 

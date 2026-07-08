@@ -26,10 +26,10 @@ include '../includes/header.php';
 <main class="max-w-6xl mx-auto px-6 py-24">
     <div class="mb-12 flex justify-between items-end">
         <div>
-            <a href="index.php" class="text-sm font-medium text-brand-gray hover:text-brand-black transition mb-4 inline-block">&larr; Back to Dashboard</a>
+            <a href="index" class="text-sm font-medium text-brand-gray hover:text-brand-black transition mb-4 inline-block">&larr; Back to Dashboard</a>
             <h1 class="text-4xl font-semibold hero-title text-brand-black">Manage <span class="editorial-italic font-normal">Journal</span></h1>
         </div>
-        <a href="post_edit.php" class="bg-brand-black text-white px-8 py-3 rounded-xl font-medium hover:bg-gray-800 transition">Create New Post</a>
+        <a href="post_edit" class="bg-brand-black text-white px-8 py-3 rounded-xl font-medium hover:bg-gray-800 transition">Create New Post</a>
     </div>
 
     <?php if ($message): ?>
@@ -60,7 +60,7 @@ include '../includes/header.php';
                         <td class="px-8 py-6"><span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"><?php echo htmlspecialchars($post['category']); ?></span></td>
                         <td class="px-8 py-6 text-sm text-brand-gray"><?php echo date('Y-m-d', strtotime($post['published_at'])); ?></td>
                         <td class="px-8 py-6 text-right space-x-4">
-                            <a href="post_edit.php?id=<?php echo $post['id']; ?>" class="text-sm font-bold text-brand-black hover:underline">Edit</a>
+                            <a href="post_edit?id=<?php echo $post['id']; ?>" class="text-sm font-bold text-brand-black hover:underline">Edit</a>
                             <a href="?delete=<?php echo $post['id']; ?>" class="text-sm font-bold text-red-600 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
                         </td>
                     </tr>

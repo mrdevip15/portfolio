@@ -64,14 +64,14 @@
     <div class="fixed top-6 left-0 right-0 z-100 px-6">
       <header class="max-w-6xl mx-auto glass-nav rounded-full p-2 flex justify-between items-center">
         <div class="flex items-center gap-3 pl-4">
-            <a class="flex items-center gap-2" href="<?php echo $base; ?>index.php">
+            <a class="flex items-center gap-2" href="<?php echo $base; ?>index">
                 <img class="w-8 h-8 rounded-full object-cover" src="<?php echo $base; ?>img/logo.jpg" alt="Digiserv Logo">
                 <span class="font-bold text-lg tracking-tight text-brand-black">Digiserv</span>
             </a>
         </div>
         <nav class="hidden space-x-2 text-sm font-medium text-brand-gray md:flex">
-            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index.php#about">About</a>
-            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index.php#work">Work</a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index#about">About</a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index#work">Work</a>
             <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>blog/">Journal</a>
         </nav>
         <div class="flex items-center gap-2 pr-2">

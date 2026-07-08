@@ -43,7 +43,7 @@ include '../includes/header.php';
 
   <section class="mb-32" id="services">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl" href="jasa-script-otomatis.php">
+      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl" href="jasa-script-otomatis">
         <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="16 18 22 12 16 6"></polyline>
@@ -53,7 +53,7 @@ include '../includes/header.php';
         <h3 class="text-2xl font-semibold mb-4">Script Otomatis</h3>
         <p class="text-brand-gray leading-relaxed text-sm">Otomasi pekerjaan kantor dan bimbel dengan script yang handal. Built for production, not just a "vibe".</p>
       </a>
-      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl" href="invoice-otomatis.php">
+      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl" href="invoice-otomatis">
         <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -66,7 +66,7 @@ include '../includes/header.php';
         <h3 class="text-2xl font-semibold mb-4">Invoice Otomatis</h3>
         <p class="text-brand-gray leading-relaxed text-sm">Sistem penagihan otomatis yang presisi. Nol kesalahan nominal, efisiensi administrasi maksimal.</p>
       </a>
-      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl" href="aplikasi-sekolah-rapor.php">
+      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl" href="aplikasi-sekolah-rapor">
         <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>

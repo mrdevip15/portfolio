@@ -8,7 +8,7 @@ $stmt->execute([$slug]);
 $post = $stmt->fetch();
 
 if (!$post) {
-    header("Location: index.php");
+    header("Location: index");
     exit;
 }
 
@@ -31,7 +31,7 @@ include '../includes/header.php';
     <div class="bg-brand-light p-10 rounded-3xl border border-gray-100 mt-16 text-center">
       <h3 class="text-2xl font-semibold mb-6">Upgrade to Production</h3>
       <p class="text-brand-gray text-sm mb-8">Jangan biarkan operasional bisnis Anda bergantung pada kode yang rapuh. Gunakan AI sebagai alat bantu, tapi serahkan standarisasi produksi pada ahlinya.</p>
-      <a class="bg-brand-black text-white px-10 py-4 rounded-2xl font-medium inline-block transition hover:bg-gray-800" href="../index.php#contact">Hubungi Kami Sekarang</a>
+      <a class="bg-brand-black text-white px-10 py-4 rounded-2xl font-medium inline-block transition hover:bg-gray-800" href="../index#contact">Hubungi Kami Sekarang</a>
     </div>
     <?php endif; ?>
   </article>
