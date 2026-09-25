@@ -12,4 +12,7 @@ deployment:
     - /bin/cp -r jasabikinwebsite $DEPLOYPATH
     - /bin/cp -r billing $DEPLOYPATH
     - /bin/cp -r admin $DEPLOYPATH
+    - /bin/cp -r content $DEPLOYPATH
     - /bin/cp -r includes $DEPLOYPATH
+
+
