@@ -164,7 +164,7 @@ include 'includes/header.php';
         <!-- Step 1 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="md:text-right md:pr-16">
-            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4 md:ml-auto md:block">1</div>
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">1</div>
             <h3 class="text-2xl font-semibold mb-3">Discovery Call</h3>
             <p class="text-brand-gray text-sm leading-relaxed">We start with a free 30-minute call to understand your goals, challenges, timeline, and budget. No hard sell — just honest conversation.</p>
           </div>
@@ -192,7 +192,7 @@ include 'includes/header.php';
         <!-- Step 3 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="md:text-right md:pr-16">
-            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4 md:ml-auto md:block">3</div>
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">3</div>
             <h3 class="text-2xl font-semibold mb-3">Design & Build</h3>
             <p class="text-brand-gray text-sm leading-relaxed">Our team gets to work in focused sprints. You receive progress updates weekly and have a shared staging environment to review at any time.</p>
           </div>
