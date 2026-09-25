@@ -73,7 +73,7 @@ include 'includes/header.php';
 
   <section class="mb-32 grid grid-cols-1 gap-16 items-center md:grid-cols-2" id="about">
     <div>
-      <div class="text-xs font-bold tracking-widest text-brand-gray mb-6 uppercase">01 / About Us</div>
+      <div class="text-xs font-bold tracking-widest text-brand-gray mb-6 uppercase">About Us</div>
       <h2 class="text-4xl font-semibold hero-title mb-10 md:text-6xl">Expertise in digital <span
           class="editorial-italic font-normal">innovation.</span></h2>
       <p class="text-brand-gray leading-relaxed mb-6">We are passionate about writing <strong>clean, maintainable
@@ -110,8 +110,119 @@ include 'includes/header.php';
     </div>
   </section>
 
+  <!-- Services Section -->
+  <section class="mb-32" id="services">
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Services</div>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl">What we <span class="editorial-italic font-normal">build.</span></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
+        <div class="text-3xl mb-6">🌐</div>
+        <h3 class="text-xl font-semibold mb-3">Web Applications</h3>
+        <p class="text-brand-gray text-sm leading-relaxed">Production-grade web apps built with modern stacks — from internal dashboards to public-facing platforms at scale.</p>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
+        <div class="text-3xl mb-6">🤖</div>
+        <h3 class="text-xl font-semibold mb-3">AI Integration</h3>
+        <p class="text-brand-gray text-sm leading-relaxed">Embed intelligent automation into your workflow — chatbots, document processing, predictive analytics, and LLM-powered features.</p>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
+        <div class="text-3xl mb-6">⚙️</div>
+        <h3 class="text-xl font-semibold mb-3">Business Automation</h3>
+        <p class="text-brand-gray text-sm leading-relaxed">Eliminate repetitive manual tasks. We build custom automation pipelines that connect your tools and let your team focus on what matters.</p>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
+        <div class="text-3xl mb-6">🏗️</div>
+        <h3 class="text-xl font-semibold mb-3">Enterprise Systems</h3>
+        <p class="text-brand-gray text-sm leading-relaxed">ERP, AMS, CRM, and custom management systems tailored to your operations — built for reliability, scale, and long-term maintainability.</p>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
+        <div class="text-3xl mb-6">📱</div>
+        <h3 class="text-xl font-semibold mb-3">Mobile Apps</h3>
+        <p class="text-brand-gray text-sm leading-relaxed">Cross-platform mobile experiences using Flutter and React Native — fast to market, native-quality performance on both iOS and Android.</p>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
+        <div class="text-3xl mb-6">🔒</div>
+        <h3 class="text-xl font-semibold mb-3">Consulting & Audits</h3>
+        <p class="text-brand-gray text-sm leading-relaxed">Architecture reviews, security audits, and tech strategy sessions. Get an expert second opinion before committing to a direction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work Section -->
+  <section class="mb-32" id="process">
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">How We Work</div>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl">Simple, transparent <span class="editorial-italic font-normal">process.</span></h2>
+      <p class="text-brand-gray mt-6 max-w-xl mx-auto">No surprises. From first call to final handover — here's exactly how we work together.</p>
+    </div>
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2"></div>
+      <div class="space-y-12">
+        <!-- Step 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="md:text-right md:pr-16">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4 md:ml-auto md:block">1</div>
+            <h3 class="text-2xl font-semibold mb-3">Discovery Call</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">We start with a free 30-minute call to understand your goals, challenges, timeline, and budget. No hard sell — just honest conversation.</p>
+          </div>
+          <div class="md:pl-16">
+            <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
+              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
+              <div class="text-base font-semibold mt-1">Project scope summary + initial timeline estimate</div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="md:order-2 md:pl-16">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">2</div>
+            <h3 class="text-2xl font-semibold mb-3">Proposal & Planning</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">We prepare a detailed proposal with milestones, tech stack recommendation, and fixed pricing. You know exactly what you're getting before signing.</p>
+          </div>
+          <div class="md:order-1 md:pr-16 md:text-right">
+            <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
+              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
+              <div class="text-base font-semibold mt-1">Proposal doc, milestone plan, contract</div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="md:text-right md:pr-16">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4 md:ml-auto md:block">3</div>
+            <h3 class="text-2xl font-semibold mb-3">Design & Build</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">Our team gets to work in focused sprints. You receive progress updates weekly and have a shared staging environment to review at any time.</p>
+          </div>
+          <div class="md:pl-16">
+            <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
+              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
+              <div class="text-base font-semibold mt-1">Working builds, weekly reports, staging access</div>
+            </div>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="md:order-2 md:pl-16">
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">4</div>
+            <h3 class="text-2xl font-semibold mb-3">Launch & Handover</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">We deploy to production, run final QA, and hand over all assets with full documentation. Post-launch support included for 30 days.</p>
+          </div>
+          <div class="md:order-1 md:pr-16 md:text-right">
+            <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
+              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
+              <div class="text-base font-semibold mt-1">Live product, source code, documentation, 30-day support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="mb-32" id="work">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">02 / Selected Work</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Selected Work</div>
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
       <?php foreach ($projects as $project): ?>
         <div class="group">
@@ -136,8 +247,54 @@ include 'includes/header.php';
     </div>
   </section>
 
+  <!-- Why Choose Us Section -->
+  <section class="mb-32" id="why-us">
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Why Choose Us</div>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl">Built different, <span class="editorial-italic font-normal">on purpose.</span></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center text-base">✓</div>
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Fixed-Price Delivery</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">No hourly billing surprises. We scope the project, agree on a price, and deliver. Overruns are our problem, not yours.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center text-base">✓</div>
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Senior-Only Team</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">No junior handoffs. Every project is led and built by experienced engineers with real production track records.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center text-base">✓</div>
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Full Transparency</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">You own the code, the repo, the servers. Weekly progress updates keep you in the loop without micromanaging.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center text-base">✓</div>
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Long-Term Partnership</h3>
+            <p class="text-brand-gray text-sm leading-relaxed">98% of our clients come back for more. We build relationships, not just software — your growth is our metric.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="mb-32" id="testimonials">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">03 / Client Stories</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Client Stories</div>
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
       <?php foreach ($testimonials as $t): ?>
         <div
@@ -153,6 +310,58 @@ include 'includes/header.php';
           </div>
         </div>
       <?php endforeach; ?>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="mb-32" id="faq">
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">FAQ</div>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl">Common <span class="editorial-italic font-normal">questions.</span></h2>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-3" id="faq-list">
+      <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
+        <summary class="flex justify-between items-center font-semibold text-base list-none">
+          How long does a typical project take?
+          <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
+        </summary>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4">It depends on scope. A landing page or simple web app typically takes 2–4 weeks. Enterprise systems and complex integrations run 6–16 weeks. We'll give you an accurate estimate after our discovery call.</p>
+      </details>
+      <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
+        <summary class="flex justify-between items-center font-semibold text-base list-none">
+          Do you work with international clients?
+          <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
+        </summary>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4">Yes, absolutely. We work remotely with clients across Southeast Asia, the Middle East, Europe, and North America. Communication is in English and we adapt to your timezone for key meetings.</p>
+      </details>
+      <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
+        <summary class="flex justify-between items-center font-semibold text-base list-none">
+          What's your payment structure?
+          <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
+        </summary>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4">We use a milestone-based payment model: 40% upfront to begin, 40% at mid-project delivery, and 20% upon final handover. This keeps risk balanced for both sides.</p>
+      </details>
+      <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
+        <summary class="flex justify-between items-center font-semibold text-base list-none">
+          Who owns the source code?
+          <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
+        </summary>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4">You do, 100%. Upon final payment, all source code, assets, and documentation are transferred to you. We retain no rights or backdoors.</p>
+      </details>
+      <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
+        <summary class="flex justify-between items-center font-semibold text-base list-none">
+          Can you maintain the project after launch?
+          <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
+        </summary>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4">Yes. We offer monthly retainer packages for ongoing maintenance, feature additions, and priority support. Many of our clients stay on retainer long-term.</p>
+      </details>
+      <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
+        <summary class="flex justify-between items-center font-semibold text-base list-none">
+          Do you sign NDAs?
+          <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
+        </summary>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4">Yes, we sign NDAs for all client projects as a standard part of our contract. Your business ideas, data, and technical details stay confidential.</p>
+      </details>
     </div>
   </section>
 
