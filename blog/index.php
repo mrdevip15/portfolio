@@ -1,8 +1,6 @@
 <?php
-require_once '../billing/db.php';
-$db = get_db_connection();
-
-$posts = $db->query("SELECT * FROM posts ORDER BY published_at DESC")->fetchAll();
+require_once '../includes/content.php';
+$posts = get_posts();
 
 $pageTitle = 'Blog | Engineering Insights | Digiserv.id';
 $basePath = '../';

@@ -2,6 +2,7 @@
 $pageTitle = 'Digiserv.id | Enterprise Software & Automation Experts | Digiserv.id';
 $pageDescription = 'Digiserv.id — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.';
 $basePath = './';
+require_once 'includes/content.php';
 require_once 'billing/db.php';
 $db = get_db_connection();
 
@@ -12,8 +13,8 @@ foreach ($settings_raw as $s) {
   $settings[$s['setting_key']] = $s['setting_value'];
 }
 
-// Fetch projects
-$projects = $db->query("SELECT * FROM projects ORDER BY created_at DESC")->fetchAll();
+// Fetch projects from flat-file (content/projects.php)
+$projects = get_projects();
 
 // Fetch testimonials
 $testimonials = $db->query("SELECT * FROM testimonials ORDER BY created_at DESC")->fetchAll();

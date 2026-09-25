@@ -1,11 +1,8 @@
 <?php
-require_once '../billing/db.php';
-$db = get_db_connection();
+require_once '../includes/content.php';
 
 $slug = $_GET['slug'] ?? '';
-$stmt = $db->prepare("SELECT * FROM posts WHERE slug = ?");
-$stmt->execute([$slug]);
-$post = $stmt->fetch();
+$post = get_post_by_slug($slug);
 
 if (!$post) {
     header("Location: index");
