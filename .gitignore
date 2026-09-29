@@ -2,3 +2,5 @@
 billing/database.sqlite
 src/node_modules
 /.agents
+/node_modules
+.DS_Store
