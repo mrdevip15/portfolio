@@ -5,14 +5,13 @@ Disusun 25 Nov 2026. Semua angka budget/CPC di bawah adalah titik awal, bukan da
 ## 0. Sebelum iklan jalan (wajib)
 
 1. **Domain final: `digiserv.my.id`.** Semua URL iklan (final URL, sitelink) pakai `https://digiserv.my.id/...`. Pastikan mailbox `hidayat@digiserv.my.id` sudah dibuat di cPanel → Email Accounts, karena tombol Email di website mengarah ke sana.
-2. **Deploy landing page.** `/jasabikinwebsite/landing-page` masih 404 di live (file belum di-commit).
-3. **Buat akun** (harus kamu sendiri, butuh login & pembayaran):
-   - Google Analytics 4 → buat property + Web data stream → salin `G-XXXXXXXXXX`.
-   - Google Ads → pilih *Switch to Expert Mode* → buat akun **tanpa** kampanye dulu.
-   - Google Ads → Goals → Conversions → New → Website → "Set up manually" → buat 2 aksi: **WhatsApp click** (kategori *Contact*) dan **Email click** (*Contact*). Salin `AW-…` dan label masing-masing.
-   - Link GA4 ↔ Google Ads (GA4 Admin → Product links).
-4. **Isi ID** di `includes/tracking.php` lalu deploy. Kode sudah mengirim event `generate_lead` (GA4) + konversi Ads setiap klik link WhatsApp / mailto.
-5. Cek dengan **Google Tag Assistant** (tagassistant.google.com) bahwa tag & konversi terbaca.
+2. ✅ Landing page live di `/jasabikinwebsite/landing-page`.
+3. ✅ Akun sudah dibuat (25 Nov 2026):
+   - **GA4**: property "Digiserv - digiserv.my.id" (ID 565765507) di akun GA "Google Ads Account", stream "Digiserv Web", Measurement ID `G-23FDKLGGVR`. Zona waktu Makassar, IDR.
+   - **Google Ads**: akun "Digiserv" **420-744-5560** (terpisah dari akun bimbel 748-802-2091). Indonesia, Makassar, IDR, pascabayar. Tag `AW-18594643988`. Terhubung ke GA4 di atas.
+   - **Konversi** (kategori Kontak, Utama, hitung "Satu"): **WhatsApp click** label `IrzgCNOjhb8dEJSAz6JF`, **Email click** label `3ksUCNajhb8dEJSAz6JF`. Konversi yang disempurnakan: mati.
+4. ✅ ID sudah diisi di `includes/tracking.php` dan live. Klik link WhatsApp/mailto mengirim `generate_lead` (GA4) + konversi Ads (diuji 25 Nov 2026).
+5. Status konversi di Google Ads baru berubah dari "Belum diverifikasi" setelah ada klik nyata; cek lagi 1–2 hari setelah kampanye jalan.
 
 ## 1. Struktur akun
 
