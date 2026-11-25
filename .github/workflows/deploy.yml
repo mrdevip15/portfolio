@@ -46,6 +46,12 @@ jobs:
 
       - uses: actions/checkout@v4
 
+      # Stop the deploy if any PHP file has a syntax error.
+      - name: Lint PHP
+        run: |
+          php --version
+          find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l > /dev/null
+
       # Same file list as .cpanel.yml: only these are published.
       - name: Build deploy folder
         run: |

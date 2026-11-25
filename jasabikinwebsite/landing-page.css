@@ -182,6 +182,7 @@ h3 { font-size: 1.2rem; font-weight: 700; line-height: 1.3; letter-spacing: -.03
 .campaign-footer { padding-block: 1.75rem; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .footer-inner > a:last-child { color: var(--brand-gray); font-size: .875rem; }
+.geoip-credit { margin-top: .75rem; color: var(--brand-gray); font-size: .75rem; }
 .wordmark { display: flex; align-items: center; gap: .6rem; font-weight: 700; text-decoration: none; }
 .wordmark img { border-radius: 50%; }
 

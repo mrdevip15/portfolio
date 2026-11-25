@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="<?= $landingLanguage ?? 'id' ?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $pageTitle ?? 'Enterprise Software & Automation Experts | Digiserv'; ?></title>
-    <meta name="description" content="<?php echo $pageDescription ?? 'Digiserv — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.'; ?>">
+    <title><?= htmlspecialchars($pageTitle ?? 'Enterprise Software & Automation Experts | Digiserv') ?></title>
+    <meta name="description" content="<?= htmlspecialchars($pageDescription ?? 'Digiserv — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.') ?>">
     <?php include __DIR__ . '/tracking.php'; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,9 +71,9 @@
             </a>
         </div>
         <nav class="hidden space-x-2 text-sm font-medium text-brand-gray md:flex">
-            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index#about">About</a>
-            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index#work">Work</a>
-            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>blog/">Journal</a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index#about"><?= ($landingLanguage ?? '') === 'id' ? 'Tentang' : 'About' ?></a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>index#work"><?= ($landingLanguage ?? '') === 'id' ? 'Portofolio' : 'Work' ?></a>
+            <a class="nav-pill transition hover:text-brand-black" href="<?php echo $base; ?>blog/"><?= ($landingLanguage ?? '') === 'id' ? 'Jurnal' : 'Journal' ?></a>
         </nav>
         <div class="flex items-center gap-2 pr-2">
             <a class="inline-flex items-center gap-2 bg-white text-brand-black text-xs font-bold px-5 rounded-full transition shadow-sm py-2.5 hover:bg-gray-50 border border-gray-100" href="https://wa.link/byybuo">

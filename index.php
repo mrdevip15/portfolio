@@ -1,6 +1,14 @@
 <?php
-$pageTitle = 'Enterprise Software & Automation Experts | Digiserv';
-$pageDescription = 'Digiserv — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.';
+require_once __DIR__ . '/includes/landing-language.php';
+
+$pageTitle = $landingText(
+  'Enterprise Software & Automation Experts | Digiserv',
+  'Solusi Perangkat Lunak dan Otomasi untuk Bisnis | Digiserv'
+);
+$pageDescription = $landingText(
+  'Digiserv — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.',
+  'Digiserv mengembangkan aplikasi web berkinerja tinggi, mengintegrasikan AI, dan membangun sistem yang siap berkembang bersama bisnis Anda.'
+);
 $basePath = './';
 require_once 'includes/content.php';
 require_once 'billing/db.php';
@@ -13,11 +21,17 @@ foreach ($settings_raw as $s) {
   $settings[$s['setting_key']] = $s['setting_value'];
 }
 
+$experience = $settings['experience_years'] ?? '5+ Years';
+if (preg_match('/^(\d+\+?)\s+(years?|tahun)$/i', $experience, $matches)) {
+  $experience = $matches[1] . ' ' . $landingText($matches[1] === '1' ? 'Year' : 'Years', 'Tahun');
+}
+
 // Fetch projects from flat-file (content/projects.php)
 $projects = get_projects();
 
 // Fetch testimonials
 $testimonials = $db->query("SELECT * FROM testimonials ORDER BY created_at DESC")->fetchAll();
+$translatedTestimonials = $landingLanguage === 'id' ? require __DIR__ . '/content/testimonials-id.php' : [];
 
 include 'includes/header.php';
 ?>
@@ -26,46 +40,49 @@ include 'includes/header.php';
   <section class="pt-24 pb-20 text-center flex flex-col items-center">
     <div class="inline-flex items-center bg-white border border-dashed border-gray-300 rounded-full px-5 py-2 mb-10">
       <div class="flex -space-x-2 mr-4">
-        <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="img/testimoni-2.webp" alt="client">
-        <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="img/testimoni-3.jpeg" alt="client">
-        <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="img/testimoni-4.webp" alt="client">
+        <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="img/testimoni-2.webp" alt="<?= $landingText('client', 'klien') ?>">
+        <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="img/testimoni-3.jpeg" alt="<?= $landingText('client', 'klien') ?>">
+        <img class="w-7 h-7 rounded-full border-2 border-white object-cover" src="img/testimoni-4.webp" alt="<?= $landingText('client', 'klien') ?>">
       </div>
-      <span class="text-xs font-medium text-gray-600">100+ companies trust us</span>
+      <span class="text-xs font-medium text-gray-600"><?= $landingText('100+ companies trust us', 'Dipercaya oleh lebih dari 100 perusahaan') ?></span>
     </div>
-    <h1 class="text-5xl font-semibold hero-title max-w-4xl mx-auto text-brand-black mb-10 md:text-8xl">Architecting
-      digital systems with <span class="editorial-italic font-normal">precision.</span></h1>
-    <p class="text-lg text-brand-gray max-w-2xl mx-auto mb-12 leading-relaxed md:text-xl">At
-      <strong>Digiserv</strong>, we bring an analytical, systems-thinking approach to software engineering.
-      Enterprise partner for automation, production-grade applications, and resilient architectures.</p>
-    <div class="flex gap-4">
+    <h1 class="text-5xl font-semibold hero-title max-w-4xl mx-auto text-brand-black mb-10 md:text-8xl"><?= $landingText(
+      'Architecting digital systems with <span class="editorial-italic font-normal">precision.</span>',
+      'Merancang sistem digital dengan <span class="editorial-italic font-normal">presisi.</span>'
+    ) ?></h1>
+    <p class="text-lg text-brand-gray max-w-2xl mx-auto mb-12 leading-relaxed md:text-xl"><?= $landingText(
+      'At <strong>Digiserv</strong>, we bring an analytical, systems-thinking approach to software engineering. Enterprise partner for automation, production-grade applications, and resilient architectures.',
+      'Di <strong>Digiserv</strong>, kami melihat bagaimana setiap bagian sistem saling bekerja. Kami membantu perusahaan mengotomatiskan proses, membangun aplikasi siap pakai, dan merancang sistem yang andal.'
+    ) ?></p>
+    <div class="flex flex-wrap justify-center gap-4">
       <a class="inline-flex items-center gap-2 bg-brand-black text-white text-base font-medium px-10 py-4 rounded-xl transition shadow-xl transform duration-300 hover:bg-gray-800 hover:scale-105"
-        href="#work">View Work <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        href="#work"><?= $landingText('View Work', 'Lihat Portofolio') ?> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       <a class="inline-flex items-center gap-2 bg-white text-brand-black border border-gray-200 text-base font-medium px-10 py-4 rounded-xl transition shadow-lg hover:bg-gray-50"
-        href="jasabikinwebsite/index">Automation Agency <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+        href="jasabikinwebsite/index"><?= $landingText('Automation Agency', 'Layanan Otomasi') ?> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
     </div>
   </section>
 
   <section class="max-w-6xl mx-auto mb-32">
     <div class="dashed-border-y grid grid-cols-2 py-12 md:grid-cols-4">
       <div class="px-8 flex flex-col items-start justify-center">
-        <span class="text-sm text-brand-gray mb-2">Experience</span>
+        <span class="text-sm text-brand-gray mb-2"><?= $landingText('Experience', 'Pengalaman') ?></span>
         <span
-          class="text-4xl font-semibold text-brand-black"><?php echo $settings['experience_years'] ?? '5+ Years'; ?></span>
+          class="text-4xl font-semibold text-brand-black"><?= htmlspecialchars($experience) ?></span>
       </div>
       <div class="px-8 flex flex-col items-start justify-center dashed-border-l">
-        <span class="text-sm text-brand-gray mb-2">Successful deploys</span>
+        <span class="text-sm text-brand-gray mb-2"><?= $landingText('Successful deploys', 'Peluncuran berhasil') ?></span>
         <span
           class="text-4xl font-semibold text-brand-black"><?php echo $settings['successful_deploys'] ?? '500+'; ?></span>
       </div>
       <div
         class="px-8 flex flex-col items-start justify-center dashed-border-l mt-10 pt-10 border-t border-dashed border-gray-200 md:mt-0 md:border-t-0 md:pt-0">
-        <span class="text-sm text-brand-gray mb-2">In generated revenue</span>
+        <span class="text-sm text-brand-gray mb-2"><?= $landingText('In generated revenue', 'Pendapatan yang dihasilkan') ?></span>
         <span
           class="text-4xl font-semibold text-brand-black"><?php echo $settings['generated_revenue'] ?? '$1M+'; ?></span>
       </div>
       <div
         class="px-8 flex flex-col items-start justify-center dashed-border-l mt-10 pt-10 border-t border-dashed border-gray-200 md:mt-0 md:border-t-0 md:pt-0">
-        <span class="text-sm text-brand-gray mb-2">Client retention rate</span>
+        <span class="text-sm text-brand-gray mb-2"><?= $landingText('Client retention rate', 'Retensi klien') ?></span>
         <span
           class="text-4xl font-semibold text-brand-black"><?php echo $settings['client_retention'] ?? '98%'; ?></span>
       </div>
@@ -74,20 +91,23 @@ include 'includes/header.php';
 
   <section class="mb-32 grid grid-cols-1 gap-16 items-center md:grid-cols-2" id="about">
     <div>
-      <div class="text-xs font-bold tracking-widest text-brand-gray mb-6 uppercase">About Us</div>
-      <h2 class="text-4xl font-semibold hero-title mb-10 md:text-6xl">Expertise in digital <span
-          class="editorial-italic font-normal">innovation.</span></h2>
-      <p class="text-brand-gray leading-relaxed mb-6">We are passionate about writing <strong>clean, maintainable
-          code</strong> that solves real business problems. Our seasoned team build everything from educational
-        platforms and enterprise management systems to AI agents and scalable web applications.</p>
+      <div class="text-xs font-bold tracking-widest text-brand-gray mb-6 uppercase"><?= $landingText('About Us', 'Tentang Kami') ?></div>
+      <h2 class="text-4xl font-semibold hero-title mb-10 md:text-6xl"><?= $landingText(
+        'Expertise in digital <span class="editorial-italic font-normal">innovation.</span>',
+        'Keahlian dalam <span class="editorial-italic font-normal">inovasi digital.</span>'
+      ) ?></h2>
+      <p class="text-brand-gray leading-relaxed mb-6"><?= $landingText(
+        'We are passionate about writing <strong>clean, maintainable code</strong> that solves real business problems. Our seasoned team build everything from educational platforms and enterprise management systems to AI agents and scalable web applications.',
+        'Kami menulis <strong>kode yang rapi dan mudah dirawat</strong> untuk menyelesaikan masalah bisnis. Tim kami berpengalaman membangun platform pendidikan, sistem manajemen perusahaan, agen AI, dan aplikasi web yang bisa berkembang mengikuti kebutuhan Anda.'
+      ) ?></p>
       <div class="flex gap-12 mt-10">
         <div>
-          <div class="text-xs font-bold text-brand-gray uppercase mb-2">Core Focus</div>
-          <div class="text-sm font-semibold">Web Performance</div>
+          <div class="text-xs font-bold text-brand-gray uppercase mb-2"><?= $landingText('Core Focus', 'Fokus Utama') ?></div>
+          <div class="text-sm font-semibold"><?= $landingText('Web Performance', 'Performa Web') ?></div>
         </div>
         <div>
-          <div class="text-xs font-bold text-brand-gray uppercase mb-2">Specialty</div>
-          <div class="text-sm font-semibold">AI Integration</div>
+          <div class="text-xs font-bold text-brand-gray uppercase mb-2"><?= $landingText('Specialty', 'Keahlian') ?></div>
+          <div class="text-sm font-semibold"><?= $landingText('AI Integration', 'Integrasi AI') ?></div>
         </div>
       </div>
     </div>
@@ -101,7 +121,7 @@ include 'includes/header.php';
         <div class="text-sm font-semibold">Node.js, Python, Go</div>
       </div>
       <div class="space-y-2">
-        <div class="text-xs font-bold text-brand-gray uppercase">Database</div>
+        <div class="text-xs font-bold text-brand-gray uppercase"><?= $landingText('Database', 'Basis Data') ?></div>
         <div class="text-sm font-semibold">PostgreSQL, Redis</div>
       </div>
       <div class="space-y-2">
@@ -113,62 +133,86 @@ include 'includes/header.php';
 
   <!-- Services Section -->
   <section class="mb-32" id="services">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Services</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center"><?= $landingText('Services', 'Layanan') ?></div>
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-semibold hero-title md:text-6xl">What we <span class="editorial-italic font-normal">build.</span></h2>
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl"><?= $landingText('What we <span class="editorial-italic font-normal">build.</span>', 'Solusi yang kami <span class="editorial-italic font-normal">bangun.</span>') ?></h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
         <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Web Applications</h3>
-        <p class="text-brand-gray text-sm leading-relaxed">Production-grade web apps built with modern stacks — from internal dashboards to public-facing platforms at scale.</p>
+        <h3 class="text-xl font-semibold mb-3"><?= $landingText('Web Applications', 'Aplikasi Web') ?></h3>
+        <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+          'Production-grade web apps built with modern stacks — from internal dashboards to public-facing platforms at scale.',
+          'Aplikasi web siap produksi dengan teknologi modern, mulai dari dasbor internal hingga platform publik berskala besar.'
+        ) ?></p>
       </div>
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
         <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">AI Integration</h3>
-        <p class="text-brand-gray text-sm leading-relaxed">Embed intelligent automation into your workflow — chatbots, document processing, predictive analytics, and LLM-powered features.</p>
+        <h3 class="text-xl font-semibold mb-3"><?= $landingText('AI Integration', 'Integrasi AI') ?></h3>
+        <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+          'Embed intelligent automation into your workflow — chatbots, document processing, predictive analytics, and LLM-powered features.',
+          'Integrasikan AI ke alur kerja Anda melalui chatbot, pemrosesan dokumen, analitik prediktif, dan fitur berbasis model bahasa.'
+        ) ?></p>
       </div>
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
         <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 22v-2"/><path d="m17 20.66-1-1.73"/><path d="M11 10.27 7 3.34"/><path d="m20.66 17-1.73-1"/><path d="m3.34 7 1.73 1"/><path d="M14 12h8"/><path d="M2 12h2"/><path d="m20.66 7-1.73 1"/><path d="m3.34 17 1.73-1"/><path d="m17 3.34-1 1.73"/><path d="m11 13.73-4 6.93"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Business Automation</h3>
-        <p class="text-brand-gray text-sm leading-relaxed">Eliminate repetitive manual tasks. We build custom automation pipelines that connect your tools and let your team focus on what matters.</p>
+        <h3 class="text-xl font-semibold mb-3"><?= $landingText('Business Automation', 'Otomasi Bisnis') ?></h3>
+        <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+          'Eliminate repetitive manual tasks. We build custom automation pipelines that connect your tools and let your team focus on what matters.',
+          'Kurangi pekerjaan manual yang berulang. Kami menghubungkan aplikasi yang Anda gunakan agar tim bisa fokus pada pekerjaan utama.'
+        ) ?></p>
       </div>
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
         <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Enterprise Systems</h3>
-        <p class="text-brand-gray text-sm leading-relaxed">ERP, AMS, CRM, and custom management systems tailored to your operations — built for reliability, scale, and long-term maintainability.</p>
+        <h3 class="text-xl font-semibold mb-3"><?= $landingText('Enterprise Systems', 'Sistem Perusahaan') ?></h3>
+        <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+          'ERP, AMS, CRM, and custom management systems tailored to your operations — built for reliability, scale, and long-term maintainability.',
+          'ERP, AMS, CRM, dan sistem manajemen yang disesuaikan dengan operasional Anda. Sistemnya andal, siap dikembangkan, dan mudah dirawat dalam jangka panjang.'
+        ) ?></p>
       </div>
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
         <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Mobile Apps</h3>
-        <p class="text-brand-gray text-sm leading-relaxed">Cross-platform mobile experiences using Flutter and React Native — fast to market, native-quality performance on both iOS and Android.</p>
+        <h3 class="text-xl font-semibold mb-3"><?= $landingText('Mobile Apps', 'Aplikasi Seluler') ?></h3>
+        <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+          'Cross-platform mobile experiences using Flutter and React Native — fast to market, native-quality performance on both iOS and Android.',
+          'Aplikasi lintas platform dengan Flutter dan React Native untuk mempercepat peluncuran dengan performa setara aplikasi native di iOS dan Android.'
+        ) ?></p>
       </div>
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light group hover:border-gray-300 transition-all duration-300">
         <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Consulting & Audits</h3>
-        <p class="text-brand-gray text-sm leading-relaxed">Architecture reviews, security audits, and tech strategy sessions. Get an expert second opinion before committing to a direction.</p>
+        <h3 class="text-xl font-semibold mb-3"><?= $landingText('Consulting & Audits', 'Konsultasi dan Audit') ?></h3>
+        <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+          'Architecture reviews, security audits, and tech strategy sessions. Get an expert second opinion before committing to a direction.',
+          'Tinjauan arsitektur, audit keamanan, dan sesi strategi teknologi. Dapatkan masukan dari ahli sebelum menentukan arah proyek.'
+        ) ?></p>
       </div>
     </div>
   </section>
 
   <!-- How We Work Section -->
   <section class="mb-32" id="process">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">How We Work</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center"><?= $landingText('How We Work', 'Cara Kami Bekerja') ?></div>
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-semibold hero-title md:text-6xl">Simple, transparent <span class="editorial-italic font-normal">process.</span></h2>
-      <p class="text-brand-gray mt-6 max-w-xl mx-auto">No surprises. From first call to final handover — here's exactly how we work together.</p>
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl"><?= $landingText(
+        'Simple, transparent <span class="editorial-italic font-normal">process.</span>',
+        'Proses yang sederhana dan <span class="editorial-italic font-normal">transparan.</span>'
+      ) ?></h2>
+      <p class="text-brand-gray mt-6 max-w-xl mx-auto"><?= $landingText(
+        'No surprises. From first call to final handover — here\'s exactly how we work together.',
+        'Ketahui setiap tahap kerja sama, dari konsultasi pertama hingga serah terima.'
+      ) ?></p>
     </div>
     <div class="relative">
       <!-- Vertical line -->
@@ -178,13 +222,16 @@ include 'includes/header.php';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="md:text-right md:pr-16">
             <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">1</div>
-            <h3 class="text-2xl font-semibold mb-3">Discovery Call</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">We start with a free 30-minute call to understand your goals, challenges, timeline, and budget. No hard sell — just honest conversation.</p>
+            <h3 class="text-2xl font-semibold mb-3"><?= $landingText('Discovery Call', 'Konsultasi Awal') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'We start with a free 30-minute call to understand your goals, challenges, timeline, and budget. No hard sell — just honest conversation.',
+              'Kami mulai dengan konsultasi gratis selama 30 menit untuk memahami tujuan, kendala, jadwal, dan anggaran Anda.'
+            ) ?></p>
           </div>
           <div class="md:pl-16">
             <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
-              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
-              <div class="text-base font-semibold mt-1">Project scope summary + initial timeline estimate</div>
+              <div class="text-sm font-medium text-brand-gray"><?= $landingText('Deliverable', 'Hasil tahap ini') ?></div>
+              <div class="text-base font-semibold mt-1"><?= $landingText('Project scope summary + initial timeline estimate', 'Ringkasan cakupan proyek dan perkiraan jadwal awal') ?></div>
             </div>
           </div>
         </div>
@@ -192,13 +239,16 @@ include 'includes/header.php';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="md:order-2 md:pl-16">
             <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">2</div>
-            <h3 class="text-2xl font-semibold mb-3">Proposal & Planning</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">We prepare a detailed proposal with milestones, tech stack recommendation, and fixed pricing. You know exactly what you're getting before signing.</p>
+            <h3 class="text-2xl font-semibold mb-3"><?= $landingText('Proposal & Planning', 'Proposal dan Perencanaan') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'We prepare a detailed proposal with milestones, tech stack recommendation, and fixed pricing. You know exactly what you\'re getting before signing.',
+              'Kami menyiapkan proposal berisi tahapan proyek, rekomendasi teknologi, dan biaya tetap. Anda tahu apa yang akan diterima sebelum menandatangani kontrak.'
+            ) ?></p>
           </div>
           <div class="md:order-1 md:pr-16 md:text-right">
             <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
-              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
-              <div class="text-base font-semibold mt-1">Proposal doc, milestone plan, contract</div>
+              <div class="text-sm font-medium text-brand-gray"><?= $landingText('Deliverable', 'Hasil tahap ini') ?></div>
+              <div class="text-base font-semibold mt-1"><?= $landingText('Proposal doc, milestone plan, contract', 'Dokumen proposal, rencana tahapan, dan kontrak') ?></div>
             </div>
           </div>
         </div>
@@ -206,13 +256,16 @@ include 'includes/header.php';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="md:text-right md:pr-16">
             <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">3</div>
-            <h3 class="text-2xl font-semibold mb-3">Design & Build</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">Our team gets to work in focused sprints. You receive progress updates weekly and have a shared staging environment to review at any time.</p>
+            <h3 class="text-2xl font-semibold mb-3"><?= $landingText('Design & Build', 'Desain dan Pengembangan') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'Our team gets to work in focused sprints. You receive progress updates weekly and have a shared staging environment to review at any time.',
+              'Tim kami bekerja dalam sprint. Anda menerima laporan mingguan dan bisa meninjau aplikasi kapan saja di lingkungan uji.'
+            ) ?></p>
           </div>
           <div class="md:pl-16">
             <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
-              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
-              <div class="text-base font-semibold mt-1">Working builds, weekly reports, staging access</div>
+              <div class="text-sm font-medium text-brand-gray"><?= $landingText('Deliverable', 'Hasil tahap ini') ?></div>
+              <div class="text-base font-semibold mt-1"><?= $landingText('Working builds, weekly reports, staging access', 'Versi aplikasi yang bisa dicoba, laporan mingguan, dan akses lingkungan uji') ?></div>
             </div>
           </div>
         </div>
@@ -220,13 +273,16 @@ include 'includes/header.php';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="md:order-2 md:pl-16">
             <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-black text-white text-sm font-bold mb-4">4</div>
-            <h3 class="text-2xl font-semibold mb-3">Launch & Handover</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">We deploy to production, run final QA, and hand over all assets with full documentation. Post-launch support included for 30 days.</p>
+            <h3 class="text-2xl font-semibold mb-3"><?= $landingText('Launch & Handover', 'Peluncuran dan Serah Terima') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'We deploy to production, run final QA, and hand over all assets with full documentation. Post-launch support included for 30 days.',
+              'Kami merilis aplikasi, melakukan pengujian akhir, lalu menyerahkan seluruh aset dan dokumentasi lengkap. Dukungan tersedia selama 30 hari setelah peluncuran.'
+            ) ?></p>
           </div>
           <div class="md:order-1 md:pr-16 md:text-right">
             <div class="p-8 rounded-3xl bg-brand-light border border-gray-100">
-              <div class="text-sm font-medium text-brand-gray">Deliverable</div>
-              <div class="text-base font-semibold mt-1">Live product, source code, documentation, 30-day support</div>
+              <div class="text-sm font-medium text-brand-gray"><?= $landingText('Deliverable', 'Hasil tahap ini') ?></div>
+              <div class="text-base font-semibold mt-1"><?= $landingText('Live product, source code, documentation, 30-day support', 'Produk yang sudah tayang, kode sumber, dokumentasi, dan dukungan 30 hari') ?></div>
             </div>
           </div>
         </div>
@@ -235,7 +291,7 @@ include 'includes/header.php';
   </section>
 
   <section class="mb-32" id="work">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Selected Work</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center"><?= $landingText('Selected Work', 'Proyek Pilihan') ?></div>
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
       <?php foreach ($projects as $project): ?>
         <div class="group">
@@ -245,14 +301,14 @@ include 'includes/header.php';
               alt="<?php echo htmlspecialchars($project['title']); ?>">
           </div>
           <h3 class="text-2xl font-semibold mb-2"><?php echo htmlspecialchars($project['title']); ?></h3>
-          <p class="text-brand-gray text-sm mb-4"><?php echo htmlspecialchars($project['description']); ?></p>
-          <div class="flex gap-2">
+          <p class="text-brand-gray text-sm mb-4"><?php echo htmlspecialchars($project['description_' . $landingLanguage] ?? $project['description']); ?></p>
+          <div class="flex flex-wrap gap-2">
             <?php
-            $tags = explode(',', $project['tags']);
+            $tags = explode(',', $project['tags_' . $landingLanguage] ?? $project['tags']);
             foreach ($tags as $tag):
               ?>
               <span
-                class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]"><?php echo trim($tag); ?></span>
+                class="font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded text-[10px]"><?= htmlspecialchars(trim($tag)) ?></span>
             <?php endforeach; ?>
           </div>
         </div>
@@ -262,9 +318,12 @@ include 'includes/header.php';
 
   <!-- Why Choose Us Section -->
   <section class="mb-32" id="why-us">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Why Choose Us</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center"><?= $landingText('Why Choose Us', 'Mengapa Digiserv') ?></div>
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-semibold hero-title md:text-6xl">Built different, <span class="editorial-italic font-normal">on purpose.</span></h2>
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl"><?= $landingText(
+        'Built different, <span class="editorial-italic font-normal">on purpose.</span>',
+        'Cara kami <span class="editorial-italic font-normal">membangun proyek.</span>'
+      ) ?></h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="p-10 rounded-3xl border border-gray-100 bg-brand-light">
@@ -273,8 +332,11 @@ include 'includes/header.php';
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold mb-2">Fixed-Price Delivery</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">No hourly billing surprises. We scope the project, agree on a price, and deliver. Overruns are our problem, not yours.</p>
+            <h3 class="text-lg font-semibold mb-2"><?= $landingText('Fixed-Price Delivery', 'Biaya Tetap') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'No hourly billing surprises. We scope the project, agree on a price, and deliver. Overruns are our problem, not yours.',
+              'Sejak awal, kami menyepakati cakupan dan biaya proyek. Jika pengerjaan memakan waktu lebih lama dari perkiraan, biaya tambahannya menjadi tanggung jawab kami.'
+            ) ?></p>
           </div>
         </div>
       </div>
@@ -284,8 +346,11 @@ include 'includes/header.php';
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold mb-2">Senior-Only Team</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">No junior handoffs. Every project is led and built by experienced engineers with real production track records.</p>
+            <h3 class="text-lg font-semibold mb-2"><?= $landingText('Senior-Only Team', 'Tim Engineer Senior') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'No junior handoffs. Every project is led and built by experienced engineers with real production track records.',
+              'Engineer berpengalaman memimpin dan mengerjakan setiap proyek. Mereka terbiasa membangun dan menjalankan sistem produksi.'
+            ) ?></p>
           </div>
         </div>
       </div>
@@ -295,8 +360,11 @@ include 'includes/header.php';
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold mb-2">Full Transparency</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">You own the code, the repo, the servers. Weekly progress updates keep you in the loop without micromanaging.</p>
+            <h3 class="text-lg font-semibold mb-2"><?= $landingText('Full Transparency', 'Transparansi Penuh') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              'You own the code, the repo, the servers. Weekly progress updates keep you in the loop without micromanaging.',
+              'Kode, repositori, dan server menjadi milik Anda. Laporan mingguan memudahkan Anda mengikuti perkembangan proyek.'
+            ) ?></p>
           </div>
         </div>
       </div>
@@ -306,8 +374,11 @@ include 'includes/header.php';
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <div>
-            <h3 class="text-lg font-semibold mb-2">Long-Term Partnership</h3>
-            <p class="text-brand-gray text-sm leading-relaxed">98% of our clients come back for more. We build relationships, not just software — your growth is our metric.</p>
+            <h3 class="text-lg font-semibold mb-2"><?= $landingText('Long-Term Partnership', 'Kemitraan Jangka Panjang') ?></h3>
+            <p class="text-brand-gray text-sm leading-relaxed"><?= $landingText(
+              '98% of our clients come back for more. We build relationships, not just software — your growth is our metric.',
+              'Sebanyak 98% klien kami kembali untuk proyek berikutnya. Kami membangun kemitraan yang mendukung pertumbuhan bisnis Anda.'
+            ) ?></p>
           </div>
         </div>
       </div>
@@ -315,15 +386,15 @@ include 'includes/header.php';
   </section>
 
   <section class="mb-32" id="testimonials">
-    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">Client Stories</div>
+    <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center"><?= $landingText('Client Stories', 'Cerita Klien') ?></div>
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
       <?php foreach ($testimonials as $t): ?>
         <div
           class="p-10 rounded-3xl border border-gray-100 bg-brand-light italic text-brand-gray text-sm leading-relaxed">
-          "<?php echo htmlspecialchars($t['testimonial']); ?>"
+          "<?php echo htmlspecialchars($translatedTestimonials[$t['testimonial']] ?? $t['testimonial']); ?>"
           <div class="mt-8 not-italic flex items-center gap-4">
             <img class="w-10 h-10 rounded-full grayscale" src="<?php echo htmlspecialchars($t['image_path']); ?>"
-              alt="client">
+              alt="<?= $landingText('client', 'klien') ?>">
             <div>
               <div class="text-brand-black font-bold"><?php echo htmlspecialchars($t['client_name']); ?></div>
               <div class="text-wider uppercase text-[10px]"><?php echo htmlspecialchars($t['company_name']); ?></div>
@@ -338,67 +409,84 @@ include 'includes/header.php';
   <section class="mb-32" id="faq">
     <div class="text-xs font-bold tracking-widest text-brand-gray mb-12 uppercase text-center">FAQ</div>
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-semibold hero-title md:text-6xl">Common <span class="editorial-italic font-normal">questions.</span></h2>
+      <h2 class="text-4xl font-semibold hero-title md:text-6xl"><?= $landingText('Common <span class="editorial-italic font-normal">questions.</span>', 'Pertanyaan yang <span class="editorial-italic font-normal">sering diajukan.</span>') ?></h2>
     </div>
     <div class="max-w-3xl mx-auto space-y-3" id="faq-list">
       <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
         <summary class="flex justify-between items-center font-semibold text-base list-none">
-          How long does a typical project take?
+          <?= $landingText('How long does a typical project take?', 'Berapa lama pengerjaan proyek?') ?>
           <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
         </summary>
-        <p class="text-brand-gray text-sm leading-relaxed mt-4">It depends on scope. A landing page or simple web app typically takes 2–4 weeks. Enterprise systems and complex integrations run 6–16 weeks. We'll give you an accurate estimate after our discovery call.</p>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4"><?= $landingText(
+          'It depends on scope. A landing page or simple web app typically takes 2–4 weeks. Enterprise systems and complex integrations run 6–16 weeks. We\'ll give you an accurate estimate after our discovery call.',
+          'Waktunya tergantung cakupan. Landing page atau aplikasi web sederhana biasanya membutuhkan 2–4 minggu. Sistem perusahaan dan integrasi kompleks membutuhkan 6–16 minggu. Kami memberikan estimasi setelah konsultasi awal.'
+        ) ?></p>
       </details>
       <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
         <summary class="flex justify-between items-center font-semibold text-base list-none">
-          Do you work with international clients?
+          <?= $landingText('Do you work with international clients?', 'Apakah Digiserv melayani klien internasional?') ?>
           <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
         </summary>
-        <p class="text-brand-gray text-sm leading-relaxed mt-4">Yes, absolutely. We work remotely with clients across Southeast Asia, the Middle East, Europe, and North America. Communication is in English and we adapt to your timezone for key meetings.</p>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4"><?= $landingText(
+          'Yes, absolutely. We work remotely with clients across Southeast Asia, the Middle East, Europe, and North America. Communication is in English and we adapt to your timezone for key meetings.',
+          'Ya. Kami bekerja jarak jauh dengan klien di Asia Tenggara, Timur Tengah, Eropa, dan Amerika Utara. Untuk klien internasional, kami berkomunikasi dalam bahasa Inggris dan menyesuaikan pertemuan penting dengan zona waktu Anda.'
+        ) ?></p>
       </details>
       <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
         <summary class="flex justify-between items-center font-semibold text-base list-none">
-          What's your payment structure?
+          <?= $landingText('What\'s your payment structure?', 'Bagaimana skema pembayarannya?') ?>
           <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
         </summary>
-        <p class="text-brand-gray text-sm leading-relaxed mt-4">We use a milestone-based payment model: 40% upfront to begin, 40% at mid-project delivery, and 20% upon final handover. This keeps risk balanced for both sides.</p>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4"><?= $landingText(
+          'We use a milestone-based payment model: 40% upfront to begin, 40% at mid-project delivery, and 20% upon final handover. This keeps risk balanced for both sides.',
+          'Pembayaran mengikuti tahapan proyek. Anda membayar 40% di awal, 40% saat hasil tahap tengah diserahkan, dan 20% saat serah terima akhir.'
+        ) ?></p>
       </details>
       <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
         <summary class="flex justify-between items-center font-semibold text-base list-none">
-          Who owns the source code?
+          <?= $landingText('Who owns the source code?', 'Siapa yang memiliki kode sumbernya?') ?>
           <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
         </summary>
-        <p class="text-brand-gray text-sm leading-relaxed mt-4">You do, 100%. Upon final payment, all source code, assets, and documentation are transferred to you. We retain no rights or backdoors.</p>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4"><?= $landingText(
+          'You do, 100%. Upon final payment, all source code, assets, and documentation are transferred to you. We retain no rights or backdoors.',
+          'Kode sumber sepenuhnya milik Anda. Setelah pembayaran lunas, kami menyerahkan seluruh kode, aset, dan dokumentasi. Kepemilikan dan akses sepenuhnya berpindah kepada Anda.'
+        ) ?></p>
       </details>
       <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
         <summary class="flex justify-between items-center font-semibold text-base list-none">
-          Can you maintain the project after launch?
+          <?= $landingText('Can you maintain the project after launch?', 'Apakah Digiserv menyediakan pemeliharaan setelah peluncuran?') ?>
           <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
         </summary>
-        <p class="text-brand-gray text-sm leading-relaxed mt-4">Yes. We offer monthly retainer packages for ongoing maintenance, feature additions, and priority support. Many of our clients stay on retainer long-term.</p>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4"><?= $landingText(
+          'Yes. We offer monthly retainer packages for ongoing maintenance, feature additions, and priority support. Many of our clients stay on retainer long-term.',
+          'Ya. Kami menawarkan paket bulanan untuk pemeliharaan, penambahan fitur, dan dukungan prioritas. Banyak klien memilih melanjutkan paket ini dalam jangka panjang.'
+        ) ?></p>
       </details>
       <details class="group p-8 rounded-3xl border border-gray-100 bg-brand-light cursor-pointer">
         <summary class="flex justify-between items-center font-semibold text-base list-none">
-          Do you sign NDAs?
+          <?= $landingText('Do you sign NDAs?', 'Apakah Digiserv bersedia menandatangani NDA?') ?>
           <span class="text-2xl font-light text-brand-gray group-open:rotate-45 transition-transform duration-300">+</span>
         </summary>
-        <p class="text-brand-gray text-sm leading-relaxed mt-4">Yes, we sign NDAs for all client projects as a standard part of our contract. Your business ideas, data, and technical details stay confidential.</p>
+        <p class="text-brand-gray text-sm leading-relaxed mt-4"><?= $landingText(
+          'Yes, we sign NDAs for all client projects as a standard part of our contract. Your business ideas, data, and technical details stay confidential.',
+          'Ya. Perjanjian kerahasiaan (NDA) merupakan bagian standar dari kontrak proyek kami. Ide bisnis, data, dan detail teknis Anda tetap terjaga.'
+        ) ?></p>
       </details>
     </div>
   </section>
 
   <section class="text-center pt-24 pb-16" id="contact">
-    <h2 class="text-5xl font-semibold hero-title mb-12 md:text-7xl">Let's <span
-        class="editorial-italic font-normal">work</span> together.</h2>
+    <h2 class="text-5xl font-semibold hero-title mb-12 md:text-7xl"><?= $landingText('Let\'s <span class="editorial-italic font-normal">work</span> together.', 'Mari <span class="editorial-italic font-normal">bekerja sama.</span>') ?></h2>
     <div class="flex flex-col justify-center gap-6 sm:flex-row">
       <a class="inline-flex items-center justify-center gap-3 bg-brand-black text-white text-lg font-medium px-12 py-5 rounded-2xl transition shadow-2xl hover:bg-gray-800"
         href="https://wa.link/byybuo">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp Us
+        <?= $landingText('WhatsApp Us', 'Hubungi via WhatsApp') ?>
       </a>
       <a class="inline-flex items-center justify-center gap-3 bg-white text-brand-black border border-gray-200 text-lg font-medium px-12 py-5 rounded-2xl transition shadow-lg hover:bg-gray-50"
         href="mailto:hidayat@digiserv.my.id">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Send Email
+        <?= $landingText('Send Email', 'Kirim Email') ?>
       </a>
     </div>
   </section>
