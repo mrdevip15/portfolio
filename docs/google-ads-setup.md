@@ -11,7 +11,10 @@ Disusun 25 Nov 2026. Semua angka budget/CPC di bawah adalah titik awal, bukan da
    - **Google Ads**: akun "Digiserv" **420-744-5560** (terpisah dari akun bimbel 748-802-2091). Indonesia, Makassar, IDR, pascabayar. Tag `AW-18594643988`. Terhubung ke GA4 di atas.
    - **Konversi** (kategori Kontak, Utama, hitung "Satu"): **WhatsApp click** label `IrzgCNOjhb8dEJSAz6JF`, **Email click** label `3ksUCNajhb8dEJSAz6JF`. Konversi yang disempurnakan: mati.
 4. ✅ ID sudah diisi di `includes/tracking.php` dan live. Klik link WhatsApp/mailto mengirim `generate_lead` (GA4) + konversi Ads (diuji 25 Nov 2026).
-5. ✅ Kampanye **"Search - Jasa Landing Page"** (ID 24551456542) dibuat 25 Nov 2026, status **Dijeda**, tanggal mulai 31 Des 2026 (pengaman — majukan saat mengaktifkan). Search saja, Indonesia (kehadiran), Maksimalkan klik dengan CPC maks Rp5.000, anggaran Rp50.000/hari, Sen–Jum 07.00–21.00 WITA, AI Maksimal mati. 10 kata kunci (7 frasa, 3 persis), 22 kata kunci negatif, 1 RSA (10 judul, 3 deskripsi, path `/jasa/landing-page`). Belum ada sitelink/callout.
+5. ✅ Kampanye **"Search - Jasa Pembuatan Website"** (ID 24551456542; dulu "Search - Jasa Landing Page") dibuat 25 Nov 2026, status **Dijeda**, tanggal mulai 31 Des 2026 (pengaman — majukan saat mengaktifkan). Search saja, Indonesia (kehadiran), Maksimalkan klik dengan CPC maks Rp5.000, anggaran Rp50.000/hari, Sen–Jum 07.00–21.00 WITA, AI Maksimal mati, 22 kata kunci negatif. Grup iklan:
+   - **Website & Aplikasi** — aktif (satu-satunya). 14 kata kunci (website, aplikasi, web app, mobile/android, sistem informasi, chatbot AI, aplikasi AI, software house). 1 RSA ke `https://digiserv.my.id/?lang=id` (homepage Indonesia), path `/website/bisnis`, 15 judul + 4 deskripsi berisi kata kunci, 6 sitelink, tanpa pin. Daya iklan masih "Dalam proses" sampai iklan selesai ditinjau.
+   - **Grup iklan 1** (landing page, `/jasabikinwebsite/landing-page`) — dijeda.
+   - **Jasa Website & Aplikasi** (duplikat, dibuat via Codex) — dijeda.
 6. Status konversi di Google Ads baru berubah dari "Belum diverifikasi" setelah ada klik nyata; cek lagi 1–2 hari setelah kampanye jalan.
 
 ## 1. Struktur akun
