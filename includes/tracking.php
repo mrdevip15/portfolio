@@ -6,10 +6,10 @@
 // GA4 Measurement ID, e.g. 'G-XXXXXXXXXX' (Google Analytics > Admin > Data streams)
 const TRACKING_GA4_ID = 'G-23FDKLGGVR';
 // Google Ads tag ID, e.g. 'AW-123456789' (Google Ads > Goals > Conversions > Tag setup)
-const TRACKING_ADS_ID = '';
+const TRACKING_ADS_ID = 'AW-18594643988';
 // Conversion labels from Google Ads (the part after the slash in 'AW-123456789/AbCdEf...')
-const TRACKING_ADS_LABEL_WHATSAPP = '';
-const TRACKING_ADS_LABEL_EMAIL = '';
+const TRACKING_ADS_LABEL_WHATSAPP = 'IrzgCNOjhb8dEJSAz6JF';
+const TRACKING_ADS_LABEL_EMAIL = '3ksUCNajhb8dEJSAz6JF';
 
 if (TRACKING_GA4_ID === '' && TRACKING_ADS_ID === '') {
     return;
