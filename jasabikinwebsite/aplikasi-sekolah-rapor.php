@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Aplikasi Rapor Digital & Sekolah - Smart Education | Digiserv.id';
+$pageTitle = 'Aplikasi Rapor Digital & Sekolah - Smart Education | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $post = $stmt->fetch();
 }
 
-$pageTitle = ($id ? 'Edit Post' : 'New Post') . ' | Admin | Digiserv.id';
+$pageTitle = ($id ? 'Edit Post' : 'New Post') . ' | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

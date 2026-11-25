@@ -611,7 +611,7 @@ function format_date($date)
             <div class="contact-sign">
                 <div style="font-size: 13px; font-weight: 800; margin-bottom: 20px; text-transform:uppercase;"
                     class="section-label">
-                    HIDAYAT@DIGISERV.ID<br>
+                    HIDAYAT@DIGISERV.MY.ID<br>
                     +62 895-1829-6820
                 </div>
 

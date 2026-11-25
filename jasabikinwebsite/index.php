@@ -1,6 +1,6 @@
 <?php
-$pageTitle = 'Enterprise Automation & Solutions | Digiserv.id';
-$pageDescription = 'Digiserv.id — Premium digital agency specializing in production-grade automation, invoice systems, and educational technology.';
+$pageTitle = 'Enterprise Automation & Solutions | Digiserv';
+$pageDescription = 'Digiserv — Premium digital agency specializing in production-grade automation, invoice systems, and educational technology.';
 $basePath = '../';
 include '../includes/header.php';
 ?>
@@ -48,7 +48,7 @@ include '../includes/header.php';
   </section>
 
   <section class="mb-32" id="services">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light hover_border-gray-200 transition-all duration-300 hover:shadow-xl"
         href="jasa-script-otomatis">
         <div
@@ -92,6 +92,16 @@ include '../includes/header.php';
         <p class="text-brand-gray leading-relaxed text-sm">Manajemen nilai digital yang aman dan sesuai standar
           kurikulum. Fokus mengajar, biarkan kami menangani data.</p>
       </a>
+      <a class="group block p-10 rounded-3xl border border-gray-100 bg-brand-light transition-all duration-300 hover:border-gray-200 hover:shadow-xl"
+        href="landing-page">
+        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-8 text-brand-black transition-transform group-hover:scale-110" aria-hidden="true">
+          <span class="inline-flex h-5 w-6 rounded border-2 border-current">
+            <span class="mt-1 w-full border-t-2 border-current"></span>
+          </span>
+        </div>
+        <h3 class="text-2xl font-semibold mb-4">Landing Page</h3>
+        <p class="text-brand-gray leading-relaxed text-sm">Halaman kampanye yang menjelaskan penawaran Anda dan mengarahkan pengunjung ke WhatsApp atau formulir pendaftaran.</p>
+      </a>
     </div>
   </section>
 
@@ -105,7 +115,7 @@ include '../includes/header.php';
         WhatsApp Us
       </a>
       <a class="inline-flex items-center justify-center gap-3 bg-white text-brand-black border border-gray-200 text-lg font-medium px-12 py-5 rounded-2xl transition shadow-lg hover:bg-gray-50"
-        href="mailto:hidayat@digiserv.id">
+        href="mailto:hidayat@digiserv.my.id">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Send Email
       </a>

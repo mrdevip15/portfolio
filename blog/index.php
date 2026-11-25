@@ -2,7 +2,7 @@
 require_once '../includes/content.php';
 $posts = get_posts();
 
-$pageTitle = 'Blog | Engineering Insights | Digiserv.id';
+$pageTitle = 'Blog | Engineering Insights | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

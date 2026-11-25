@@ -18,7 +18,7 @@ if (isset($_GET['delete'])) {
 
 $testimonials = $db->query("SELECT * FROM testimonials ORDER BY created_at DESC")->fetchAll();
 
-$pageTitle = 'Manage Testimonials | Admin | Digiserv.id';
+$pageTitle = 'Manage Testimonials | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

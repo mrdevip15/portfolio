@@ -18,7 +18,7 @@ if (isset($_GET['delete'])) {
 
 $posts = $db->query("SELECT * FROM posts ORDER BY published_at DESC")->fetchAll();
 
-$pageTitle = 'Manage Posts | Admin | Digiserv.id';
+$pageTitle = 'Manage Posts | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

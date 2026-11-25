@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $settings = $db->query("SELECT * FROM site_settings")->fetchAll();
 
-$pageTitle = 'Site Settings | Admin | Digiserv.id';
+$pageTitle = 'Site Settings | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

@@ -9,7 +9,7 @@ if (!$post) {
     exit;
 }
 
-$pageTitle = $post['title'] . ' | Digiserv.id';
+$pageTitle = $post['title'] . ' | Digiserv';
 $pageDescription = $post['excerpt'];
 $basePath = '../';
 include '../includes/header.php';

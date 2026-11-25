@@ -18,7 +18,7 @@ if (isset($_GET['delete'])) {
 
 $projects = $db->query("SELECT * FROM projects ORDER BY created_at DESC")->fetchAll();
 
-$pageTitle = 'Manage Projects | Admin | Digiserv.id';
+$pageTitle = 'Manage Projects | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Otomasi Workflow Kantor - Industrial Logic | Digiserv.id';
+$pageTitle = 'Otomasi Workflow Kantor - Industrial Logic | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

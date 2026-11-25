@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $testimonial = $stmt->fetch();
 }
 
-$pageTitle = ($id ? 'Edit Testimonial' : 'New Testimonial') . ' | Admin | Digiserv.id';
+$pageTitle = ($id ? 'Edit Testimonial' : 'New Testimonial') . ' | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $project = $stmt->fetch();
 }
 
-$pageTitle = ($id ? 'Edit Project' : 'New Project') . ' | Admin | Digiserv.id';
+$pageTitle = ($id ? 'Edit Project' : 'New Project') . ' | Admin | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

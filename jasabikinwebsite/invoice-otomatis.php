@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Sistem Invoice Otomatis - Precision Billing | Digiserv.id';
+$pageTitle = 'Sistem Invoice Otomatis - Precision Billing | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

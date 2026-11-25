@@ -1,6 +1,6 @@
 <?php
-$pageTitle = 'Digiserv.id | Enterprise Software & Automation Experts | Digiserv.id';
-$pageDescription = 'Digiserv.id — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.';
+$pageTitle = 'Enterprise Software & Automation Experts | Digiserv';
+$pageDescription = 'Digiserv — Premium digital agency specializing in high-performance web applications, AI integration, and scalable solutions.';
 $basePath = './';
 require_once 'includes/content.php';
 require_once 'billing/db.php';
@@ -35,7 +35,7 @@ include 'includes/header.php';
     <h1 class="text-5xl font-semibold hero-title max-w-4xl mx-auto text-brand-black mb-10 md:text-8xl">Architecting
       digital systems with <span class="editorial-italic font-normal">precision.</span></h1>
     <p class="text-lg text-brand-gray max-w-2xl mx-auto mb-12 leading-relaxed md:text-xl">At
-      <strong>Digiserv.id</strong>, we bring an analytical, systems-thinking approach to software engineering.
+      <strong>Digiserv</strong>, we bring an analytical, systems-thinking approach to software engineering.
       Enterprise partner for automation, production-grade applications, and resilient architectures.</p>
     <div class="flex gap-4">
       <a class="inline-flex items-center gap-2 bg-brand-black text-white text-base font-medium px-10 py-4 rounded-xl transition shadow-xl transform duration-300 hover:bg-gray-800 hover:scale-105"
@@ -396,7 +396,7 @@ include 'includes/header.php';
         WhatsApp Us
       </a>
       <a class="inline-flex items-center justify-center gap-3 bg-white text-brand-black border border-gray-200 text-lg font-medium px-12 py-5 rounded-2xl transition shadow-lg hover:bg-gray-50"
-        href="mailto:hidayat@digiserv.id">
+        href="mailto:hidayat@digiserv.my.id">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Send Email
       </a>

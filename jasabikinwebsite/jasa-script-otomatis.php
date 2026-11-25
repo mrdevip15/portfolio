@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Jasa Script Otomatis - Production Grade | Digiserv.id';
+$pageTitle = 'Jasa Script Otomatis - Production Grade | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>

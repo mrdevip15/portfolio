@@ -17,7 +17,7 @@ $invoice_count = $db->query("SELECT COUNT(*) FROM invoices")->fetchColumn();
 $project_count = $db->query("SELECT COUNT(*) FROM projects")->fetchColumn();
 $testimonial_count = $db->query("SELECT COUNT(*) FROM testimonials")->fetchColumn();
 
-$pageTitle = 'Admin Dashboard | Digiserv.id';
+$pageTitle = 'Admin Dashboard | Digiserv';
 $basePath = '../';
 include '../includes/header.php';
 ?>
