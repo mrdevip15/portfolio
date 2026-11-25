@@ -4,7 +4,7 @@
 // Nothing is output until at least one ID below is filled in.
 
 // GA4 Measurement ID, e.g. 'G-XXXXXXXXXX' (Google Analytics > Admin > Data streams)
-const TRACKING_GA4_ID = '';
+const TRACKING_GA4_ID = 'G-23FDKLGGVR';
 // Google Ads tag ID, e.g. 'AW-123456789' (Google Ads > Goals > Conversions > Tag setup)
 const TRACKING_ADS_ID = '';
 // Conversion labels from Google Ads (the part after the slash in 'AW-123456789/AbCdEf...')
