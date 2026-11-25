@@ -48,7 +48,8 @@ When the server is running on `http://127.0.0.1:8008`:
   - SQLite database file: `billing/database.sqlite`.
   - Connection helper: `billing/db.php` (`get_db_connection()`).
   - Supports MySQL fallback if configured in `.env`.
-- **Production Server**: Apache via `.htaccess` (cPanel deployment configured in `.cpanel.yml`).
+- **Production Server**: Apache via `.htaccess` on cPanel hosting (`digiserv.my.id`).
+- **Deployment**: GitHub Actions (`.github/workflows/deploy.yml`) uploads to `public_html` over FTPS on every push to `main`. It publishes the same file list as `.cpanel.yml`; keep the two in sync when adding top-level files or folders. Secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
 - **Local Dev Server**: Handled via `router.php`.
 
 ---
